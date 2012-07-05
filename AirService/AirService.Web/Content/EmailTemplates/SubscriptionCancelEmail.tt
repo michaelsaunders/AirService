@@ -1,0 +1,31 @@
+﻿<#@ template language="C#"#>
+<#@ parameter Name="VenueName" Type="System.String" #>
+<#@ parameter Name="Address" Type="System.String" #>
+<#@ parameter Name="PhoneNumber" Type="System.String" #>
+<#@ parameter Name="Email" Type="System.String" #>
+<#@ parameter Name="TypeOfVenue" Type="System.String" #>
+<#@ parameter Name="ReferralCode" Type="System.String" #>
+
+<html>
+<body>
+<p>We're sorry to see you go</p>
+<p>Thanks for your time with AirService, we're sorry to lose you.</p>
+<p>If you have any suggestions for ways we could improve our service please email us airservice@luxedigital.net, we'd love the chance to win you back.</p>
+<br/>
+Venue Details<br/>
+Name: <#= VenueName #><br/>
+Address: <#= Address #><br/>
+Phone Number: <#= PhoneNumber #><br/>
+Email Address: <#= Email #><br/>
+Type of Venue: <#= TypeOfVenue #><br/>
+Referral Code (if any): <#= ReferralCode #><br/>
+
+<p>
+Kind regards<br/>
+The AirService Team<br/>
+<br/>
+Luxe Digital Pty Ltd ABN 30 255 155 711
+</p>
+</body>
+</html>
+

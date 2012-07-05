@@ -1,0 +1,38 @@
+﻿@model AirService.Model.VenueArea
+
+@using (Ajax.BeginForm(new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "divVenueAreas",
+    OnSuccess = "CloseIt();"
+}))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Venue Area</legend>
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Status)
+        @Html.HiddenFor(model => model.VenueId)
+        @Html.HiddenFor(model => model.CreateDate)
+        @Html.HiddenFor(model => model.UpdateDate)
+        @Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+    
+        <script type="text/javascript">
+            $("#popupDialog").ready(function () {
+                $.validator.unobtrusive.parse("#popupDialog > form");
+            });
+
+
+            function CloseIt() {
+                $("#popupDialog").dialog('close');
+                return true;
+            }
+    </script>
+}

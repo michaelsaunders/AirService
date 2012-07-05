@@ -1,0 +1,78 @@
+﻿@using AirService.Web.Infrastructure
+@model AirService.Web.ViewModels.PaymentDetailViewModel
+@section headerSection
+{
+    <script type="text/javascript">
+        $.validator.addMethod('termsAndConditions', function () {
+            return $('#terms-and-conditions')[0].checked;
+        }, 'Please tick "I agree to AirService standard terms & conditions"');
+    </script>    
+}
+<section id="main">
+    <section id="main-content" class="clearfix">
+        <h2>Activate Your Account </h2>
+        <div>
+            <div class="detail-form-small detail-form">
+                <h5 class="subscription">AirService</h5>
+                <div class="activate-list clearfix">
+                    <ul>
+                        <li class="first"><span>Fully customise app with your brand</span></li>
+                        <li><span>Customers can order direct from their iPhone</span></li>
+                        <li><span>Display promotions in the app</span></li>
+                        <li><span>Instantly and easily update menus</span></li>
+                        <li><span>Schedule your menus</span></li>
+                        <li><span>Add photos to your menu items</span></li>
+                        <li class="last"><span>Highlight special offers in-app</span></li>  
+                    </ul>
+
+                    <ul style="margin-left:21px;">
+                        <li class="first"><span>Allow customer to view your menus at any time</span></li>
+                        <li><span>Feature in the AirService directory</span></li>
+                        <li><span>Message your customers through the app</span></li>
+                        <li><span>Deliver orders or notify customers for pick up</span></li>
+                        <li><span>Split incoming orders acrosss multiple iPads</span></li>
+                        <li><span>Review comprhensive reports on your venue</span></li>
+                        <li class="last"><span>Integrate with Facbook &amp; Twitter</span></li>
+                    </ul>
+                </div>
+
+                <div class="mini-notice">
+                    <h3>$350/month</h3>
+                    <p>No contract. Because we're sure you'll love AirSerivce.</p>
+                </div>
+                <h5 class="payments">Payment</h5>
+                @using (this.Html.BeginForm("Activate", "Account"))
+                {
+                    @this.Html.ValidationSummary(false)
+                    @Html.PartialPrefixed("_CreditCardDetail", this.Model.CreditCard, "CreditCard")  
+                    <input type="submit" class="btn-get-started" />
+                }
+            </div>
+        </div>
+        <aside>
+            <ul>
+                <li class="first">
+                    <h4>Questions?</h4>
+                    <p>
+                        Our most common questions are all answered on our <a href="/home/page/faq-venues">FAQ’s
+                            page</a></p>
+                </li>
+                <li>
+                    <h4>Get social</h4>
+                    <ul class="social">
+                        <li class="facebook">Show some love and 'like' us on <a href="http://www.facebook.com/getairservice" target="_blank">Facebook</a>.</li>
+                        <li class="twitter"><a href="http://www.twitter.com/getairservice" target="_blank">Follow us on Twitter</a> for up to the second updates.</li>
+                    </ul>
+                </li>
+                <li class="trial">
+                    <h4>Happiness Guarantee</h4>
+                    <p>
+                        If at any time during the first three months of your subscription you find AirService
+                        isn't working for you, we'll refund all your monthly subscriptions fees, no questions
+                        asked.
+                    </p>
+                </li>
+            </ul>
+        </aside>
+    </section>
+</section>

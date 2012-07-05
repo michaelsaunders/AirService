@@ -1,0 +1,54 @@
+﻿@using AirService.Model
+@model AirService.WebTest.ViewModels.CustomerOrderViewModel
+<p>
+    Customer Name: @Model.Customer.FirstName @Model.Customer.LastName</p>
+<button type="button" class="simulate-close-button" data-customer-id="@Model.Customer.Id" data-venue-id="@Model.VenueId">
+    Simulate Close Request</button> 
+@foreach (var order in Model.Orders)
+{ 
+    <hr />
+    @:Order ID: @order.Id<br />
+    @:Order Created: @order.CreateDate<br />
+    @:Order Updated: @order.UpdateDate<br />
+    @:Order Total: @order.TotalAmount.ToString("C")<br />
+    <ul>
+        @foreach (var item in order.OrderItems)
+        {    
+            <li>@item.Id, @item.Name, QTY: @item.Quantity, PRICE: @item.Price.ToString("C")
+                <strong>
+                    @switch (item.OrderStatus)
+                    {
+                        case AirService.Model.Order.OrderStatusProcessed:
+                        @:Processed
+                            if (!item.Delivered && (item.iPad.ServiceOption & iPad.ServiceOptionPickup) == iPad.ServiceOptionPickup)
+                            {
+                                @:Pick Up Ready 
+                                <button class="pickup-button" data-customer-id="@order.CustomerId" data-orderitem-id="@item.Id">Pickup (Swipe)</button>
+                            }
+                            break;
+
+                        case AirService.Model.Order.OrderStatusPending:
+                        @:Pending
+                        break;
+
+                        case AirService.Model.Order.OrderStatusConfirmed:
+                        @:Confirmed
+                        break;
+
+                        case AirService.Model.Order.OrderStatusCancelled:
+                        @:Cancelled
+                        break;
+
+                        case AirService.Model.Order.OrderStatusFinalized:
+                        @:Finalized
+                        break;
+                    }
+                </strong>
+                @if (item.iPad != null)
+                {
+                    <small>(Assigned to "@item.iPad.Name")</small>
+                } 
+            </li>
+        }
+    </ul>
+}

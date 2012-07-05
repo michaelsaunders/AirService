@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\SvcUtil.exe" https://www.eway.com.au/gateway/rebill/manageRebill.asmx?wsdl /out:EwayClient.cs

@@ -1,0 +1,47 @@
+@model AirService.Web.ViewModels.IPadViewModel
+@* This partial view defines form fields that will appear when creating and editing entities *@
+@Html.ValidationMessageFor(model => model.iPad.Name)
+@Html.ValidationMessageFor(model => model.iPad.Location)
+@Html.ValidationMessageFor(model => model.iPad.Image)
+@Html.ValidationMessageFor(model => model.iPad.AssignedMenus)
+<div class="editor-label">
+    @Html.LabelFor(model => model.iPad.Name)
+    (Assign your iPad a name. Eg. Kitchen iPad)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.iPad.Name)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.iPad.Location) of Venue iPad (Enter a description of where this iPad is located)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.iPad.Location)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.iPad.AssignedMenus) (Check which menus this iPad will receive orders from)
+</div>
+<div style="height: 75px" class="checkbox-list dialog-checkbox-list">
+    @foreach(var list in new MultiSelectList(Model.AvailableMenus.OrderBy(m=>m.SortOrder), "Id", "Title", @Model.SelectedMenus))
+    {
+        <div>
+            <input type="checkbox" id="menu@(list.Value)" name="SelectedMenus" @(list.Selected ? "checked=\"checked\"" : "") value="@list.Value"/>
+            <label for="menu@(list.Value)">@list.Text</label>
+        </div>
+    }
+</div>
+<div class="display-label">
+    @Html.LabelFor(model => model.iPad.Pin)
+</div>
+<div class="display-field">
+    <span id="pincode">@Model.iPad.Pin</span>
+    @Html.HiddenFor(model => model.iPad.Pin)
+    @*@Html.TextBoxFor(model => model.iPad.Pin, new { disabled="disabled", @readonly = "readonly" })*@
+    <button type="button" id="pincode-generate-button">Regenerate</button>
+</div>
+<div class="display-label">
+    Venue Id (The venue ID will be needed to login to the iPad)
+</div>
+<div class="display-field">
+    @Model.iPad.VenueId.ToString().PadLeft(6, '0') 
+</div> 
+

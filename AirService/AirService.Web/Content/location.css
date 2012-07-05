@@ -1,0 +1,32 @@
+#location {}
+
+/* Location map */
+#location div.map-holder {height:211px; width:270px; background:transparent url("images/build/location-map-shadow.png") scroll no-repeat 0 bottom;}
+#location div.map-holder span {display:block; width:268px; height:198px; border:1px solid #9F9F9F; margin-bottom:11px;}
+#location div.map-holder a img {width:258px; height:188px; border:5px solid #FFF; margin-bottom:11px;}
+#location div.map-holder a:hover img {border-color:#2CC4F6;}
+
+/* Location status */
+#location h2 {color:#007AB3; font-size:1.5em;}
+#location h3 {font-size:1.2em; margin:0;}
+#location div.location-status {width:350px;}
+#location div.location-status p {float:left; width:259px; height:56px; padding:6px 10px; margin:0; font-size:1.2em; background:transparent url("images/build/location-status.png") scroll no-repeat 0 0;}
+#location div.location-status-img {float:right; height:75px; width:70px; background:transparent url("images/build/location-status-img-shadow.png") scroll no-repeat center bottom;}
+#location div.location-status-img div.img {width:68px; height:68px; border:1px solid #9f9f9f; background:#A9A9A9 url("images/build/loading.gif") scroll no-repeat center center;}
+#location div.location-status-img div.img img {width:68px; height:68px; border:none;}
+#location p.location-info {}
+
+/* Location */
+#location div.group {}
+#location div.group input {width:214px;}
+#location div.group a.btn.trial {display:block; width:234px; margin:3px 0 0 -4px; height:42px; overflow:hidden; text-indent:-1000px; background:transparent url("images/buttons/btn-location-trial.png") scroll no-repeat 0 -42px;}
+#location div.group a.btn.trial:hover {background-position:0 0;}
+
+#location div.group p {margin:0 0 10px 0; padding:0 110px 0 0; line-height:1.2em; min-height:112px; background:transparent url("images/build/location-side-iphone.png") scroll no-repeat right 0;}
+#location div.group p strong {display:block; margin-bottom:5px;}
+
+/* Admin Tools */
+#admin-tools h1 {display:block; margin:0 0 10px 0; color:#535351; font-size:2.2em; text-shadow:0 1px 1px #FFF; filter:dropshadow(color=#FFFFFF, offx=0, offy=1);}
+#admin-tools div.users {color:#000; font-size:9pt;}
+#admin-tools a.btn.download {position:absolute; right:10px; bottom:10px; width:238px; height:42px; text-indent:-1000px; overflow:hidden; background:transparent url("images/buttons/btn-location-download.png") scroll no-repeat 0 0;}
+#admin-tools a.btn.download:hover {background-position:0 -42px;}

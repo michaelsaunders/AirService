@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 
+    Note: Add entries to the App.config file for configuration settings
+    that apply only to the Test project.
+-->
+<configuration>
+  <appSettings>
+    <add key="TestAPNToken" value="Add yours"/>
+    <add key="TestAPNUdid" value="Add yours"/>
+    <!-- APN Sandbox Server-->
+    <add key="APNServiceHost" value="gateway.sandbox.push.apple.com"/>
+    <add key="APNServicePort" value="2195"/>
+  </appSettings>
+  <connectionStrings>
+
+  </connectionStrings>
+  <system.serviceModel>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior name="">
+          <serviceMetadata httpGetEnabled="true" />
+          <serviceDebug includeExceptionDetailInFaults="false" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <serviceHostingEnvironment aspNetCompatibilityEnabled="true"
+      multipleSiteBindingsEnabled="true" />
+    <standardEndpoints>
+      <webHttpEndpoint>
+        <!-- 
+            Configure the WCF REST service base address via the global.asax.cs file and the default endpoint 
+            via the attributes on the <standardEndpoint> element below
+        -->
+        <standardEndpoint name="" helpEnabled="true" automaticFormatSelectionEnabled="false"/>
+      </webHttpEndpoint>
+    </standardEndpoints>
+  </system.serviceModel>
+</configuration>

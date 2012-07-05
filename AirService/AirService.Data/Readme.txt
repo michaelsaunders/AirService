@@ -1,0 +1,1 @@
+﻿DeviceAdmin's Email field in database must have Unique constraint

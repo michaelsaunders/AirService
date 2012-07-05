@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="C:\Users\Jongho\Desktop\Publish\AirService\WebService" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="bin/AirService.Services.Contracts.pdb" publishTime="05/02/2012 13:16:24" />
+    <file relUrl="bin/log4net.xml" publishTime="01/03/2012 13:40:00" />
+    <file relUrl="Global.asax" publishTime="11/22/2011 09:23:36" />
+    <file relUrl="bin/EntityFramework.xml" publishTime="11/22/2011 09:17:46" />
+    <file relUrl="bin/log4net.dll" publishTime="01/03/2012 13:40:00" />
+    <file relUrl="bin/Ninject.dll" publishTime="08/05/2011 15:05:07" />
+    <file relUrl="bin/AirService.Data.dll" publishTime="05/02/2012 13:16:25" />
+    <file relUrl="bin/WebActivator.dll" publishTime="11/22/2011 09:13:54" />
+    <file relUrl="bin/Elmah.dll" publishTime="10/17/2011 12:10:30" />
+    <file relUrl="bin/AirService.Data.pdb" publishTime="05/02/2012 13:16:24" />
+    <file relUrl="bin/AirService.WebServices.dll" publishTime="05/17/2012 13:45:08" />
+    <file relUrl="bin/Ninject.Extensions.Wcf.dll" publishTime="08/05/2011 15:05:05" />
+    <file relUrl="packages.config" publishTime="01/03/2012 13:40:02" />
+    <file relUrl="bin/AutoMapper.xml" publishTime="03/08/2012 21:06:31" />
+    <file relUrl="bin/Ninject.Extensions.Wcf.xml" publishTime="08/05/2011 15:05:05" />
+    <file relUrl="bin/AirService.Data.Contracts.pdb" publishTime="05/02/2012 13:16:23" />
+    <file relUrl="bin/AirService.WebServices.pdb" publishTime="05/17/2012 13:45:08" />
+    <file relUrl="bin/AutoMapper.dll" publishTime="03/08/2012 21:06:31" />
+    <file relUrl="bin/Ninject.pdb" publishTime="08/05/2011 15:05:07" />
+    <file relUrl="bin/AirService.Model.pdb" publishTime="05/02/2012 13:16:22" />
+    <file relUrl="bin/AirService.Services.dll" publishTime="05/17/2012 13:44:14" />
+    <file relUrl="bin/AirService.Services.Contracts.dll" publishTime="05/02/2012 13:16:24" />
+    <file relUrl="bin/AirService.Model.dll" publishTime="05/02/2012 13:16:22" />
+    <file relUrl="bin/Ninject.xml" publishTime="08/05/2011 15:05:07" />
+    <file relUrl="bin/AirService.Services.pdb" publishTime="05/17/2012 13:44:14" />
+    <file relUrl="app_online.htm" publishTime="03/08/2012 18:11:10" />
+    <file relUrl="bin/Microsoft.Web.Infrastructure.dll" publishTime="10/17/2011 12:10:30" />
+    <file relUrl="Web.config" publishTime="04/10/2012 09:54:10" />
+    <file relUrl="bin/Ninject.Extensions.Wcf.pdb" publishTime="08/05/2011 15:05:05" />
+    <file relUrl="bin/AirService.Data.Contracts.dll" publishTime="05/02/2012 13:16:23" />
+    <file relUrl="bin/EntityFramework.dll" publishTime="11/22/2011 09:17:46" />
+  </publishProfile>
+</publishData>

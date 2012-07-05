@@ -1,0 +1,118 @@
+﻿<#@ template language="C#" #>
+<#@ Import Namespace="System.Collections.Generic" #>
+<#@ Import Namespace="System.Linq" #>
+<#@ Import Namespace="System.Net" #>
+<#@ Import Namespace="AirService.Model" #>
+<#@ Import Namespace="AirService.Services" #>
+<#@ Import Namespace="AirService.Services.Security" #>
+<html>
+<head>
+    <title>AirService Order Receipt</title>
+    <style type="text/css">
+        body{padding-left:5px;padding-right:5px;font-family:Verdana,Tahoma,Arial,"Helvetica Neue",Helvetica,Sans-Serif;font-size:3em;}
+        td{font-size:3em;}
+        ul.date-time{float:right;}
+        ul.date-time li{list-style:none outside none; text-align:right;}
+        hr {clear:both;}
+        div.customer label, div.customer span{font-size: 1.2em;}
+        div.customer span{font-weight: bold;}
+        table{border:none; width:100%;}
+        td{padding-bottom:15px;}
+        td.price{text-align:right;}
+        li.time{font-size: larger;font-weight:bold;}
+        p.total{text-align:right;font-size:1.2em;}
+        p.foot-note{font-size:0.8em;}
+        p.left{float:left;}
+        p.right{float:right;}
+    </style>
+</head>
+<body>
+    <ul class="date-time">
+        <li class="time"><#= this._receiptDateTime.ToString("h:mmtt") #></li>
+        <li class="date"><#= this._receiptDateTime.ToString("dd MMM yyyy") #></li>
+    </ul>
+    <h1>
+        History</h1>
+    <hr/>
+    <div class="customer">
+        <label for="customer-name">For:</label>
+        <span id="customer-name"><#= WebUtility.HtmlEncode(this._customer.FirstName + " " + this._customer.LastName)#></span>
+    </div>
+    <div>
+        <label for="customer-id">Customer ID:</label>
+        <span id="customer-id"><#= this._connection.Customer.Id #></span>
+    </div>
+    <div>
+        <label for="connected-at">Connected at</label>
+        <span id="Span1"><#= this._connectionTime.ToString("h:mmtt on dd MMM yyyy") #></span>
+    </div>
+    <hr />
+    <table class="item-list" cellpadding="3" cellspacing="0">
+	<# this.ListOrderItems(); #>
+    </table>
+    <hr />
+    <p class="total">
+        Total: <strong><#= this.OrderItems.Sum(item=>item.Price).ToString("C") #></strong>
+    </p>
+    <hr />
+    <p>
+        <strong><#= WebUtility.HtmlEncode(this._venue.Title) #></strong></p>
+    <p>
+		<#= WebUtility.HtmlEncode(this._venue.Address1) #><br/>
+        <# if (!string.IsNullOrWhiteSpace(this._venue.Address2)){ #>
+			<#= WebUtility.HtmlEncode(this._venue.Address2) #><br/>
+		<# }#>
+		<#= WebUtility.HtmlEncode(this._venue.Suburb) #>
+		<#= WebUtility.HtmlEncode(this._venue.State.Title) #>
+		<#= WebUtility.HtmlEncode(this._venue.Postcode??"") #><br />
+		<# if (!string.IsNullOrWhiteSpace(this._venue.Telephone)) { #>
+		ph: <#= WebUtility.HtmlEncode(this._venue.Telephone) #>
+		<# } #>
+	</p>
+    <hr />
+    <p class="foot-note">This is not a tax invoice</p>
+    <p class="foot-note left">Ordered with AirService</p>
+    <p class="foot-note right">www.airservicehq.com</p>
+</body>
+</html>
+<#+
+	private VenueConnection _connection;
+    private DateTime _receiptDateTime;
+    private DateTime _connectionTime;
+    private Venue _venue;
+    private Customer _customer;
+    public void Initialize(AirServiceIdentity identity, VenueConnection connection)
+	{
+	    this._connection = connection;
+        this._customer = connection.Customer;
+        this._venue = connection.Venue;
+	    this._receiptDateTime = identity.ToLoginUserTime(DateTime.Now);
+        this._connectionTime = identity.ToLoginUserTime(connection.ConnectedSince.Value);
+	}
+    
+	IEnumerable<OrderItem> OrderItems 
+    {
+	   get
+	   {
+	       return from order in this._connection.Orders
+                  where order.OrderStatus != Order.OrderStatusCancelled
+                  from item in order.OrderItems
+                  where item.OrderStatus != Order.OrderStatusCancelled
+                  select item;
+       }
+    }
+#>
+<#+	
+	public void ListOrderItems()
+    {
+		foreach(var orderItem in this.OrderItems) 
+		{
+		#>
+<tr>
+	<td class="desc"><#= orderItem.Quantity #> X <#= WebUtility.HtmlEncode(orderItem.Name) #></td>
+	<td class="price"><#= orderItem.Price.ToString("C") #></td>
+</tr>
+<#+	
+		}	 
+	}
+#>

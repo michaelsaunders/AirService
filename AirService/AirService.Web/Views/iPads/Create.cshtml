@@ -1,0 +1,27 @@
+@model AirService.Web.ViewModels.IPadViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Add Venue iPad</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+       
+
+        @Html.HiddenFor(model => model.iPad.VenueId)
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

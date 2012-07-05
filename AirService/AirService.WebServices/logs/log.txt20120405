@@ -1,0 +1,44 @@
+2012-04-05 15:53:09,627 [1] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-04-05 16:04:37,184 [1] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-04-05 16:11:18,612 [1] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-04-05 16:15:23,908 [1] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-04-05 16:18:03,691 [9] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-04-05 16:18:44,560 [5] ERROR AirService.WebServices.AirServiceWebServiceApplication [(null)] - Unexpected Error
+System.InvalidOperationException: A specified Include path is not valid. The EntityType 'AirService.Data.Contracts.Customer' does not declare a navigation property with the name 'VenueConnection'.
+   at System.Data.Objects.Internal.ObjectFullSpanRewriter.ConvertSpanPath(SpanPathInfo parentInfo, List`1 navPropNames, Int32 pos)
+   at System.Data.Objects.Internal.ObjectFullSpanRewriter.ConvertSpanPath(SpanPathInfo parentInfo, List`1 navPropNames, Int32 pos)
+   at System.Data.Objects.Internal.ObjectFullSpanRewriter.ConvertSpanPath(SpanPathInfo parentInfo, List`1 navPropNames, Int32 pos)
+   at System.Data.Objects.Internal.ObjectFullSpanRewriter..ctor(DbCommandTree tree, DbExpression toRewrite, Span span)
+   at System.Data.Objects.Internal.ObjectSpanRewriter.TryRewrite(DbQueryCommandTree tree, Span span, MergeOption mergeOption, DbExpression& newQuery, SpanIndex& spanInfo)
+   at System.Data.Objects.Internal.ObjectQueryExecutionPlan.Prepare(ObjectContext context, DbQueryCommandTree tree, Type elementType, MergeOption mergeOption, Span span, ReadOnlyCollection`1 compiledQueryParameters)
+   at System.Data.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   at System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at AirService.Services.OrderService.GetOrderItemForPrinting(Int32 venueId, Int32 orderItemId) in C:\Projects\Webling\AirService\AirService.Services\OrderService.cs:line 920
+   at AirService.WebServices.VenueWebService.<>c__DisplayClassbb.<GetOrderDocket>b__ba() in C:\Projects\Webling\AirService\AirService.WebServices\VenueWebService.cs:line 1190
+   at AirService.WebServices.WebServiceBase.Response[T](Func`1 function, Boolean use200ForServiceFault) in C:\Projects\Webling\AirService\AirService.WebServices\WebServiceBase.cs:line 48
+2012-04-05 16:19:50,570 [9] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-04-05 16:29:24,496 [17] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-04-05 16:31:50,896 [17] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-04-05 16:39:41,400 [9] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-04-05 16:46:17,231 [5] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Session Closing Notification wasn't sent because APN token not found for customer with connection id 98
+2012-04-05 16:46:41,788 [5] ERROR AirService.WebServices.AirServiceWebServiceApplication [(null)] - Unexpected Error
+System.InvalidOperationException: A specified Include path is not valid. The EntityType 'AirService.Data.Contracts.VenueConnection' does not declare a navigation property with the name 'v'.
+   at System.Data.Objects.Internal.ObjectFullSpanRewriter.ConvertSpanPath(SpanPathInfo parentInfo, List`1 navPropNames, Int32 pos)
+   at System.Data.Objects.Internal.ObjectFullSpanRewriter..ctor(DbCommandTree tree, DbExpression toRewrite, Span span)
+   at System.Data.Objects.Internal.ObjectSpanRewriter.TryRewrite(DbQueryCommandTree tree, Span span, MergeOption mergeOption, DbExpression& newQuery, SpanIndex& spanInfo)
+   at System.Data.Objects.Internal.ObjectQueryExecutionPlan.Prepare(ObjectContext context, DbQueryCommandTree tree, Type elementType, MergeOption mergeOption, Span span, ReadOnlyCollection`1 compiledQueryParameters)
+   at System.Data.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   at System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   at AirService.Services.VenueService.GetVenueConnectionById(Int32 id) in C:\Projects\Webling\AirService\AirService.Services\VenueService.cs:line 616
+   at AirService.WebServices.VenueWebService.<>c__DisplayClass7e.<FinalizeCustomerOrdersWithMessage>b__7d() in C:\Projects\Webling\AirService\AirService.WebServices\VenueWebService.cs:line 802
+   at AirService.WebServices.WebServiceBase.Response[T](Func`1 function, Boolean use200ForServiceFault) in C:\Projects\Webling\AirService\AirService.WebServices\WebServiceBase.cs:line 48
+2012-04-05 16:52:25,332 [17] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-04-05 16:53:40,336 [17] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-04-05 16:54:14,098 [5] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Session Closing Notification wasn't sent because APN token not found for customer with connection id 99

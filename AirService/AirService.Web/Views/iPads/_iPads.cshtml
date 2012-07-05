@@ -1,0 +1,52 @@
+﻿@using AirService.Model
+@model IEnumerable<AirService.Model.iPad>
+
+<table style="width: 100%">
+<thead>
+    <tr>
+        <th>
+            iPad Name
+        </th>
+        <th>
+            iPad Location
+        </th>
+        <th>
+            Menu(s)
+        </th>
+        <th>
+            Admin(s)
+        </th>
+        <th style="width: 36px;text-align: center">
+            iPad Settings
+        </th>
+        <th style="width: 36px;">
+            Delete
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Location
+            </td>
+            <td>
+                @(item.AssignedMenus == null || item.AssignedMenus.Count == 0 ? "None" : String.Join(", ", item.AssignedMenus.Where(m=>m.Menu.Status == SimpleModel.StatusActive).OrderBy(m => m.Menu.SortOrder).Select(m => m.Menu.Title).ToArray()))
+            </td>
+            <td>
+                @(item.DeviceAdmins == null || item.DeviceAdmins.Count == 0 ? "None" : String.Join("; ", item.DeviceAdmins.Where(m => m.Status == SimpleModel.StatusActive).Select(m => m.UserName).ToArray()))
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "openDialog edit", data_dialog_id = "popupDialog", data_dialog_title = "Edit Venue iPads" })
+            </td>
+            <td>
+                @Ajax.ActionLink("Delete", "Delete", "IPads", new { id = item.Id }, new AjaxOptions { Confirm = "Delete?", HttpMethod = "Post", UpdateTargetId = "diviPads" }, new { @class = "ui-icon ui-icon-closethick delete" })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

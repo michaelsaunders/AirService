@@ -1,0 +1,39 @@
+@model AirService.Web.Areas.Admin.Models.VenueDetailViewModel
+@{
+    ViewBag.Title = "Venue Details";
+}
+@section headerSection
+{
+    <script type="text/javascript" src="/Scripts/knockout-2.0.0.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tabs').tabs();
+        })
+    </script>
+}
+<section id="main">
+    <section id="main-content" class="clearfix">
+        <h2>
+            Venue: @Model.Venue.Title</h2>
+        @if (!string.IsNullOrWhiteSpace(TempData["Error"] as string))
+        {
+            <p class="error">
+                @TempData["Error"]
+            </p>   
+        }
+        <div id="divAdmin">
+            <div id="tabs" style="margin-top: 0px">
+                <ul>
+                    <li><a href="#venue-details">Venue Details</a> </li>
+                    <li><a href="@Url.Action("Transactions", new { id = Model.Venue.Id })"><span>Transactions</span>
+                    </a></li>
+                </ul>
+                <div id="venue-details">
+                    @Html.Partial("_VenueDetails")
+                </div>
+                <div id="transaction-details">
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

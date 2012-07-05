@@ -1,0 +1,110 @@
+@model AirService.Web.ViewModels.VenueViewModel
+@* This partial view defines form fields that will appear when creating and editing entities *@
+@Html.ValidationMessageFor(model => model.Venue.Title)
+@Html.ValidationMessageFor(model => model.Venue.Description)
+@Html.ValidationMessageFor(model => model.Venue.ContactFirstName)
+@Html.ValidationMessageFor(model => model.Venue.ContactLastName)
+@Html.ValidationMessageFor(model => model.Venue.Telephone)
+@Html.ValidationMessageFor(model => model.Venue.Address1)
+@Html.ValidationMessageFor(model => model.Venue.Address2)
+@Html.ValidationMessageFor(model => model.Venue.Suburb)
+@Html.ValidationMessageFor(model => model.Venue.Postcode)
+@Html.ValidationMessageFor(model => model.Venue.StateId)
+@Html.ValidationMessageFor(model => model.Venue.CountryId)
+<ul>
+    <li class="leftCol">
+        <div>
+            @Html.LabelFor(model => model.Venue.Title)
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Venue.Title)
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Venue.Telephone)
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Venue.Telephone)
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Venue.Description)
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.Venue.Description, new { @class = "masked-input tk-museo-sans", data_mask = "Tell us a little about your venue. We'll include it in our directory on our site." })
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Venue.VenueTypes)
+            <div style="height: 100px" class="editor-field checkbox-list checkbox-vertical-list">
+                @foreach (var list in new MultiSelectList(Model.AvailableVenueTypes, "Id", "Title", @Model.SelectedVenueTypes))
+                {
+                    <div>
+                        <input type="checkbox" id="type@(list.Value)" name="@(string.IsNullOrWhiteSpace(ViewData.TemplateInfo.HtmlFieldPrefix)? "": ViewData.TemplateInfo.HtmlFieldPrefix + ".")SelectedVenueTypes" @(list.Selected ? "checked=\"checked\"" : "") value="@list.Value"/>
+                        <label for="type@(list.Value)">@list.Text</label>
+                    </div>
+                }
+            </div>
+        </div>
+    </li>
+    <li class="rightCol">
+        <div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Venue.Address1)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Venue.Address1)
+            </div>
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue.Address2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue.Address2)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue.Suburb)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue.Suburb)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue.StateId)
+        </div>
+        <div>
+            @Html.DropDownListFor(
+                    model => model.Venue.StateId,
+                    new SelectList(Model.States, "Id", "Title", @Model.Venue.StateId),
+                    " --- Select ---  ",
+                    new { @class = "state-dropdown" })
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue.Postcode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Venue.Postcode)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Venue.CountryId)
+        </div>
+        <div>
+            @Html.DropDownListFor(
+                    model => model.Venue.CountryId,
+                    new SelectList(Model.Countries, "Id", "Title", @Model.Venue.CountryId),
+                    " --- Select --- ",
+                    new { @class = "country-dropdown" })
+        </div>
+    </li>
+</ul>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.country-dropdown').cascade({
+            url: '@Url.Action("GetStatesByCountry", "Lookup")',
+            paramName: 'countryId',
+            childSelect: $('.state-dropdown')
+        });
+        
+        // some browser cached last selected item even if when the browser refresh
+        var $option = $('#state-dropdown option[value="' + @Model.Venue.StateId + '"]');
+        if($option.length > 0) {
+            $option[0].selected = true;
+        }
+    }); 
+</script>

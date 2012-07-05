@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  http://go.microsoft.com/fwlink/?LinkId=152368
+  -->
+<configuration>
+  <connectionStrings>
+    <add name="AirService" connectionString="Data Source=.;AttachDbFilename=C:\Projects\Webling\AirService\Database\AirService.mdf; Initial Catalog=C:\Projects\Webling\AirService\Database\AirService.mdf; Integrated Security=True;MultipleActiveResultSets=true" providerName="System.Data.SqlClient" />
+    <add name="ApplicationServices" connectionString="Data Source=.;AttachDbFilename=C:\Projects\Webling\AirService\Database\AirService.mdf;Initial Catalog=C:\Projects\Webling\AirService\Database\AirService.mdf;Integrated Security=True;MultipleActiveResultSets=true" providerName="System.Data.SqlClient" />
+    <!--
+    <add name="AirService" connectionString="data source=.\SQLEXPRESS;Initial Catalog=AirService;User ID=sa;Password=password" providerName="System.Data.SqlClient" />
+    -->
+  </connectionStrings>
+  <appSettings>
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+    <add key="GoogleGeoCodeAccess" value="ABQIAAAA3SuGOGe8DseKejh8h6vocBQ996puoSw8kMBhoeK0tXU2BxXYkhRWb_fApTy3PCq1aFXQTfZEOIB4NQ" />
+	  <add key="MemoryCacheCacheDirectory" value="C:\bjm\Source\AirService\AirService.WebTest\Cache"/>
+    <add key="CustomImageLocation" value="/Content/Custom/"/>
+    <add key="CustomMenuItemImageLocation" value="/Content/Custom/MenuItems/"/>
+    <add key="CustomMenuCategoryImageLocation" value="/Content/Custom/MenuCategories/"/>
+    <add key="SharedMenuItemImageLocation" value="/Content/Shared/MenuItems/"/>
+    <add key="SharedMenuCategoryImageLocation" value="/Content/Shared/MenuCategories/"/>
+    <add key="DefaultEmailFromAddress" value="noreply@airservice.com.au"/>
+    <add key="EmailTemplatePath" value="C:\Users\Jongho\Projects\AirService\AirService.Web\Content\EmailTemplates"/>
+    <add key="ValidateEntityModels" value="true"/>
+    <add key="ActivateAccountEmailRequired" value="true" />
+    <add key="ContactUsEmailFrom" value="jongho@webling.com.au"/>
+    <add key="ContactUsEmailTo" value="jongho@webling.com.au"/>
+    <add key="ActivateAccountEmailRequired" value="false"/>
+    <!--<add key="RebillSoapUrl" value="https://www.eway.com.au/gateway/rebill/manageRebill.asmx"/>-->
+    <add key="EwayId" value="146579871"/>
+    <add key="EwayUsername" value="stefan@luxedigital.net"/>
+    <add key="EwayPassword" value="161F66768md94E1"/>
+    <add key="HTTPPort" value="52361"/>
+  </appSettings>
+  <system.net>
+    <mailSettings>
+      <smtp>
+        <network host="webling-relay-local" />
+      </smtp>
+    </mailSettings>
+  </system.net>
+  <system.web>
+    <compilation debug="true" targetFramework="4.0">
+      <assemblies>
+        <add assembly="System.Web.Abstractions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add assembly="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add assembly="System.Web.Routing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add assembly="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add assembly="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add assembly="System.Data.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+      </assemblies>
+    </compilation>
+    <authentication mode="Forms">
+      <forms loginUrl="~/Account/LogOn" timeout="2880" />
+    </authentication>
+    <membership>
+      <providers>
+        <clear />
+        <add name="AspNetSqlMembershipProvider" type="System.Web.Security.SqlMembershipProvider" connectionStringName="ApplicationServices" enablePasswordRetrieval="false" enablePasswordReset="true" requiresQuestionAndAnswer="false" requiresUniqueEmail="true" maxInvalidPasswordAttempts="5" minRequiredPasswordLength="6" minRequiredNonalphanumericCharacters="0" passwordAttemptWindow="10" applicationName="AirService" />
+      </providers>
+    </membership>
+    <profile>
+      <providers>
+        <clear />
+        <add name="AspNetSqlProfileProvider" type="System.Web.Profile.SqlProfileProvider" connectionStringName="ApplicationServices" applicationName="AirService" />
+      </providers>
+    </profile>
+    <roleManager enabled="true">
+      <providers>
+        <clear />
+        <add connectionStringName="ApplicationServices" applicationName="/" name="AspNetSqlRoleProvider" type="System.Web.Security.SqlRoleProvider" />
+        <add applicationName="AirService" name="AspNetWindowsTokenRoleProvider" type="System.Web.Security.WindowsTokenRoleProvider" />
+      </providers>
+    </roleManager>
+    <pages>
+      <namespaces>
+        <add namespace="System.Web.Helpers" />
+        <add namespace="System.Web.Mvc" />
+        <add namespace="System.Web.Mvc.Ajax" />
+        <add namespace="System.Web.Mvc.Html" />
+        <add namespace="System.Web.Routing" />
+        <add namespace="System.Web.WebPages" />
+        <add namespace="AirService.Web.Helpers" />
+      </namespaces>
+    </pages>
+  </system.web>
+  <system.webServer>
+    <validation validateIntegratedModeConfiguration="false" />
+    <modules runAllManagedModulesForAllRequests="true" />
+  </system.webServer>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-2.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+</configuration>

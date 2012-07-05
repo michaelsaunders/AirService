@@ -1,0 +1,62 @@
+@model AirService.Web.ViewModels.MenuCategoryDetailViewModel
+@* This partial view defines form fields that will appear when creating and editing entities *@
+@Html.ValidationMessageFor(model => model.MenuCategory.Title)
+@Html.ValidationMessageFor(model => model.MenuCategory.IsLive)
+<div class="editor-label">
+    @Html.LabelFor(model => model.MenuCategory.Title)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.MenuCategory.Title)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.MenuCategory.IsLive)
+</div>
+<div class="editor-field status">
+    @Html.RadioButtonFor(model => model.MenuCategory.IsLive, true) Active
+    @Html.RadioButtonFor(model => model.MenuCategory.IsLive, false) Hidden
+</div>
+<div class="editor-field" style="position:absolute;right:120px;display: none">  <!-- temporarily removed by display:none - commenting out causes error -->
+    @Html.RadioButtonFor(model => model.SelectedImageType, 1) Photo
+    <div id="customImageDisplay">
+        <img id="imageDisplay" src="@Model.SelectedCustomImage" width="90" />
+        <div id="imageUpload" style="margin-top:10px">
+        </div>
+    </div>
+</div>
+
+<div class="editor-field" style="float:left;display:none">  <!-- temporarily removed by display:none - commenting out causes error -->
+    @Html.RadioButtonFor(model => model.SelectedImageType, 2) Photo Gallery
+    <div id="stockImageList">
+        <ul>
+        @foreach (var item in Model.AvailableStockImages)
+        {
+            <li class='imageList'><img class="stock-image" src='@item' data-id="@item" width="70" height="70" alt='@item' /></li>
+        }
+        </ul>
+    </div>
+</div>
+<div class="editor-field" style="float:left;display:none">  <!-- temporarily removed by display:none- commenting out causes error -->
+    @Html.RadioButtonFor(model => model.SelectedImageType, 0) No Image/Icon
+</div>
+
+<div style="clear:both"></div>
+<script>
+    $(document).ready(function () {
+        var uploader = new qq.FileUploader({
+            element: document.getElementById('imageUpload'),
+            action: '/MenuCategories/UploadImageFile',
+            debug: true,
+            onComplete: function (id, fileName, responseJSON) {
+                $('#imageDisplay').attr('src', responseJSON.url);
+                $('#SelectedCustomImage').val(responseJSON.url);
+            },
+            multiple: false,
+            allowedExtensions: ["png", "jpg", "gif", "jpeg"]
+        });
+
+    });
+
+    function selectImage(id) {
+        $("#SelectedStockImage").val(id);
+    }
+</script>

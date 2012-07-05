@@ -1,0 +1,46 @@
+@model AirService.Web.ViewModels.DeviceAdminViewModel
+@* This partial view defines form fields that will appear when creating and editing entities *@
+@Html.ValidationMessageFor(model => model.UserName)
+@Html.ValidationMessageFor(model => model.Email)
+@Html.ValidationMessageFor(model => model.EmailConfirm)
+@Html.ValidationMessageFor(model => model.DeviceAdmin.iPads)
+@Html.HiddenFor(model => model.Id)
+<div class="editor-label">
+    @Html.LabelFor(model => model.UserName)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.UserName) 
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.Email) (This will be used to login as an Admin)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Email)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.EmailConfirm)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.EmailConfirm)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.Password) (This will be used to login as an Admin)
+</div>
+<div>
+    <span id="password-readonly-field">@Model.Password</span>
+    @Html.HiddenFor(model => model.Password)
+    <button type="button" id="password-generate-button">
+        Regenerate</button>
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.DeviceAdmin.iPads) (Check which iPads this Admin has control over)
+</div>
+<div style="height: 75px" class="checkbox-list dialog-checkbox-list">
+    @foreach (var list in new MultiSelectList(Model.AlliPads.OrderBy(m => m.Name), "Id", "Name", @Model.SelectedDeviceIds))
+    {
+        <div>
+            <input type="checkbox" id="menu@(list.Value)" name="SelectedDeviceIds" @(list.Selected ? "checked=\"checked\"" : "") value="@list.Value"/>
+            <label for="menu@(list.Value)">@list.Text</label>
+        </div>
+    }
+</div>

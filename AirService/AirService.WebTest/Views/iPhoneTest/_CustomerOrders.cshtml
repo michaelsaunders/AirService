@@ -1,0 +1,61 @@
+﻿@model AirService.WebTest.ViewModels.CustomerOrderViewModel
+<p>
+    Customer Name: @Model.Customer.FirstName @Model.Customer.LastName</p>
+<button data-customer-id="@Model.Customer.Id" data-venue-id="@Model.VenueId" type="button" class="finalize-order" style="@(Model.CanFinalize ? "" : "display:none;")">
+    Finalize Orders for this customer
+</button>
+@foreach (var order in Model.Orders)
+{
+    <hr style="display: " /> 
+    @:Order ID: @order.Id<br />
+    @:Order Created: @order.CreateDate<br />
+    @:Order Updated: @order.UpdateDate<br />
+    @:Order Total: @order.TotalAmount.ToString("C")<br />
+    <button type="button" class="cancel-order-button" data-venue-id="@order.VenueId" data-order-id="@order.Id">Cancel Order</button>
+    <ul>
+        @foreach (var item in order.OrderItems)
+        {    
+            <li>@item.Id, @item.Name, QTY: @item.Quantity, PRICE: @item.Price.ToString("C")
+                <strong>
+                    @switch (item.OrderStatus)
+                    {
+                        case AirService.Model.Order.OrderStatusPending:
+                        <button data-order-item-id="@item.Id" type="button" class="confirm-order">
+                            Confirm</button>
+                                               break;
+
+                        case AirService.Model.Order.OrderStatusConfirmed:
+                        <button data-order-item-id="@item.Id" type="button" class="order-processed">
+                            Process</button>
+                                               break;
+
+                        case AirService.Model.Order.OrderStatusProcessed:
+                        @:Processed
+                        break;
+
+                        case AirService.Model.Order.OrderStatusCancelled:
+                        @:Cancelled
+                        break;
+
+                        case AirService.Model.Order.OrderStatusFinalized:
+                        @:Finalized
+                        break;
+                    }
+                    @if (item.iPad != null)
+                    {
+                        <small>(Assigned to "@item.iPad.Name")</small>
+                    }
+                </strong>
+                @if (item.iPad != null)
+                {
+                    <button type="button" class="cancel-order-item-button" data-venue-id="@order.VenueId" data-ipad-id="@item.iPadId" data-orderitem-id="@item.Id">Cancel</button>
+                    <button type="button" class="undo-order-item-button" data-venue-id="@order.VenueId" data-ipad-id="@item.iPadId" data-orderitem-id="@item.Id">Undo</button>
+                }
+                else
+                {
+                    <small style="text-decoration: underline;cursor:pointer;" title="In this *test* app, order item can be only cancelled or status can be undone, once confirmed. This is just test app behaviour/limitation only and is not an actual requirement">Info</small>
+                }
+            </li>
+        }
+    </ul>
+}

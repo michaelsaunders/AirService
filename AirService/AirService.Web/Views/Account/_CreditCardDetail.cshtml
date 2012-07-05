@@ -1,0 +1,66 @@
+﻿@model AirService.Model.CreditCard
+@{
+    var months = new[]
+                    {
+                        new SelectListItem {Value = "01", Text = "01"},
+                        new SelectListItem {Value = "01", Text = "02"},
+                        new SelectListItem {Value = "01", Text = "03"},
+                        new SelectListItem {Value = "01", Text = "04"},
+                        new SelectListItem {Value = "01", Text = "05"},
+                        new SelectListItem {Value = "01", Text = "06"},
+                        new SelectListItem {Value = "01", Text = "07"},
+                        new SelectListItem {Value = "01", Text = "08"},
+                        new SelectListItem {Value = "01", Text = "09"},
+                        new SelectListItem {Value = "01", Text = "10"},
+                        new SelectListItem {Value = "01", Text = "11"},
+                        new SelectListItem {Value = "01", Text = "12"}
+                    };
+    var yearStart = (DateTime.Now.Year - 2000);
+    var years = new List<SelectListItem>();
+    for (int i = yearStart; i < yearStart + 10; i++)
+    {
+        years.Add(new SelectListItem { Value = i.ToString(), Text = i.ToString().PadLeft('0') });
+    }
+
+    var cardTypes = new[]
+                        {
+                            new SelectListItem {Value = "visa", Text = "Visa"},
+                            new SelectListItem {Value = "Mastercard", Text = "Mastercard"}
+                        };
+}
+<ul class="payments">
+    <li class="item clearfix">
+        <label class="label">Name on card</label>
+        <div class="form-elements">@Html.TextBoxFor(m => m.AccountName)</div>
+    </li>
+
+    <li class="item clearfix">
+        <label class="label">Card No.</label>
+        <div class="form-elements">@Html.TextBoxFor(m => m.CardNumber)</div>
+    </li>
+
+    <li class="item clearfix">
+        <label class="label">Card type</label>
+        <div class="form-elements">@Html.DropDownListFor(m=>m.CardType, cardTypes, " -- SELECT --")</div>
+    </li>
+
+    <li class="item clearfix">
+        <label class="label">Expiry</label>
+        <div class="form-elements small">@Html.DropDownListFor(m => m.ExpiryMonth, months, " -- ", new { @class = "cardDate" })</div>
+        <div class="form-elements small r-item">@Html.DropDownListFor(m => m.ExpiryYear, years, " -- ", new { @class = "cardDate" })</div>
+    </li>
+
+    <li class="item clearfix">
+        <label class="label">CCV</label>
+        <div class="form-elements small">@Html.TextBoxFor(m => m.CcNumber, new { @class = "security" })</div>
+    </li>
+
+    <li class="item clearfix">
+        <label class="label"></label>
+        <div class="form-elements check">
+            <input id="terms-and-conditions" name="terms-and-conditions" type="checkbox" class="termsAndConditions" data-val="true"/> <span>I agree to AirService standard <a href="/Home/Page/Terms-Conditions" target="_blank">Terms &amp; Conditions</a></span>
+        </div>
+    </li>
+</ul>
+
+<img src="../content/images/common/activate-iphone.png" style="float:right; margin:-12px 65px 0 0;" />

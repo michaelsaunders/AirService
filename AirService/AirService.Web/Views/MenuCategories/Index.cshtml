@@ -1,0 +1,325 @@
+@using AirService.Web.ViewModels
+@model IEnumerable<MenuCategoryViewModel>
+@{
+    ViewBag.Title = "Manage Menu Categories";
+}
+@section headerSection
+{
+    <script type="text/javascript" src="/Scripts/json2.js"></script>
+    <script type="text/javascript" src="/Scripts/knockout-2.0.0.js"></script>
+    <link href="@Url.Content("~/Content/fileuploader.css")" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/fileuploader.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function extendCategoryViewModel(category) {
+            category.Title = ko.observable(category.Title);
+            category.Status = ko.observable(category.Status);
+            category.Items = ko.observableArray(category.Items);
+            category.expanded = ko.observable(true);
+            category.cssClass = function() {
+                return category.expanded()
+                    ? "ui-icon ui-icon-triangle-1-s"
+                    : "ui-icon ui-icon-triangle-1-e";
+            };
+            category.deleteItem = function(item) {
+                var selectedItemCategory = viewModel.findCategoryById(item.CategoryId);
+                if(confirm('Are you sure you want to delete ' + item.Title + '?')) {
+                    $.ajax({
+                        url: '@Url.Action("DeleteMenuItemWithCascade")/' + item.Id,
+                        type: 'post'
+                    });
+
+                    selectedItemCategory.Items.remove(item);
+                }
+            };
+            category.copyItem = function(item) {
+                var selectedItemCategory = viewModel.findCategoryById(item.CategoryId);
+                $.ajax({
+                    url: '@Url.Action("CopyMenuItem")/' + item.Id,
+                    type: 'post', 
+                    success: function (data) {
+                        selectedItemCategory.Items.push(data);
+                    }, 
+                    error: function (xhr) {
+                        promptErrorMessage(xhr);
+                    }
+                });
+            };
+        }
+
+        var viewModel = {
+            Items: ko.observableArray(@Html.Raw(Json.Encode(this.Model))),
+            toggle: function(category) {
+                var willExpand = category.expanded();
+                category.expanded(!willExpand);
+            },
+            toggleAll: function() {
+                var willExpand = $('#toggle-all').hasClass('ui-icon-triangle-1-e');
+                if (willExpand) {
+                    $('#toggle-all').removeClass('ui-icon-triangle-1-e').addClass('ui-icon-triangle-1-s');
+                } else {
+                    $('#toggle-all').removeClass('ui-icon-triangle-1-s').addClass('ui-icon-triangle-1-e');
+                }
+
+                $.each(viewModel.Items(), function(index, item) {
+                    item.expanded(willExpand);
+                });
+            }            , 
+            deleteCategory: function(category) {
+                if(confirm('Are you sure you want to delete menu category "' + category.Title() + "'?")) {
+                    var action = '@Url.Action("DeleteMenuCategoryWithCascade")/' + category.Id;
+                    $.ajax({
+                        url: action,
+                        type: 'post'
+                    });
+                    
+                    viewModel.Items.remove(category);
+                }
+            }, 
+            findCategoryById: function (categoryId) {
+                var found = null;
+                $.each(viewModel.Items(), function(index, category) {
+                    if (category.Id == categoryId) {
+                        found = category;
+                        return false;
+                    }
+
+                    return true;
+                });
+
+                return found;
+            }
+        };
+         
+        $.each(viewModel.Items(), function(index, category) {
+            extendCategoryViewModel(category);
+        });
+         
+        function onError(xhr) {
+            dialogErrorMessage('#popupDialog', xhr);
+        }
+        
+        function onCategoryAdded(category) {
+            extendCategoryViewModel(category);
+            viewModel.Items.push(category);
+            $('#popupDialog').dialog('close');
+        }
+        
+        function onCategoryUpdated(category) {
+            $.each(viewModel.Items(), function(index, item) {
+                if(category.Id == item.Id) {
+                    item.Title(category.Title);
+                    item.Status(category.Status);
+                    return false;
+                }
+
+                return true;
+            });
+
+            $('#popupDialog').dialog('close');
+        }
+
+        function onMenuItemAdded(menuItem) {
+            var category = viewModel.findCategoryById(menuItem.CategoryId);
+            if(category != null) {
+                category.Items.push(menuItem);
+            }
+
+            $('#popupDialog').dialog('close');
+        }
+        
+        function onMenuItemUpdated(menuItem) {
+            var category = viewModel.findCategoryById(menuItem.CategoryId);
+            var current = null;
+            var currentIndex = -1;
+            $.each(category.Items(), function(index, item) {
+                if(item.Id == menuItem.Id) {
+                    current = item;
+                    currentIndex = index;
+                    return false;
+                }
+
+                return true;
+            });
+            
+            if(current != null) {
+                category.Items.remove(current);
+                category.Items.splice(currentIndex, 0, menuItem);
+            }
+            
+            $('#popupDialog').dialog('close');
+        }
+        
+        function formatPrice($data) {
+            
+            if($data.MinPrice == $data.MaxPrice) {
+                return '$' + $data.Price.formatMoney();
+            }
+
+            return '$' + $data.MinPrice.formatMoney() + ' ~ $' + $data.MaxPrice.formatMoney();
+        }
+        
+        $(document).ready(function() {
+            ko.applyBindings(viewModel, $('#divMenuCategories')[0]);
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            function makeChildrenSortable(selector) {
+                if ($(selector).data('isSortable')) {
+                    $(selector).sortable('destroy'); 
+                    //when mixing knockout & nested sortable...  
+                }
+
+                $(selector).sortable({
+                    delay: 100,
+                    start: function (event, ui) {
+                        ui.placeholder.height(ui.item.height());
+                    },
+                    update: function (event, ui) {
+                        var menuItem = ko.dataFor(ui.item[0]);
+                        var elements = ui.item.parent().children();
+                        var category = viewModel.findCategoryById(menuItem.CategoryId);
+                        var oldPosition = ko.utils.arrayIndexOf(category.Items(), menuItem);
+                        var newPosition = ko.utils.arrayIndexOf(elements, ui.item[0]);
+                        if (oldPosition != newPosition) {
+                            category.Items.remove(menuItem);
+                            category.Items.splice(newPosition, 0, menuItem);
+                            ui.item.remove();
+                            $.ajax({
+                                cache: false,
+                                url: '@Url.Action("UpdateItemSortOrder")',
+                                data: { MenuItemId: menuItem.Id, Index: newPosition },
+                                type: 'POST'
+                            });
+                        }
+                    }
+                });
+
+                $(selector).data('isSortable', true);
+            }
+
+            $("#categories").sortable({
+                handle: 'div.handle',
+                placeholder: "ui-state-highlight",
+                forcePlaceholderSize: false,
+                forceHelperSize: false,
+                helper: function (e, ui) {
+                    var category = ko.dataFor(ui[0]);
+                    return $('<div class="sort-helper"></div>').text(category.Title());
+                },
+                opacity: 0.5,
+                scroll: true,
+                delay: 100,
+                start: function (event, ui) {
+                    ui.placeholder.height(80);
+                    $(this).sortable('refreshPositions');
+                },
+                update: function (event, ui) {
+                    var category = ko.dataFor(ui.item[0]);
+                    var elements = ui.item.parent().children();
+                    var oldPosition = ko.utils.arrayIndexOf(viewModel.Items(), category);
+                    var newPosition = ko.utils.arrayIndexOf(elements, ui.item[0]);
+                    if (oldPosition != newPosition) {
+                        viewModel.Items.remove(category);
+                        viewModel.Items.splice(newPosition, 0, category);
+                        makeChildrenSortable('.menuitems');
+                        ui.item.remove();
+                        $.ajax({
+                            cache: false,
+                            url: '@Url.Action("UpdateCategorySortOrder")',
+                            data: { id: category.Id, Index: newPosition },
+                            type: 'POST'
+                        });
+                    }
+                }
+            }).disableSelection();
+
+            makeChildrenSortable('.menuitems');
+
+            // set height of spans to allow borders to render correctly 
+            $("span.desc").each(function () {
+                var spanHeight = $(this).height();
+                var tempSpans = $(this).siblings().not(".ui-icon");
+                tempSpans.css('min-height', spanHeight);
+                tempSpans.children("span").css('min-height', spanHeight);
+            });
+        });
+    </script>
+}
+<section id="main">
+    <section id="main-content" class="clearfix">
+        <h2>@Html.ActionLink("Manage Menu", "Index", "Menus"): @ViewBag.MenuName
+        </h2>
+        <div id="help-video-container">
+            <a href="#" class="close">close</a>
+            <p>
+                This is where you create and manage categories and items within this menu. Simply
+                hit the + to get started.</p>
+        </div>
+        <p>
+            @Html.ActionLink("Add Menu Category", "Create", new { menuId = ViewBag.MenuId }, new { @class = "openDialog add-category", data_dialog_id = "popupDialog", data_dialog_title = "Add Menu Category" })
+        </p>
+        <div id="divMenuCategories">
+            <table style="width: 1000px" id="menuCategoryList">
+                <thead>
+                    <tr>
+                        <th style="width: 255px">
+                            <span id="toggle-all" data-bind="click:toggleAll" class="ui-icon ui-icon-triangle-1-s">
+                            </span>Category/Item
+                        </th>
+                        <th style="width: 300px">
+                            Description
+                        </th>
+                        <th style="width: 126px">
+                            Price
+                        </th>
+                        <th style="width: 50px">
+                            Status
+                        </th>
+                        <th style="width: 40px; text-align: center">
+                            Edit Item
+                        </th>
+                        <th style="width: 40px">
+                            Copy
+                        </th>
+                        <th style="width: 40px">
+                            Delete
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+            <ul id="categories" data-bind="foreach:Items">
+                <li>
+                    <div class="handle" style="padding: 0; margin: 0;">
+                        <span data-bind="click:$parent.toggle,class:cssClass" class="toggle-button" style="border-right: none;
+                            margin-top: 5px"></span><span class="category" style="border-right: none"><a data-bind="attr:{href:'@Url.Action("Edit")/'+ Id},text:Title" 
+                               class="openDialog" 
+                               data-dialog-id = "popupDialog" 
+                               data-dialog-title = "Edit Menu Category"></a></span><span class=" add-cat"><a data-bind="attr:{href:'@Url.Action("CreateMenuItem")?menuCategoryId=' + Id}"
+                               class="edit openDialog" 
+                               data-dialog-id = "popupDialog" 
+                               data-dialog-title = "Add Item">Create</a> </span><span class="status" data-bind="text:Status">
+                               </span><span class="delete"><a data-bind="click:$parent.deleteCategory" class="ui-icon ui-icon-closethick delete delete-category">
+                               </a></span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <ul class="menuitems" data-bind="foreach:Items,visible:expanded">
+                        <li><span class="ui-icon ui-icon-carat-1-e" style="background-position: -26px 5px;
+                            border-right: none;"></span><span style="width: 235px;" data-bind="text:Title"></span>
+                            <span class="desc" data-bind="text:Description"></span><span style="width: 126px;"
+                                data-bind="text:formatPrice($data)"></span><span style="width: 50px;" data-bind="text:Status">
+                                </span><span id="cudItems"><span><a data-bind="attr:{href:'@Url.Action("EditMenuItem")/' + Id}"
+                                       class="edit openDialog"
+                                       data-dialog-id = "popupDialog"
+                                       data-dialog-title = "Edit Item"></a></span><span><a data-bind="click:$parent.copyItem"
+                                           class="add">Copy</a> </span><span class="delete"><a data-bind="click:$parent.deleteItem"
+                                               class="ui-icon ui-icon-closethick delete">Delete</a> </span></span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </section>
+</section>

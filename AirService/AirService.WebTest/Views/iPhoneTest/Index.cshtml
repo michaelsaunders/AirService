@@ -1,0 +1,28 @@
+﻿@model AirService.WebTest.ViewModels.DeviceTestViewModel
+@{
+    ViewBag.Title = "For iPhone App Test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section include
+{
+    <script type="text/javascript" src="@this.Url.Content("~/Scripts/device-test.js")"></script>
+}
+
+<div id="tabs">
+    <ul>
+        <li><a href="#connections">Venue Connections</a></li>
+        <li><a href="#venues">Venues</a></li>
+        <li><a href="#customers">Customers</a></li>
+    </ul>
+    <div id="connections">
+        @this.Html.Partial("_Connections")
+    </div>
+    <div id="venues">
+        @this.Html.Partial("_Venues")
+    </div>
+    <div id="customers">
+        @this.Html.Partial("_Customers")
+    </div>
+</div>
+<div id="busy-wait">Please wait</div>

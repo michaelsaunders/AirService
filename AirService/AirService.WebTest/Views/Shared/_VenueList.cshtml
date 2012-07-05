@@ -1,0 +1,72 @@
+﻿@using AirService.Model
+@model List<AirService.Model.ServiceProvider>
+<table>
+    <tr>
+        <th>
+        </th>
+        <th>
+            Date Created
+        </th>
+        <th>
+            Venue ID
+        </th>
+        <th>
+            Venue Name
+        </th>
+        <th>
+            Venue Type
+        </th>
+        <th>
+            Venue admin email ("password" is password)
+        </th>
+        <th>
+            Location
+        </th>
+        <th>
+            Status
+        </th>
+    </tr>
+    @foreach (var serviceProvider in this.Model)
+    {
+        <tr>
+            <td>
+                <button type="button" class="view-menu-link" data-venue-id="@serviceProvider.VenueId">
+                    Menus</button>
+                <button type="button" class="view-ipad-link" data-venue-id="@serviceProvider.VenueId">
+                    iPads</button>
+            </td>
+            <td>
+                @serviceProvider.Venue.CreateDate
+            </td>
+            <td>
+                @serviceProvider.VenueId
+            </td>
+            <td>
+                <span class="vender" data-vender-id="@serviceProvider.Venue.Id">@serviceProvider.Venue.Title</span>
+            </td>
+            <td>
+                @if(serviceProvider.Venue.VenueAccountType == (int)(VenueAccountTypes.AccountTypeEvaluation))
+                {
+                    <span>Unpaid</span>
+                }
+            </td>
+            <td>
+                @Membership.GetUser(serviceProvider.UserId).Email
+            </td>
+            <td>
+                @(serviceProvider.Venue.LatitudePosition + " "  + @serviceProvider.Venue.LongitudePosition)
+            </td>
+            <td>
+                Service
+                @if (serviceProvider.Venue.IsActive)
+                {
+                    @:On
+                }
+                else
+                {
+                    @:Off
+                                }
+            </td>
+        </tr>   
+    }
+</table>

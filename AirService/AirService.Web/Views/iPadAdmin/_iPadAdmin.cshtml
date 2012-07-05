@@ -1,0 +1,24 @@
+﻿@model AirService.Web.ViewModels.DeviceAdminViewModel
+@using (Ajax.BeginForm(new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "diviPadAdmins",
+    OnSuccess = "CloseIt();",
+    OnFailure = "onError"
+}))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        @Html.Partial("_CreateOrEdit", Model)
+        <p>
+            <input type="submit" value="Save" id="submit-button" />
+        </p>
+    </fieldset>
+}
+<script type="text/javascript"> 
+    $("#popupDialog").ready(function () {
+        $.validator.unobtrusive.parse("#popupDialog > form");
+    });
+
+</script>

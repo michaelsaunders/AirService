@@ -1,0 +1,26 @@
+﻿@using System.Text
+@model List<AirService.Model.iPad>
+@{
+    ViewBag.Title = "_Menus";
+}
+<ul>
+    @foreach (var iPad in this.Model)
+    {
+        <li>
+            <strong>@iPad.Name</strong><br />
+            Location: @iPad.Location<br />
+            Venue ID: @iPad.VenueId <br />
+            PIN: @iPad.Pin<br />
+            UDID: @(iPad.Udid?? "Not Assigned yet")<br/>
+            Authorization Header:
+            @if (!string.IsNullOrWhiteSpace(iPad.Udid))
+            {
+                 @Convert.ToBase64String(Encoding.UTF8.GetBytes(iPad.Udid + ":" + iPad.VenueId + "/" + iPad.Pin))
+            }
+            else
+            {
+                @:(@Html.Raw("<strong>Dummy Only</strong>") - Not Assigned Yet) => @Convert.ToBase64String(Encoding.UTF8.GetBytes("0000b6a7e5b7512c49aebf44d49b09f23d60:" + iPad.VenueId + "/" + iPad.Pin))
+            }
+        </li>
+    }
+</ul>

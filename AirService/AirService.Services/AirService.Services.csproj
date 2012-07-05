@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6A35A25C-D68D-4A23-ACA0-07CC917F127F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AirService.Services</RootNamespace>
+    <AssemblyName>AirService.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Unit Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\UnitTest\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;UNIT_TEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\AirService.Services.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.1.265\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.4.2.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.1.2.11\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Eway\EwayClient.cs" />
+    <Compile Include="Eway\EwayWrapper.cs" />
+    <Compile Include="Eway\IEwayHeader.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="Notifications\ApnConnection.cs" />
+    <Compile Include="Notifications\ApnConnectionFactory.cs" />
+    <Compile Include="Notifications\ApnPayload.cs" />
+    <Compile Include="CountryService.cs" />
+    <Compile Include="CustomerService.cs" />
+    <Compile Include="DeviceAdminService.cs" />
+    <Compile Include="GeoLocation.cs" />
+    <Compile Include="iPadService.cs" />
+    <Compile Include="MenuCategoryService.cs" />
+    <Compile Include="MenuItemOptionService.cs" />
+    <Compile Include="MenuItemService.cs" />
+    <Compile Include="MenuService.cs" />
+    <Compile Include="MobileApplicationSettingsService.cs" />
+    <Compile Include="Notifications\IApnConnection.cs" />
+    <Compile Include="Notifications\IApnConnectionFactory.cs" />
+    <Compile Include="Notifications\NotificationData.cs" />
+    <Compile Include="NotificationService.cs" />
+    <Compile Include="OperationResult.cs" />
+    <Compile Include="OrderItemService.cs" />
+    <Compile Include="OrderService.cs" />
+    <Compile Include="PaymentService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Security\AccountMembershipService.cs" />
+    <Compile Include="Security\AirServiceCustomerIdentity.cs" />
+    <Compile Include="Security\AirServiceIdentity.cs" />
+    <Compile Include="Security\AirServiceVenueUserIdentity.cs" />
+    <Compile Include="Security\IMembershipService.cs" />
+    <Compile Include="Security\WellKnownSecurityRoles.cs" />
+    <Compile Include="ServiceProviderService.cs" />
+    <Compile Include="ServiceFaultException.cs" />
+    <Compile Include="SimpleService.cs" />
+    <Compile Include="StateService.cs" />
+    <Compile Include="ServiceHelper.cs" />
+    <Compile Include="Templates\OrderDocket.cs">
+      <DependentUpon>OrderDocket.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Templates\Receipt.cs">
+      <DependentUpon>Receipt.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="VenueAdvertisementService.cs" />
+    <Compile Include="VenueAreaService.cs" />
+    <Compile Include="VenueReportService.cs" />
+    <Compile Include="VenueService.cs" />
+    <Compile Include="VenueTypeService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AirService.Data.Contracts\AirService.Data.Contracts.csproj">
+      <Project>{F999EC6A-15CE-4397-95DE-3A42A7A46DF2}</Project>
+      <Name>AirService.Data.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AirService.Data\AirService.Data.csproj">
+      <Project>{8AB9FF14-7842-49E9-970E-E5E158B1EE5B}</Project>
+      <Name>AirService.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AirService.Model\AirService.Model.csproj">
+      <Project>{A14AF600-51F0-4A9B-A7E1-9EA9888BBB6B}</Project>
+      <Name>AirService.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AirService.Services.Contracts\AirService.Services.Contracts.csproj">
+      <Project>{55A58B2F-7C71-414A-A573-8607CD946E5F}</Project>
+      <Name>AirService.Services.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Templates\OrderDocket.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>OrderDocket.cs</LastGenOutput>
+    </None>
+    <None Include="Templates\Receipt.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Receipt.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

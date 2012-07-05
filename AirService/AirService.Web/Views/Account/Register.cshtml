@@ -1,0 +1,178 @@
+﻿@using AirService.Web.Infrastructure
+@using AirService.Web.ViewModels
+@model AccountModel
+@{
+    ViewBag.Title = "Register";
+}
+@section headerSection
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#register-button').click(function () {
+                var isValid = $.trim($('input:text[name="recaptcha_response_field"]').val()).length > 0;
+                if (isValid) {
+                    $('#recaptcha-val-msg').hide();
+                }
+                else {
+                    $('#recaptcha-val-msg').show();
+                }
+
+                return isValid;
+            });
+
+            $('textarea.masked-input').each(function (index, item) {
+
+                var mask = $(item).attr('data-mask');
+                if (mask) {
+                    if ($(item).val() == '') {
+                        $(item).val(mask);
+                    }
+
+                    $(item).focusin(function () {
+                        if ($(item).val() == mask) {
+                            $(item).val('');
+                        }
+                    });
+
+                    $(item).focusout(function () {
+                        if ($.trim($(item).val()) == '') {
+                            $(item).val(mask);
+                        }
+                    });
+
+                    $('input[type="submit"]').click(function () {
+                        if ($(item).val() == mask) {
+                            $(item).val('');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
+<section id="main">
+    <section id="main-content" class="clearfix">
+        <article>
+            <h2>
+                Join AirService</h2>
+            <p>
+                Use the form below to create a new account.
+            </p>
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
+                <div class="detail-form detail-form-small">
+                    <h4>
+                        Enter your details below:</h4>
+                    <div style="margin-bottom: 10px;">
+                        @Html.ValidationMessageFor(m => m.VenueViewModel.Venue.ContactFirstName)
+                        @Html.ValidationMessageFor(m => m.VenueViewModel.Venue.ContactLastName)
+                        @Html.ValidationMessageFor(m => m.ConfirmEmail)
+                        @Html.ValidationMessageFor(m => m.Email)
+                        @Html.ValidationMessageFor(m => m.ConfirmEmail)
+                        @Html.ValidationMessageFor(m => m.Password)
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                        @Html.ValidationMessageFor(m => m.TermsAndConditionsAgreement)
+                        @Html.ValidationMessageFor(m => m.recaptcha_response_field)
+                    </div>
+                    <ul class="detail-form-section">
+                        <li class="leftCol">
+                            <label>
+                                First Name</label>
+                            @Html.TextBoxFor(m => m.VenueViewModel.Venue.ContactFirstName)
+                        </li>
+                        <li class="rightCol">
+                            <label>
+                                Last Name</label>
+                            @Html.TextBoxFor(m => m.VenueViewModel.Venue.ContactLastName)
+                        </li>
+                        <li class="leftCol">
+                            <label class="label">
+                                Email</label>
+                            @Html.TextBoxFor(m => m.Email)
+                        </li>
+                        <li class="rightCol">
+                            <label class="label">
+                                Email again</label>
+                            @Html.TextBoxFor(m => m.ConfirmEmail)
+                        </li>
+                        <li class="leftCol">
+                            <p class="label">
+                                Password</p>
+                            @this.Html.PasswordFor(m => m.Password)
+                            <p class="passwordMsg">
+                                password must be at least @this.ViewBag.PasswordLength characters long</p>
+                        </li>
+                        <li class="rightCol">
+                            <p class="label">
+                                Password again</p>
+                            @this.Html.PasswordFor(m => m.ConfirmPassword)
+                        </li>
+                    </ul>
+                    <h5 class="venue">
+                        About your venue</h5>
+                    @Html.PartialPrefixed("_VenueCreateOrEdit", this.Model.VenueViewModel, "VenueViewModel")
+                    <div style="clear:both;margin-bottom: 20px;">   
+                    </div>
+                    <div class="terms">
+                        <div style="margin-bottom: 20px;">
+                            Referral Code (Optional): @Html.TextBoxFor(m => m.PromotionCode, new { @class = "promotion-code" })
+                            <div style="float:right">
+                                <script type="text/javascript" src="https://www.google.com/recaptcha/api/challenge?k=6Lc6sc8SAAAAAJLD-UlTUvroopncbB4g0C6ijfs0"></script>
+                                <noscript>
+                                    <iframe src="http://www.google.com/recaptcha/api/noscript?k=your_public_key" height="300" width="500" frameborder="0"></iframe><br/> 
+                                    <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+                                    <input id="recaptcha_response_hiddenfield" type="hidden" name="recaptcha_response_field" value="manual_challenge" style="display:none;">    
+                                </noscript>
+                            </div>
+                            <div class="clear"></div>
+                            <span id="recaptcha-val-msg" class="field-validation-error" style="display: none;">
+                                <span style="float:right;margin-bottom: 5px;">Please type two words you see in the image above.</span>
+                                <span class="clear" style="display: block;"></span>
+                            </span>
+                        </div>
+                        <div>
+                            @Html.CheckBoxFor(m => m.TermsAndConditionsAgreement) I agree to AirService standard
+                            <a href="/Home/Page/Terms-Conditions" target="_blank">terms &amp; conditions</a> 
+                        </div>
+                    </div>
+                    <div>
+                        <input id="register-button" type="submit" value="Register" class="next-step" />
+                    </div>
+                </div>
+            }
+        </article>
+        <aside>
+            <ul>
+                <li class="first">
+                    <h4>More than one venue?</h4>
+                    <p>Get in touch so we can customise a discounted solution for you.</p>
+                    <a href="/home/page/contact?mediaRequest=Partnerships%2FSales" class="btn contact">Contact us</a>
+                </li>
+                <li>
+                    <h4>Questions?</h4>
+                    <p>Our most common questions are all answered on our <a href="/home/page/faq-venues">FAQ’s page</a></p>
+                </li>
+                <li>
+                    <h4>
+                        Get social</h4>
+                    <ul class="social">
+                        <li class="facebook">Show some love and 'like' us on <a href="http://www.facebook.com/getairservice"
+                            target="_blank">Facebook</a>.</li>
+                        <li class="twitter"><a href="http://www.twitter.com/getairservice" target="_blank">Follow
+                            us on Twitter</a> for up to the second updates.</li>
+                    </ul>
+                </li>
+                <li class="trial">
+                    <h4>
+                        Happiness Guarantee</h4>
+                    <p>
+                        If at any time during the first three months of your subscription you find AirService
+                        isn't working for you, we'll refund all your monthly subscriptions fees, no questions
+                        asked.</p>
+                </li>
+            </ul>
+        </aside>
+    </section>
+</section>

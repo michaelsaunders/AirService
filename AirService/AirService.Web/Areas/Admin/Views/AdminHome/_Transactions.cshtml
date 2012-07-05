@@ -1,0 +1,46 @@
+﻿@using AirService.Services
+@using AirService.Web.Helpers
+@model AirService.Web.Areas.Admin.Models.TransactionViewModel
+<div id="divAdmin">
+    <table style="width: 100%;">
+        <tr>
+            <th>
+                Transaction Number
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Note
+            </th>
+        </tr>
+        @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+        {
+            <tr>
+                <td colspan="5">@Model.ErrorMessage
+                </td>
+            </tr>
+        }
+        @foreach (var transaction in this.Model.Transactions.EmptyIfNull().OrderByDescending(t => t.TransactionDate))
+        {
+            <tr>
+                <td>@(transaction.TransactionNumber == "0" ? "" : transaction.TransactionNumber)
+                </td>
+                <td>@transaction.TransactionDate.ToShortDateString()
+                </td>
+                <td>@transaction.TransactionAmount.ToString("$###,###,##0.00")
+                </td>
+                <td>@transaction.Status
+                </td>
+                <td>@transaction.TransactionError
+                </td>
+            </tr>   
+        }
+    </table>
+</div>

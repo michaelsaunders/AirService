@@ -1,0 +1,36 @@
+﻿@model AirService.Web.ViewModels.MenuCategoryDetailViewModel
+
+@using (Ajax.BeginForm(new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    OnSuccess = this.Model.MenuCategory.Id == 0?"onCategoryAdded": "onCategoryUpdated", 
+    OnFailure = "onError"
+}))
+{
+    @Html.ValidationSummary(true)
+    <fieldset> 
+        @Html.HiddenFor(model => model.MenuCategory.Id)
+        @Html.HiddenFor(model => model.MenuCategory.CreateDate)
+        @Html.HiddenFor(model => model.MenuCategory.UpdateDate)
+        @Html.HiddenFor(model => model.MenuCategory.MenuId)
+        @Html.HiddenFor(model => model.MenuCategory.Status)
+        @Html.HiddenFor(model => model.MenuCategory.CategoryImage)
+        @Html.HiddenFor(model => model.SelectedCustomImage)
+        @Html.HiddenFor(model => model.SelectedStockImage)
+		@Html.Partial("_CreateOrEdit", Model)
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+    <script type="text/javascript">
+        $("#popupDialog").ready(function () {
+            $.validator.unobtrusive.parse("#popupDialog > form");
+        }); 
+
+        function CloseIt() {
+            $("#popupDialog").dialog('close');
+            return true;
+        }
+    </script>
+}

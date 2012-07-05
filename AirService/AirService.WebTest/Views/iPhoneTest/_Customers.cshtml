@@ -1,0 +1,15 @@
+﻿@model AirService.WebTest.ViewModels.DeviceTestViewModel
+<h3>
+    All Customers</h3>
+@using (this.Ajax.BeginForm("Customers", new AjaxOptions
+{
+    HttpMethod = "GET",
+    UpdateTargetId = "customer_list",
+    LoadingElementId = "busy-wait"
+}))
+{ 
+    <button type="submit">Refresh</button>
+}
+<div id="customer_list">
+    @this.Html.Partial("_CustomerList", this.Model.Customers)
+</div>

@@ -1,0 +1,791 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1608309F-90C9-4007-BC70-2E83A336A4A9}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AirService.Web</RootNamespace>
+    <AssemblyName>AirService.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <CodeContractsAssemblyMode>0</CodeContractsAssemblyMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>True</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>False</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>False</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>False</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>False</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>False</CodeContractsRedundantAssumptions>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>False</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>False</CodeContractsCacheAnalysisResults>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.1.265\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.4.2.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.1.2.11\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC3.2.2.2.0\lib\net40-Full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivator, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebActivator.1.5\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\NinjectMVC3.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Models\AdminHomeViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\TransactionViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\VenueDetailViewModel.cs" />
+    <Compile Include="Attributes\AllowAnonymousAttribute.cs" />
+    <Compile Include="Content\EmailTemplates\SignUpConfirmationEmail.cs">
+      <DependentUpon>SignUpConfirmationEmail.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Content\EmailTemplates\SignUpConfirmationEmail.partial.cs" />
+    <Compile Include="Content\EmailTemplates\SubscriptionCancelEmail.partial.cs" />
+    <Compile Include="Content\EmailTemplates\SubscriptionCancelEmail.cs">
+      <DependentUpon>SubscriptionCancelEmail.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Content\EmailTemplates\RegistrationNotificationEmail.partial.cs" />
+    <Compile Include="Content\EmailTemplates\RegistrationNotificationEmail.cs">
+      <DependentUpon>RegistrationNotificationEmail.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Content\EmailTemplates\SubscriptionEmail.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SubscriptionEmail.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Content\EmailTemplates\SubscriptionEmail.partial.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\iPadAdminController.cs" />
+    <Compile Include="Controllers\iPadsController.cs" />
+    <Compile Include="Controllers\LookupController.cs" />
+    <Compile Include="Controllers\MenuCategoriesController.cs" />
+    <Compile Include="Controllers\MenuItemsController.cs" />
+    <Compile Include="Controllers\MenusController.cs" />
+    <Compile Include="Controllers\MobileApplicationSettingsController.cs" />
+    <Compile Include="Controllers\AccountController.Payment.cs" />
+    <Compile Include="Controllers\VenueReportsController.cs" />
+    <Compile Include="Controllers\VenueAdvertisementsController.cs" />
+    <Compile Include="Controllers\VenueAreasController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
+    <Compile Include="Infrastructure\Filters\AjaxOnlyAttribute.cs" />
+    <Compile Include="Infrastructure\Filters\PaidCustomerOnlyAttribute.cs" />
+    <Compile Include="Infrastructure\Filters\ForceHttp.cs" />
+    <Compile Include="Infrastructure\Filters\LogonAuthorize.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\FileUpload.cs" />
+    <Compile Include="Infrastructure\ControllerHelper.cs" />
+    <Compile Include="Infrastructure\Filters\MustBeTrueAttribute.cs" />
+    <Compile Include="Infrastructure\RedirectToAbsoluteUriResult.cs" />
+    <Compile Include="Infrastructure\ViewHelper.cs" />
+    <Compile Include="ViewModels\AccountModel.cs" />
+    <Compile Include="ViewModels\AccountValidation.cs" />
+    <Compile Include="ViewModels\ChangePasswordModel.cs" />
+    <Compile Include="ViewModels\CheckBoxListViewModel.cs" />
+    <Compile Include="ViewModels\ForgottenPasswordModel.cs" />
+    <Compile Include="ViewModels\LocationViewModel.cs" />
+    <Compile Include="ViewModels\LogOnModel.cs" />
+    <Compile Include="ViewModels\MenuItemOptionViewModel.cs" />
+    <Compile Include="ViewModels\MenuItemViewModel.cs" />
+    <Compile Include="ViewModels\ContactUsInput.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\DeviceAdminViewModel.cs" />
+    <Compile Include="ViewModels\IPadViewModel.cs" />
+    <Compile Include="ViewModels\MenuCategoryDetailViewModel.cs" />
+    <Compile Include="ViewModels\MenuCategoryViewModel.cs" />
+    <Compile Include="ViewModels\MenuItemDetailViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\MobileApplicationSettingsViewModel.cs" />
+    <Compile Include="ViewModels\OrderItemViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
+    <Compile Include="ViewModels\RegisterRemoteDeviceModel.cs" />
+    <Compile Include="ViewModels\StateViewModel.cs" />
+    <Compile Include="Infrastructure\ValidatePasswordLengthAttribute.cs" />
+    <Compile Include="ViewModels\VenueAdvertisementViewModel.cs" />
+    <Compile Include="ViewModels\VenueReportViewModel.cs" />
+    <Compile Include="ViewModels\VenueViewModel.cs" />
+    <Compile Include="ViewModels\PaymentDetailViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\base.css" />
+    <Content Include="Content\custom\html\about-us.htm" />
+    <Content Include="Content\custom\html\contact.htm" />
+    <Content Include="Content\custom\html\recommended-products.htm" />
+    <Content Include="Content\custom\html\faq-customers.htm" />
+    <Content Include="Content\custom\html\faq-venues.htm" />
+    <Content Include="Content\custom\html\features-customers.htm" />
+    <Content Include="Content\custom\html\features-venues.htm" />
+    <Content Include="Content\custom\html\how-does-it-work.htm" />
+    <Content Include="Content\custom\html\privacy.htm" />
+    <Content Include="Content\custom\html\support.htm" />
+    <Content Include="Content\custom\html\terms-conditions.htm" />
+    <Content Include="Content\EmailTemplates\forgotPassword.htm" />
+    <Content Include="Content\EmailTemplates\iPadAdmin.htm" />
+    <Content Include="Content\EmailTemplates\registration.htm" />
+    <Content Include="Content\EmailTemplates\SubscriptionConfirm.htm" />
+    <Content Include="Content\favicon.ico" />
+    <Content Include="Content\fileuploader.css" />
+    <Content Include="Content\grid.css" />
+    <Content Include="Content\homepage.css" />
+    <Content Include="Content\images\bg\about-us-bg.png" />
+    <Content Include="Content\images\bg\body.png" />
+    <Content Include="Content\images\bg\bullet-dot.png" />
+    <Content Include="Content\images\bg\bullets.png" />
+    <Content Include="Content\images\bg\close.png" />
+    <Content Include="Content\images\bg\contact-us-form.png" />
+    <Content Include="Content\images\bg\content-bg.png" />
+    <Content Include="Content\images\bg\facebook-list.png" />
+    <Content Include="Content\images\bg\feature-bg.png" />
+    <Content Include="Content\images\bg\footer-bg.png" />
+    <Content Include="Content\images\bg\footer-figure.png" />
+    <Content Include="Content\images\bg\footer-input-bg.png" />
+    <Content Include="Content\images\bg\form-input.png" />
+    <Content Include="Content\images\bg\grey-dash.png" />
+    <Content Include="Content\images\bg\header-bg.png" />
+    <Content Include="Content\images\bg\heart.png" />
+    <Content Include="Content\images\bg\home-panel-bg.png" />
+    <Content Include="Content\images\bg\icon-delete.png" />
+    <Content Include="Content\images\bg\icon-details.png" />
+    <Content Include="Content\images\bg\icon-lock.png" />
+    <Content Include="Content\images\bg\icon-tick.png" />
+    <Content Include="Content\images\bg\icon-warning.png" />
+    <Content Include="Content\images\bg\login-input-bg.png" />
+    <Content Include="Content\images\bg\login-panel-bg.png" />
+    <Content Include="Content\images\bg\login.png" />
+    <Content Include="Content\images\bg\open.png" />
+    <Content Include="Content\images\bg\pbar-ani.gif" />
+    <Content Include="Content\images\bg\phone.png" />
+    <Content Include="Content\images\bg\pricing-panel.png" />
+    <Content Include="Content\images\bg\pricing-signup-panel.png" />
+    <Content Include="Content\images\bg\primary-nav.png" />
+    <Content Include="Content\images\bg\reminder-input.png" />
+    <Content Include="Content\images\bg\side-input.png" />
+    <Content Include="Content\images\bg\signup-panel-input.png" />
+    <Content Include="Content\images\bg\table-bg.png" />
+    <Content Include="Content\images\bg\table-bg2.png" />
+    <Content Include="Content\images\bg\text-area.png" />
+    <Content Include="Content\images\bg\twitter-list.png" />
+    <Content Include="Content\images\build\facebook-icon.gif" />
+    <Content Include="Content\images\build\loading.gif" />
+    <Content Include="Content\images\build\location-facebook-user.gif" />
+    <Content Include="Content\images\build\location-map-shadow.png" />
+    <Content Include="Content\images\build\location-map.gif" />
+    <Content Include="Content\images\build\location-side-iphone.png" />
+    <Content Include="Content\images\build\location-status-img-border.png" />
+    <Content Include="Content\images\build\location-status-img-shadow.png" />
+    <Content Include="Content\images\build\location-status.png" />
+    <Content Include="Content\images\buttons\activate-btn.png" />
+    <Content Include="Content\images\buttons\add_icon.png" />
+    <Content Include="Content\images\buttons\btn-activate-get-started.png" />
+    <Content Include="Content\images\buttons\btn-activate.png" />
+    <Content Include="Content\images\buttons\btn-add-ipad-admins.png" />
+    <Content Include="Content\images\buttons\btn-add-ipad.png" />
+    <Content Include="Content\images\buttons\btn-add-item-to-this-category.png" />
+    <Content Include="Content\images\buttons\btn-add-item.png" />
+    <Content Include="Content\images\buttons\btn-add-venue-area.png" />
+    <Content Include="Content\images\buttons\btn-back.png" />
+    <Content Include="Content\images\buttons\btn-browse-image-big.png" />
+    <Content Include="Content\images\buttons\btn-browse-image.png" />
+    <Content Include="Content\images\buttons\btn-cancel.png" />
+    <Content Include="Content\images\buttons\btn-change-password.png" />
+    <Content Include="Content\images\buttons\btn-copy.png" />
+    <Content Include="Content\images\buttons\btn-copy2.png" />
+    <Content Include="Content\images\buttons\btn-delete.png" />
+    <Content Include="Content\images\buttons\btn-export-data.png" />
+    <Content Include="Content\images\buttons\btn-get-started-now.png" />
+    <Content Include="Content\images\buttons\btn-get-started.png" />
+    <Content Include="Content\images\buttons\btn-iPad-admins.png" />
+    <Content Include="Content\images\buttons\btn-iPads.png" />
+    <Content Include="Content\images\buttons\btn-location-download.png" />
+    <Content Include="Content\images\buttons\btn-location-trial.png" />
+    <Content Include="Content\images\buttons\btn-manage-venue-ad-space.png" />
+    <Content Include="Content\images\buttons\btn-plus.png" />
+    <Content Include="Content\images\buttons\btn-run-report.png" />
+    <Content Include="Content\images\buttons\btn-save-this-theme.png" />
+    <Content Include="Content\images\buttons\btn-save.png" />
+    <Content Include="Content\images\buttons\btn-venue-areas.png" />
+    <Content Include="Content\images\buttons\btn_add-menu-category.png" />
+    <Content Include="Content\images\buttons\btn_add-menu.png" />
+    <Content Include="Content\images\buttons\btn_add.png" />
+    <Content Include="Content\images\buttons\btn_browse.png" />
+    <Content Include="Content\images\buttons\btn_delete.png" />
+    <Content Include="Content\images\buttons\btn_delete2.png" />
+    <Content Include="Content\images\buttons\btn_edit.png" />
+    <Content Include="Content\images\buttons\btn_register.png" />
+    <Content Include="Content\images\buttons\btn_save.png" />
+    <Content Include="Content\images\buttons\close.png" />
+    <Content Include="Content\images\buttons\download-android.png" />
+    <Content Include="Content\images\buttons\download-blackberry.png" />
+    <Content Include="Content\images\buttons\download-windows.png" />
+    <Content Include="Content\images\buttons\edit_icon.jpg" />
+    <Content Include="Content\images\buttons\facebook-icon.png" />
+    <Content Include="Content\images\buttons\faq_for_customers_btn.png" />
+    <Content Include="Content\images\buttons\faq_for_venues_btn.png" />
+    <Content Include="Content\images\buttons\footer-go.png" />
+    <Content Include="Content\images\buttons\get-password.png" />
+    <Content Include="Content\images\buttons\googleplus-icon.png" />
+    <Content Include="Content\images\buttons\hdr-about-venue.png" />
+    <Content Include="Content\images\buttons\hdr-payment.png" />
+    <Content Include="Content\images\buttons\hdr-subscription.png" />
+    <Content Include="Content\images\buttons\header-go.png" />
+    <Content Include="Content\images\buttons\helpvid-btn.png" />
+    <Content Include="Content\images\buttons\ipad-btn.png" />
+    <Content Include="Content\images\buttons\layout-btn.png" />
+    <Content Include="Content\images\buttons\login-btn.png" />
+    <Content Include="Content\images\buttons\mail-icon.png" />
+    <Content Include="Content\images\buttons\menus-btn.png" />
+    <Content Include="Content\images\buttons\mobile-btn.png" />
+    <Content Include="Content\images\buttons\next_step_button.png" />
+    <Content Include="Content\images\buttons\reminder-login.png" />
+    <Content Include="Content\images\buttons\reports-btn.png" />
+    <Content Include="Content\images\buttons\rss-icon.png" />
+    <Content Include="Content\images\buttons\settings-btn.png" />
+    <Content Include="Content\images\buttons\start-free-trial-panel.png" />
+    <Content Include="Content\images\buttons\start-free-trial.png" />
+    <Content Include="Content\images\buttons\submit-message.png" />
+    <Content Include="Content\images\buttons\twitter-icon.png" />
+    <Content Include="Content\images\common\activate-iphone.png" />
+    <Content Include="Content\images\common\ajax-loader.gif" />
+    <Content Include="Content\images\common\android-market.png" />
+    <Content Include="Content\images\common\android.png" />
+    <Content Include="Content\images\common\arrows.png" />
+    <Content Include="Content\images\common\bar_app_screen.png" />
+    <Content Include="Content\images\common\bar_bg.jpg" />
+    <Content Include="Content\images\common\beer_app_screen.png" />
+    <Content Include="Content\images\common\beer_bg.jpg" />
+    <Content Include="Content\images\common\blackberry-appworld.png" />
+    <Content Include="Content\images\common\blackberry.png" />
+    <Content Include="Content\images\common\btn_sprite.png" />
+    <Content Include="Content\images\common\cards.png" />
+    <Content Include="Content\images\common\content_bg.png" />
+    <Content Include="Content\images\common\customers-1.png" />
+    <Content Include="Content\images\common\dominic-bressan.png" />
+    <Content Include="Content\images\common\easy-intergration.png" />
+    <Content Include="Content\images\common\feature-dummy.png" />
+    <Content Include="Content\images\common\features\about-airservice-header.jpg" />
+    <Content Include="Content\images\common\features\customers\browse-before-you-arrive.png" />
+    <Content Include="Content\images\common\features\customers\eat-with-your-eyes.png" />
+    <Content Include="Content\images\common\features\customers\know-your-limits.png" />
+    <Content Include="Content\images\common\features\customers\no-queues.png" />
+    <Content Include="Content\images\common\features\customers\re-ordering.png" />
+    <Content Include="Content\images\common\features\customers\romance.png" />
+    <Content Include="Content\images\common\features\customers\stay-informed.png" />
+    <Content Include="Content\images\common\features\customers\timed-ordering.png" />
+    <Content Include="Content\images\common\features\how-it-works-header.jpg" />
+    <Content Include="Content\images\common\features\products\Cabinet Mount.png" />
+    <Content Include="Content\images\common\features\products\Chef Sleeve.png" />
+    <Content Include="Content\images\common\features\products\Chef Stand.png" />
+    <Content Include="Content\images\common\features\products\Fridge Mount.png" />
+    <Content Include="Content\images\common\features\products\MultiDock iPad Charger.png" />
+    <Content Include="Content\images\common\features\products\wallee.png" />
+    <Content Include="Content\images\common\features\venues\advertising.png" />
+    <Content Include="Content\images\common\features\venues\better-understand-your-venue.png" />
+    <Content Include="Content\images\common\features\venues\customisable-apps.png" />
+    <Content Include="Content\images\common\features\venues\drunk-customers.png" />
+    <Content Include="Content\images\common\features\venues\easy-menu-updates.png" />
+    <Content Include="Content\images\common\features\venues\get-creative-with-your-menu.png" />
+    <Content Include="Content\images\common\features\venues\message-customers.png" />
+    <Content Include="Content\images\common\features\venues\multiple-ipads.png" />
+    <Content Include="Content\images\common\features\venues\pickup-option.png" />
+    <Content Include="Content\images\common\features\venues\social-media.png" />
+    <Content Include="Content\images\common\features\venues\special-offers.png" />
+    <Content Include="Content\images\common\features\venues\timed-ordering.png" />
+    <Content Include="Content\images\common\footer-logo.png" />
+    <Content Include="Content\images\common\fully-customizable.png" />
+    <Content Include="Content\images\common\grid_overlay.png" />
+    <Content Include="Content\images\common\holiday_app_screen.png" />
+    <Content Include="Content\images\common\holiday_bg.jpg" />
+    <Content Include="Content\images\common\hotel_app_screen.png" />
+    <Content Include="Content\images\common\hotel_bg.jpg" />
+    <Content Include="Content\images\common\increase-sales.png" />
+    <Content Include="Content\images\common\ipad-icon.png" />
+    <Content Include="Content\images\common\ipad-iphone.png" />
+    <Content Include="Content\images\common\logo.png" />
+    <Content Include="Content\images\common\map.png" />
+    <Content Include="Content\images\common\no-menu-item-image.gif" />
+    <Content Include="Content\images\common\photos_app_screen.png" />
+    <Content Include="Content\images\common\photos_bg.jpg" />
+    <Content Include="Content\images\common\progress.gif" />
+    <Content Include="Content\images\common\reduce-wait-time.png" />
+    <Content Include="Content\images\common\rhs-free-trial.png" />
+    <Content Include="Content\images\common\rhs-sprite.png" />
+    <Content Include="Content\images\common\simple-to-use.png" />
+    <Content Include="Content\images\common\stefan-williams.png" />
+    <Content Include="Content\images\common\timed_app_screen.png" />
+    <Content Include="Content\images\common\timed_bg.jpg" />
+    <Content Include="Content\images\common\vegas_app_screen.png" />
+    <Content Include="Content\images\common\vegas_bg.jpg" />
+    <Content Include="Content\images\common\venue-1.png" />
+    <Content Include="Content\images\common\windows-marketplace.png" />
+    <Content Include="Content\images\common\windows.png" />
+    <Content Include="Content\images\common\work-on-all-smartphones.png" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\beach.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\black-wood.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\black.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\blueStripes.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\brown.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\charcoal.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\cyan.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\grass-blade.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\grass.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\green.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\light-wood.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\lime.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\maroon.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\orange-2.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\orange.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\palm-beach.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\papyrus.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\pink.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\pinkStripes.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\purple.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\red.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\royal-blue.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\sky.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\sunset.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\teal.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\texturedgrey.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\violet.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\water.png" />
+    <Content Include="Content\images\mobileTemplates\backgrounds\white.png" />
+    <Content Include="Content\images\mobileTemplates\buttons-dark.png" />
+    <Content Include="Content\images\mobileTemplates\buttons-light.png" />
+    <Content Include="Content\images\mobileTemplates\colours\icon-colours-black.png" />
+    <Content Include="Content\images\mobileTemplates\colours\icon-colours-brightGreen.png" />
+    <Content Include="Content\images\mobileTemplates\colours\icon-colours-brightPurple.png" />
+    <Content Include="Content\images\mobileTemplates\colours\icon-colours-brown.png" />
+    <Content Include="Content\images\mobileTemplates\colours\icon-colours-deepGreen.png" />
+    <Content Include="Content\images\mobileTemplates\colours\icon-colours-deepTeal.png" />
+    <Content Include="Content\images\mobileTemplates\colours\icon-colours-grey.png" />
+    <Content Include="Content\images\mobileTemplates\colours\icon-colours-lightPurple.png" />
+    <Content Include="Content\images\mobileTemplates\colours\icon-colours-magenta.png" />
+    <Content Include="Content\images\mobileTemplates\colours\icon-colours-maroon.png" />
+    <Content Include="Content\images\mobileTemplates\colours\icon-colours-orange.png" />
+    <Content Include="Content\images\mobileTemplates\colours\icon-colours-pink.png" />
+    <Content Include="Content\images\mobileTemplates\colours\icon-colours-purple.png" />
+    <Content Include="Content\images\mobileTemplates\colours\icon-colours-royalBlue.png" />
+    <Content Include="Content\images\mobileTemplates\colours\icon-colours-strong-red.png" />
+    <Content Include="Content\images\mobileTemplates\colours\icon-colours-yellow.png" />
+    <Content Include="Content\images\mobileTemplates\headers\header-black.png" />
+    <Content Include="Content\images\mobileTemplates\headers\header-brightGreen.png" />
+    <Content Include="Content\images\mobileTemplates\headers\header-brightpurple.png" />
+    <Content Include="Content\images\mobileTemplates\headers\header-brown.png" />
+    <Content Include="Content\images\mobileTemplates\headers\header-deepGreen.png" />
+    <Content Include="Content\images\mobileTemplates\headers\header-deepTeal.png" />
+    <Content Include="Content\images\mobileTemplates\headers\header-grey.png" />
+    <Content Include="Content\images\mobileTemplates\headers\header-lightPurple.png" />
+    <Content Include="Content\images\mobileTemplates\headers\header-magenta.png" />
+    <Content Include="Content\images\mobileTemplates\headers\header-maroon.png" />
+    <Content Include="Content\images\mobileTemplates\headers\header-orange.png" />
+    <Content Include="Content\images\mobileTemplates\headers\header-pink.png" />
+    <Content Include="Content\images\mobileTemplates\headers\header-purple.png" />
+    <Content Include="Content\images\mobileTemplates\headers\header-royalblue.png" />
+    <Content Include="Content\images\mobileTemplates\headers\header-strongRed.png" />
+    <Content Include="Content\images\mobileTemplates\headers\header-yellow.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-beach.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-black-wood.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-black.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-blueStripes.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-brown.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-charcoal.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-cyan.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-grass-blade.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-grass.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-green.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-light-wood.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-lime.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-maroon.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-orange-2.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-orange.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-palm-beach.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-papyrus.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-pink.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-pinkStripes.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-purple.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-red.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-royal-blue.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-sky.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-sunset.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-teal.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-texturedGrey.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-violet.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-water.png" />
+    <Content Include="Content\images\mobileTemplates\previews\bg-white.png" />
+    <Content Include="Content\images\mobileTemplates\static-elements.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-beach.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-black-wood.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-black.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-blueStripes.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-brown.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-charcoal.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-custom.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-cyan.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-grass-blade.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-grass.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-green.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-light-wood.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-lime.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-maroon.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-orange-2.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-orange.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-palm-beach.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-papyrus.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-pink.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-pinkStripes.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-purple.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-red.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-royal-blue.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-sky.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-sunset.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-teal.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-texturedGrey.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-violet.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-water.png" />
+    <Content Include="Content\images\mobileTemplates\thumbnails\icon-white.png" />
+    <Content Include="Content\jquery-ui-timepicker.css" />
+    <Content Include="Content\location.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\MuseoSans_500-webfont.svg" />
+    <Content Include="Content\nav.css" />
+    <Content Include="Content\nivo-slider.css" />
+    <Content Include="Content\PIE.htc" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.all.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.base.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\AirService.js" />
+    <Content Include="Scripts\fileuploader.js" />
+    <Content Include="Scripts\homepage.js" />
+    <Content Include="Scripts\jcarousellite_1.0.1.min.js" />
+    <Content Include="Scripts\jquery-1.6.2-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.2.js" />
+    <Content Include="Scripts\jquery-1.6.2.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.14.js" />
+    <Content Include="Scripts\jquery-ui-1.8.14.min.js" />
+    <Content Include="Scripts\jquery.easing.min.js" />
+    <Content Include="Scripts\jquery.ui.timepicker.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\json2.js" />
+    <Content Include="Scripts\knockout-2.0.0.debug.js" />
+    <Content Include="Scripts\knockout-2.0.0.js" />
+    <Content Include="Scripts\modernizr-2.0.6-development-only.js" />
+    <Content Include="Scripts\superfish.js" />
+    <Content Include="Scripts\supersized.3.2.5.min.js" />
+    <Content Include="Scripts\supersized.shutter.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\AdminHome\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\VenueAreas\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\VenueAreas\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\VenueAreas\_CreateOrEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Views\Menus\Index.cshtml" />
+    <Content Include="Views\Menus\_CreateOrEdit.cshtml" />
+    <Content Include="Views\MenuCategories\Index.cshtml" />
+    <Content Include="Views\MenuCategories\_CreateOrEdit.cshtml" />
+    <Content Include="Views\Home\VenueManagement.cshtml" />
+    <Content Include="Views\Shared\_NavigationMenu.cshtml" />
+    <Content Include="Views\iPads\Create.cshtml" />
+    <Content Include="Views\iPads\Index.cshtml" />
+    <Content Include="Views\iPads\_CreateOrEdit.cshtml" />
+    <Content Include="Views\iPads\_iPads.cshtml" />
+    <Content Include="Views\iPads\_iPad.cshtml" />
+    <Content Include="Views\MenuCategories\_MenuCategory.cshtml" />
+    <Content Include="Views\MenuCategories\_MenuItem.cshtml" />
+    <Content Include="Views\MenuCategories\_CreateOrEditMenuItem.cshtml" />
+    <Content Include="Views\VenueReports\Index.cshtml" />
+    <Content Include="Views\MobileApplicationSettings\Edit.cshtml" />
+    <Content Include="Views\MobileApplicationSettings\_CreateOrEdit.cshtml" />
+    <Content Include="Views\Menus\_Menu.cshtml" />
+    <Content Include="Views\VenueAreas\_VenueArea.cshtml" />
+    <Content Include="Views\VenueAreas\_VenueAreas.cshtml" />
+    <Content Include="Views\iPadAdmin\Index.cshtml" />
+    <Content Include="Views\iPadAdmin\_iPadAdmins.cshtml" />
+    <Content Include="Views\iPadAdmin\_CreateOrEdit.cshtml" />
+    <Content Include="Views\iPadAdmin\_iPadAdmin.cshtml" />
+    <Content Include="Views\Account\ForgottenPassword.cshtml" />
+    <Content Include="Views\VenueAdvertisements\_VenueAdvertisements.cshtml" />
+    <Content Include="Views\VenueReports\iPadOrderReport.cshtml" />
+    <Content Include="Views\Account\Activate.cshtml" />
+    <Content Include="Views\Home\PublicIndex.cshtml" />
+    <Content Include="Views\Account\LogOnRedirect.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CheckBoxList.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Account\_VenueCreateOrEdit.cshtml" />
+    <Content Include="Views\Account\_CreditCardDetail.cshtml" />
+    <Content Include="Views\Shared\FileView.cshtml" />
+    <Content Include="Views\Home\Page.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\_Transactions.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\_VenueDetails.cshtml" />
+    <None Include="Content\EmailTemplates\SignUpConfirmationEmail.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SignUpConfirmationEmail.cs</LastGenOutput>
+    </None>
+    <None Include="Content\EmailTemplates\SubscriptionCancelEmail.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SubscriptionCancelEmail.cs</LastGenOutput>
+    </None>
+    <None Include="Content\EmailTemplates\RegistrationNotificationEmail.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>RegistrationNotificationEmail.cs</LastGenOutput>
+    </None>
+    <None Include="Content\EmailTemplates\SubscriptionEmail.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>SubscriptionEmail.cs</LastGenOutput>
+    </None>
+    <None Include="Content\MuseoSans_500-webfont.eot" />
+    <None Include="Content\MuseoSans_500-webfont.ttf" />
+    <None Include="Content\MuseoSans_500-webfont.woff" />
+    <None Include="faq.json" />
+    <Content Include="Views\Account\_SubscriptionPayment.cshtml" />
+    <Content Include="Views\Account\InitPaymentDetail.cshtml" />
+    <Content Include="Views\Account\PaymentDetail.cshtml" />
+    <Content Include="Views\Shared\GenericMessage.cshtml" />
+    <Content Include="Views\Home\Location.cshtml" />
+    <Content Include="Views\Account\CancelSubscription.cshtml" />
+    <None Include="Web.config.template">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.config.Debug.template">
+      <DependentUpon>Web.config.template</DependentUpon>
+    </None>
+    <None Include="Web.config.Release.template">
+      <DependentUpon>Web.config.template</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AirService.Data.Contracts\AirService.Data.Contracts.csproj">
+      <Project>{F999EC6A-15CE-4397-95DE-3A42A7A46DF2}</Project>
+      <Name>AirService.Data.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AirService.Data\AirService.Data.csproj">
+      <Project>{8AB9FF14-7842-49E9-970E-E5E158B1EE5B}</Project>
+      <Name>AirService.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AirService.Model\AirService.Model.csproj">
+      <Project>{A14AF600-51F0-4A9B-A7E1-9EA9888BBB6B}</Project>
+      <Name>AirService.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AirService.Services.Contracts\AirService.Services.Contracts.csproj">
+      <Project>{55A58B2F-7C71-414A-A573-8607CD946E5F}</Project>
+      <Name>AirService.Services.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AirService.Services\AirService.Services.csproj">
+      <Project>{6A35A25C-D68D-4A23-ACA0-07CC917F127F}</Project>
+      <Name>AirService.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

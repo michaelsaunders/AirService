@@ -1,0 +1,99 @@
+﻿@model AirService.Web.ViewModels.VenueAdvertisementViewModel
+@using (@Ajax.BeginForm("Edit", "VenueAdvertisements", new AjaxOptions()
+{
+    OnSuccess = "CloseIt"
+}))
+{
+    @Html.HiddenFor(m => m.SelectedImageMonday)
+    @Html.HiddenFor(m => m.SelectedImageTuesday)
+    @Html.HiddenFor(m => m.SelectedImageWednesday)
+    @Html.HiddenFor(m => m.SelectedImageThursday)
+    @Html.HiddenFor(m => m.SelectedImageFriday)
+    @Html.HiddenFor(m => m.SelectedImageSaturday)
+    @Html.HiddenFor(m => m.SelectedImageSunday)
+    
+    <table class="adspace">
+        <tr>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+        </tr>
+        @foreach (var item in Model.VenueAdvertisements.OrderBy(item => item.AdvertisedDay))
+        {
+            <tr>
+                <td>
+                    @item.Day
+                </td>
+                <td id='@String.Format("imageUpload{0}", @item.AdvertisedDay)' />
+                <td class="imageUpload">
+                    <span style="display:block; height:34px; background-color:#FFF;"><img src="@item.Image" alt="Venue Advertisement" id='@String.Format("imageDisplay{0}", @item.AdvertisedDay)' height='34' width='200' /></span>
+                </td>
+                <td>
+                    <a href="#" class="ui-icon ui-icon-closethick delete" onclick='javascript:SetImageForDay(@item.AdvertisedDay, "");return false;' />
+                </td>
+            </tr>
+        }
+    </table>
+    <input type="submit" value="Save" />
+}
+<link href="@Url.Content("~/Content/fileuploader.css")" rel="stylesheet" type="text/css" />
+<script src="/Scripts/fileuploader.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        for (var i = 0; i < 7; i++) {
+            var uploader = new qq.FileUploader({
+                element: document.getElementById('imageUpload' + i),
+                params: { day: i },
+                action: '/MobileApplicationSettings/UploadImageFile',
+                debug: true,
+                onComplete: function (id, fileName, responseJSON) {
+                    SetImageForDay(responseJSON.dataIndex, responseJSON.url);
+                },
+                multiple: false,
+                allowedExtensions: ["png", "jpg"]
+            });
+        }
+
+    });
+
+    function CloseIt(e) {
+        $('#popupDialog').dialog('close');
+    }
+    
+    function SetImageForDay(dataIndex, url) {
+        $('#imageDisplay' + dataIndex).attr('src', url);
+        switch (dataIndex) {
+            case 0:
+                $("#SelectedImageSunday").val(url);
+                break;
+            case 1:
+                $("#SelectedImageMonday").val(url);
+                break;
+            case 2:
+                $("#SelectedImageTuesday").val(url);
+                break;
+            case 3:
+                $("#SelectedImageWednesday").val(url);
+                break;
+            case 4:
+                $("#SelectedImageThursday").val(url);
+                break;
+            case 5:
+                $("#SelectedImageFriday").val(url);
+                break;
+            case 6:
+                $("#SelectedImageSaturday").val(url);
+                break;
+            default:
+                // nothing
+                break;
+        }
+
+        return false;
+    }
+</script>

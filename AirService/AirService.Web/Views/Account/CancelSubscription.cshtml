@@ -1,0 +1,36 @@
+﻿@{
+    this.ViewBag.Title = "Cancel Subscription";
+}
+@section headerSection
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#delete-account').click(function () {
+                if (confirm('Are you sure you want to continue?')) {
+                    $('#main-content form').submit();
+                }
+            });
+        })
+    </script>    
+}
+
+<section id="main">
+    <section id="main-content" class="clearfix">
+        <div id="cancel-subs">
+            <h1> Cancel Subscription</h1>
+            <p class="red">Are you sure you want to cancel your subscription?</p>
+            <p>This will delete your <strong>entire AirService account</strong> including your menus, menu items, locations and customisations.</p>
+            <p>Your billing information will be deleted and you will no longer be billed.</p>
+            @using (this.Html.BeginForm())
+            {
+                @this.Html.ValidationSummary()
+            
+                <a id="delete-account" href="javascript:void(0)" class="btn-cancel">Cancel Subscription & Delete Account</a>
+            }
+
+            <div class="warn">
+                If you arrived at this page by accident, or do not want to cancel your account, simply press <a href="javascript:window.history.back()">back</a>.
+            </div>
+        </div>
+    </section>
+</section>

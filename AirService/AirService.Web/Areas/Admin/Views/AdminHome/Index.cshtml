@@ -1,0 +1,88 @@
+@using System.Data
+@model AirService.Web.Areas.Admin.Models.AdminHomeViewModel
+@{
+    ViewBag.Title = "Index";
+    var rowIndex = 0;
+}
+@section headerSection
+{
+    <script type="text/javascript" src="/Scripts/knockout-2.0.0.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#disable-webservices').click(function () {
+                if (confirm('Are you sure you want to switch off AirService web services for all venues?\n\nAll iPad/iPhone devices will stop working until you manually enable the service again.')) {
+                    if (confirm('Are you sure?')) {
+                        ko.utils.postJson('@Url.Action("DisableWebServicesForAllVenues")');
+                    }
+                }
+            });
+
+            $('#enable-webservices').click(function () {
+                if (confirm('AirService web services for all venues will be switched on. Are you sure you want to continue?\n\nAll iPad/iPhone devices will now able to connect to the web services again.')) {
+                    ko.utils.postJson('@Url.Action("EnableWebServicesAllVenues")');
+                }
+            });
+        })
+    </script>
+}
+<section id="main">
+    <section id="admin-main-content" class="clearfix">
+        <h2>
+            Venues</h2>
+        <fieldset class="admin">
+            <div class="display-label">
+                iPad/iPhone Services:
+            </div>
+            <div class="display-field">
+                @if (Model.WebServicesEnabled)
+                {
+                    <span>On</span>
+                    <button id="disable-webservices" style="margin-left: 10px">
+                        Disable Device Access</button>
+                }
+                else
+                {
+                    <span>Off</span>
+                    <button id="enable-webservices" style="margin-left: 10px">
+                        Enable Device Access</button>
+                }
+            </div>
+            @for (int i = 0; i < this.Model.Statistics.Columns.Count; i++)
+            {
+                <div class="display-label">
+                    @this.Model.Statistics.Columns[i].ColumnName:
+                </div>
+                <div class="display-field">@Model.Statistics.Rows[0][i]</div>
+            }
+            <div class="clear">
+                <table class="admin-table">
+                    <tr>
+                        <th>No.</th>
+                        @for (int i = 0; i < this.Model.Venues.Columns.Count; i++)
+                        {
+                            <th>
+                                <a href="@Url.Action("VenueList", "AdminHome", new { sortColumn = i + 1, ascending = !this.Model.VenueListSortAscending })">
+                                @this.Model.Venues.Columns[i]
+                                </a>
+                            </th>
+                        }
+                    </tr>
+                    @foreach (DataRow row in this.Model.Venues.Rows)
+                    {
+                        <tr>
+                            <td>@(++rowIndex)</td> 
+                            <td>
+                                <a href="@Url.Action("Index", new { id = row[0] })">@(((int)row[0]).ToString("000000"))</a>
+                            </td>
+                            @foreach (var item in row.ItemArray.Skip(1))
+                            {  
+                                <td>@item
+                                </td>
+                            }
+                        </tr>
+                    }
+                </table>
+            </div>
+        </fieldset>
+    </section>
+</section>

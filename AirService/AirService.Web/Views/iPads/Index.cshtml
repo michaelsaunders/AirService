@@ -1,0 +1,51 @@
+@model IEnumerable<AirService.Model.iPad>
+@{
+    ViewBag.Title = "Manage iPads";
+}
+@section headerSection
+{
+    <script type="text/javascript">
+        $('#pincode-generate-button').live('click', function () {
+            $.ajax({
+                url: '/iPads/GenerateNewPinCode',
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    if (data.success) {
+                        var pin = data.code;
+                        $('#pincode').text(pin);
+                        $('#iPad_Pin').val(pin);
+                    }
+                    else {
+                        alert('Failed to generate a new pin code. Please refresh your browser and try again.');
+                    }
+                },
+                error: function () {
+                    alert('Failed to generate a new pin code. Please refresh your browser and try again.');
+                }
+            });
+        });
+    </script>
+}
+<section id="main">
+    <section id="main-content" class="clearfix">
+        <h2>
+            Manage Venue iPads</h2>
+        <div id="help-video-container">
+            <a href="#" class="close">close</a>
+            <p>
+                This is the area where you can add or edit your venue iPads. These are the iPads
+                that will be RECEIVING orders.</p>
+        </div>
+        <p>
+            @Html.ActionLink("iPads", "Index", "iPads", null, new { @class = "ipads-admin" })
+            @Html.ActionLink("iPad Admins", "Index", "iPadAdmin", null, new { @class = "ipad-admins" })
+        </p>
+        <p style="clear: both; padding-top: 20px">
+            @Html.ActionLink("Add iPad", "Create", null, new { @class = "openDialog add-ipad", data_dialog_id = "popupDialog", data_dialog_title = "Add Venue iPad" })
+        </p>
+        <div id="diviPads">
+            @Html.Partial("_iPads")
+        </div>
+    </section>
+</section>

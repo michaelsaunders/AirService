@@ -1,0 +1,84 @@
+﻿@using System.Configuration
+@model AirService.Web.ViewModels.LocationViewModel
+@{
+    ViewBag.Title = "AirService - Home";
+}
+
+@section headerSection{
+    <link rel="stylesheet" type="text/css" href="/Content/location.css">
+    <link rel="stylesheet" type="text/css" href="/Content/grid.css">
+}
+
+@section footerSection{
+    
+}
+<div id="fb-root"></div>
+<script>    
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=197747130324972";
+        fjs.parentNode.insertBefore(js, fjs);
+    } (document, 'script', 'facebook-jssdk'));
+</script>
+<section id="main">
+    <section id="main-content"><div id="location" class="container clearfix">
+        <div id="admin-tools"> 
+            <div id="help-video-container">
+                <a href="#" class="close">close</a>
+                <!--[if IE]>
+                    <style type="text/css">
+                        #admin-tools h1 {text-shadow:none; filter: none;}
+                    </style>
+            <![endif]-->
+                <h1>Get AirService, and use your phone to order from your favourite places</h1>
+                
+                <div class="fb-like-box" data-href="https://www.facebook.com/getairservice" data-width="650" data-height="168" data-show-faces="true" data-border-color="#FDF7AF" data-stream="false" data-header="false"></div>
+                <a href="#" class="btn download">Download the free app</a>
+            </div>
+
+            <div class="span-8">
+                <div class="map-holder"><span><a href="http://maps.google.com.au/maps?q=@(Model.Venue.LatitudePosition),@(Model.Venue.LongitudePosition)" target="_blank"><img src="http://maps.google.com/maps/api/staticmap?center=@(Model.Venue.LatitudePosition),@(Model.Venue.LongitudePosition)&amp;zoom=15&amp;size=258x188&amp;markers=color:red%7C@(Model.Venue.LatitudePosition),@(Model.Venue.LongitudePosition)&amp;sensor=true"></a></span></div>
+            </div>
+
+            <div class="span-10">
+                <h2>@Model.Customer.FirstName @Model.Customer.LastName loves AirService</h2>
+
+                <div class="location-status clearfix">
+                    <p>I'm currently at <strong>@Model.Venue.Title</strong> using AirService.</p>
+                    <div class="location-status-img">
+                        <div class="img" style="background-image:url('@Model.Customer.Image'); background-size: 100% 100%">
+                            <img src="/Content/images/build/location-status-img-border.png" />
+                        </div>
+                    </div>
+                </div>
+
+                <h3>@Model.Venue.Title</h3>
+                <p>
+                    @if(!string.IsNullOrWhiteSpace(Model.Venue.Address2))
+                    {
+                        <text>@Model.Venue.Address1</text><br/>   
+                        <text>@Model.Venue.Address2, @Model.Venue.Suburb </text><br/>
+                    }
+                    else
+                    {
+                        <text>@Model.Venue.Address1, @Model.Venue.Suburb </text><br/>
+                    } 
+                    @Model.Venue.State.Title @Model.Venue.Postcode @Model.Venue.Country.Title
+                </p>
+            </div>
+
+            <div class="span-6 last">
+                <div class="group aside">
+                    <p><strong>Get AirService in your venue</strong>Venue owners can try out AirService for free by entering your email below:</p>
+                    <form action="/Account/Register" method="GET">
+                        <input type="text" name="email" placeholder="Enter your email address" />
+                        <br/>
+                        <input type="submit" class="btn start" value="Get started now!"/>
+                    </form>   
+                </div>
+            </div>
+        </div>
+    </div></section>
+</section>

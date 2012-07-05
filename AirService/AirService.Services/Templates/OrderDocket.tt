@@ -1,0 +1,66 @@
+﻿<#@ template language="C#" #>
+<#@ Import Namespace="System.Collections.Generic" #>
+<#@ Import Namespace="System.Linq" #>
+<#@ Import Namespace="System.Net" #>
+<#@ Import Namespace="AirService.Model" #>
+<#@ Import Namespace="AirService.Services" #>
+<#@ Import Namespace="AirService.Services.Security" #>
+<html>
+<head>
+    <title>AirService Order Docket</title>
+    <style type="text/css">
+        body{padding-left:5px;padding-right:5px;font-family:Verdana,Tahoma,Arial,"Helvetica Neue",Helvetica,Sans-Serif;font-size:3em;}
+        td{font-size:3em;}
+        ul.date-time{float:right;}            
+        ul.date-time li{list-style:none outside none; text-align:right;}
+        ul.item-list li{list-style:none; margin-left:-40px; font-size:1.2em;font-weight:bold;}
+        hr {clear:both;}
+        div.customer label, div.customer span {font-size: 1.2em;}
+        div.customer span {font-weight: bold;}
+        li.time {font-size: larger;font-weight:bold;}
+        p.foot-note{font-size:0.9em;text-align:center;}
+        p.accepted-by{font-size:1.2em;}
+    </style>
+</head>
+<body>
+    <ul class="date-time">
+        <li class="time"><#= this._currentDateTime.ToString("h:mmtt") #></li>
+        <li class="date"><#= this._currentDateTime.ToString("dd MMM yyyy") #></li>
+    </ul>
+    <h1>
+        Order</h1>
+    <hr/>
+    <div class="customer">
+        <label>For:</label>
+        <span><#= WebUtility.HtmlEncode(this._customer.FirstName + " " + this._customer.LastName)#></span>
+    </div>
+    <div class="customer">
+        <label>Location:</label>
+        <span><#= WebUtility.HtmlEncode(this._location) #></span>
+    </div>
+    <hr />
+    <ul class="item-list">
+        <li>
+            <#= this._orderItem.Quantity #> X <#= WebUtility.HtmlEncode(this._orderItem.Name) #>
+        </li>
+    </ul>
+    <hr />
+    <p class="accepted-by">Accepted by: <strong><#= WebUtility.HtmlEncode(this._orderItem.AssignedDeviceName ?? "") #></strong></p>
+	<hr />
+    <p class="foot-note">Ordered with AirService</p>
+</body>
+</html>
+<#+
+	private DateTime _currentDateTime;
+    private Venue _venue;
+    private Customer _customer;
+    private string _location;
+    private OrderItem _orderItem;
+    public void Initialize(AirServiceIdentity identity, OrderItem orderItem, string location)
+	{
+	    this._customer = orderItem.Order.Customer;
+        this._currentDateTime = identity.ToLoginUserTime(DateTime.Now);
+        this._orderItem = orderItem;
+        this._location = location ?? "";
+	}
+#>

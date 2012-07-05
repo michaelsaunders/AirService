@@ -1,0 +1,90 @@
+/* ================== */
+/* ! Custom Web Font  */
+/* ================== */
+@font-face {
+    font-family: 'MuseoSans500';
+    src: url('MuseoSans_500-webfont.eot');
+    src: url('MuseoSans_500-webfont.eot?#iefix') format('embedded-opentype'),
+         url('MuseoSans_500-webfont.woff') format('woff'),
+         url('MuseoSans_500-webfont.ttf') format('truetype'),
+         url('MuseoSans_500-webfont.svg#MuseoSans500') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* ================== */
+/* ! Reset browsers   */
+/* ================== */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{border:0;outline:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;margin:0;padding:0;}
+:focus{outline:0;}
+body{line-height:1;color:#000;background:#FFF;}
+ol,ul{list-style:none;}
+table{border-collapse:separate;border-spacing:0;}
+caption,th,td{text-align:left;font-weight:400;}
+blockquote:before,blockquote:after,q:before,q:after{content:"";}
+blockquote,q{quotes:"" "";}
+
+
+/* ============================== */
+/* ! Layout for desktop version   */
+/* ============================== */
+body { margin:0; padding:0; width:100%; height:100%; background:#0084C2; color:#FFFFFF; font-family:'MuseoSans500' ,Arial, Helvetica, sans-serif; font-size:12px; line-height:16px;}
+h1, h2, h3 {}
+h1 { font-size:59px; line-height:70px; margin-bottom:20px; text-shadow: 0 -2px #000000;}
+.ie7 h1 { font-size:55px;}
+p {padding:5px 0; font-size:34px; line-height:40px; text-shadow: 0 -1px #000000;}
+b, strong { font-weight:bold;}
+i, em { font-style:italic;}
+
+/* LINKS */
+a {text-decoration:underline; color:#f27415;}
+	a:hover{text-decoration:none;}
+	a:visited{text-decoration:none;}
+
+/* GENERAL CLASS */
+.clear {overflow:hidden; clear:both;}
+.left {float:left;}
+.right {float:right;}
+a.btn { background:url(images/common/btn_sprite.png) no-repeat; width:287px; height:54px; text-indent:-999999px; display:block;}
+	a.btn:hover { background-position: bottom;}
+.row {margin: 7px 0;overflow: hidden;position:relative;}
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
+/* LAYOUT */
+#homeWrapper {position: relative;width: 100%;height: 680px;}
+#homePanelContainer { background:url(images/common/grid_overlay.png); width:100%; height:680px; position:absolute; top:0; left:0; display:block; overflow:hidden;}
+#homeContent { width:950px; margin:0 auto; position: relative;}
+.slides-container { overflow:visible!important;position: relative;visibility: hidden;left: -5000px;}
+.slides-container li { overflow:visible!important; width:2700px!important; zoom:1; position:relative;}
+.slide { background:url(images/common/content_bg.png); position:relative; padding:20px; width:780px; margin:110px 0 130px 59px; zoom:1;}
+.slide h1 { width:450px;}
+.slide h1.ipad-content { width:370px;}
+.slide p { width:450px; min-height:260px;}
+.slide p.ipad-content { width:370px;}
+.app-feat { position:absolute;right:-30px;}
+.app-feat.iphone { top: -100px;}
+.app-feat.ipad { top: -57px;}
+
+#prevslide, #nextslide{ position:absolute; height:41px; width:24px; top:50%; margin-top:-21px; z-index:9999; }
+#prevslide{ left:10px; background:url(images/common/arrows.png); }
+#nextslide{ right:10px; background:url(images/common/arrows.png) 24px 0; }
+	#prevslide:active, #nextslide:active{ margin-top:-19px; }
+	#prevslide:hover, #nextslide:hover{ cursor:pointer; }
+
+/* BACKGROUND RESIZE AND ROTATE */
+#supersized-loader{position:absolute;top:50%;left:50%;z-index:0;width:60px;height:60px;text-indent:-999em;background:url(images/common/progress.gif) no-repeat center center;margin:-30px 0 0 -30px;}
+#supersized{display:block;position:absolute;left:0;top:0;overflow:hidden;z-index:-999;height:680px;width:100%;}
+#supersized img{width:auto;height:auto;position:relative;display:none;outline:none;border:none;}
+#supersized.speed img{-ms-interpolation-mode:nearest-neighbor;image-rendering:0;}
+#supersized.quality img{-ms-interpolation-mode:bicubic;image-rendering:optimizeQuality;}
+#supersized li{display:block;list-style:none;z-index:-30;position:absolute;overflow:hidden;top:0;left:0;width:100%;height:680px;background:#111;}
+#supersized a{width:100%;height:100%;display:block;}
+#supersized li.prevslide{z-index:-20;}
+#supersized li.activeslide{z-index:-10;}
+#supersized li.image-loading{background:#111 url(images/common/progress.gif) no-repeat center center;width:100%;height:100%;}
+#supersized li.image-loading img{visibility:hidden;}
+#supersized li.prevslide img,#supersized li.activeslide img{display:inline;}
+

@@ -1,0 +1,24 @@
+﻿@model System.Collections.Generic.List<AirService.WebTest.ViewModels.CustomerViewModel>
+
+<table>
+    <tr> 
+        <th></th>
+        <th>Date Created</th>
+        <th>ID</th>
+        <th>UDID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+    </tr>
+
+@foreach (var item in this.Model)
+{
+    <tr>
+        <td><button class="customer-connect-button" data-customer-id="@item.Customer.Id" type="button">Connect</button></td>
+        <td>@item.Customer.CreateDate</td>
+        <td>@item.Customer.Id</td>
+        <td>@item.Customer.Udid</td>
+        <td>@item.Customer.FirstName</td>
+        <td>@item.Customer.LastName</td>
+    </tr>
+}
+</table>

@@ -1,0 +1,181 @@
+﻿<script type="text/javascript">
+    function getQueryString() {
+        var result = { }, queryString = location.search.substring(1),
+            re = /([^&=]+)=([^&]*)/g , m;
+
+        while (m = re.exec(queryString)) {
+            result[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+        }
+
+        return result;
+    }
+
+    $(document).ready(function () {
+        $("header nav ul").superfish();
+        $('nav a').addClass('tk-myriad-pro');
+        $('#submit-button').click(function () {
+            var data = {
+                FormType: 'Contact',
+                Name: $.trim($('#name').val()),
+                Email: $.trim($('#email').val()),
+                Subject: $.trim($('#subject').val()),
+                Type: $('#mediaRequest option:selected').val(),
+                Message: $.trim($('#message').val()),
+                ReceiveSpecialOffers: $('#receiveSpecialOffer :checked').length == 1
+            };
+
+            var hasError = false;
+            if (data.Name == null || data.Name.length == 0) {
+                hasError = true;
+                $('form.contact-us-form p.name').addClass('error');
+            }
+            else {
+                $('form.contact-us-form p.name').removeClass('error');
+            }
+
+            if (data.Email == null || data.Email.length == 0) {
+                hasError = true;
+                $('form.contact-us-form p.email').addClass('error');
+            }
+            else {
+                $('form.contact-us-form p.email').removeClass('error');
+            }
+
+            if (data.Message == null || data.Message.length == 0) {
+                hasError = true;
+                $('form.contact-us-form p.message').addClass('error');
+            }
+            else {
+                $('form.contact-us-form p.message').removeClass('error');
+            }
+
+            if (!hasError) {
+                $('#wait-message').show();
+                $.ajax(
+                    {
+                        type: 'POST',
+                        contentType: 'application/json; charset=utf-8',
+                        url: '/Home/Contactus',
+                        dataType: 'json',
+                        data: JSON.stringify(data),
+                        processData: false,
+                        success: function () {
+                            alert('Thank you');
+                        },
+                        error: function () {
+                            alert('There was an error. Please try again later');
+                        },
+                        complete: function () {
+                            $('#wait-message').hide();
+                        }
+                    });
+            }
+        });
+
+        var queries = getQueryString();
+        var mediaRequest = queries['mediaRequest'];
+        if (mediaRequest != undefined && mediaRequest != null) {
+            var option = $('#mediaRequest option[value="' + mediaRequest + '"]');
+            if (option.length > 0) {
+                option[0].selected = true;
+            }
+        }
+    });
+</script>
+<section id="main">
+    <section id="main-content" class="clearfix">
+        <article>
+            <h3>Contact Us</h3>
+            <p>To get in touch with us please use the form below or send us an email: <a href="mailto:airservice@luxedigital.net">airservice@luxedigital.net</a></p>
+            <form class="contact-us-form">
+            <p id="wait-message" style="display: none;">
+                Please wait...<img src="/Content/images/common/loading.gif" /></p>
+            <h4>
+                Message form</h4>
+            <ul>
+                <li class="clearfix">
+                    <p class="label name">
+                        * Name</p>
+                    <input type="text" id="name" name="name" />
+                </li>
+                <li class="clearfix">
+                    <p class="label email">
+                        * Email</p>
+                    <input type="text" id="email" name="email" />
+                </li>
+                <li class="clearfix">
+                    <p class="label">
+                        Subject</p>
+                    <input type="text" id="subject" name="subject" placeholder="" />
+                </li>
+                <li class="clearfix" style="height: 20px">
+                    <select id="mediaRequest" name="media request" class="contact-select">
+                        <option value="Media Request/PR">Media Request/PR</option>
+                        <option value="Support">Support</option>
+                        <option value="General Enquiry">General Enquiry</option>
+                        <option value="Partnerships/Sales">Partnerships/Sales</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </li>
+                <li class="clearfix">
+                    <p class="label message">
+                        * Message</p>
+                    <textarea id="message" name="message"></textarea>
+                </li>
+                <li class="clearfix check-list" style="top: 10px;">
+                    <input id="receiveSpecialOffer" type="checkbox" checked="checked" class="checkbox" />
+                    <p>
+                        Tick to get our free special offers newsletter and stay up to date.</p>
+                </li>
+            </ul>
+            <p class="form-reminder">
+                * Asterisk indicates a required field</p>
+            <a id="submit-button" href="#" class="submit-message"></a>
+            </form>
+        </article>
+        <aside>
+            <ul>
+                <li class="first">
+                    <h4>Add AirService to your venue</h4>
+                    <p>Experience what AirService can do for your venue and customers. We know you will be impressed.</p>
+                    <form action="/Account/Register" method="GET">
+                        <input type="text" name="email" placeholder="Enter your email address" />
+                        <br/>
+                        <input type="submit" class="btn start" value="Get started now!"/>
+                    </form>  
+                </li>
+                <li>
+                    <h4>
+                        Questions?</h4>
+                    <p>
+                        Our most common questions are all answered on our <a href="/home/page/support">FAQs page</a></p>
+                </li>
+                <li>
+                    <h4>
+                        Get social</h4>
+                    <ul class="social">
+                        <li class="facebook">Show some love and 'like' us on <a href="http://www.facebook.com/getairservice"
+                            target="_blank">Facebook</a>.</li>
+                        <li class="twitter"><a href="http://www.twitter.com/getairservice" target="_blank">Follow
+                            us on Twitter</a> for up to the second updates.</li>
+                    </ul>
+                </li>
+                <li>
+                    <img src="/Content/images/common/ipad-iphone.png" alt="" style="float: right; margin: 0 0 5px 5px" />
+                    <h4>
+                        AirService on your iPhone and iPad</h4>
+                    <p style="margin-bottom: 15px">
+                        Customers, you don't pay a penny to use AirService. All you need to do is download
+                        the iPhone app from the App Store.
+                    </p>
+                    <p style="margin-bottom: 15px">
+                        Venue owners, you can get started with AirService and download the iPad Venue App to get your
+                        venue AirService compatible in just 5 minutes.</p>
+                    <p>
+                        Download AirService now. On your iPad or iPhone, Mac or PC, simply browse to <a href="http://getairservice.com">
+                            getairservice.com</a></p>
+                </li>
+            </ul>
+        </aside>
+    </section>
+</section>

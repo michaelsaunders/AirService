@@ -1,0 +1,26 @@
+2012-01-01 00:30:49,175 [6] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-01-01 00:36:39,570 [1] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-01-01 00:37:36,308 [1] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-01-01 00:39:33,414 [1] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-01-01 00:40:00,751 [1] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-01-01 00:54:02,423 [1] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-01-01 00:57:22,697 [1] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-01-01 00:57:32,182 [1] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-01-01 00:57:46,653 [1] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-01-01 01:00:16,026 [34] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-01-01 01:03:11,373 [33] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-01-01 01:17:35,124 [13] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-01-01 01:19:59,719 [24] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Sending Notification to e296c7f4585741f630b5c12d5bf8b24a89fcadd0
+2012-01-01 01:20:00,903 [24] ERROR AirService.WebServices.AirServiceWebServiceApplication [(null)] - No Panic. Exception expected due to APN design..
+System.IO.IOException: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. ---> System.Net.Sockets.SocketException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at System.Net.FixedSizeReader.ReadPacket(Byte[] buffer, Int32 offset, Int32 count)
+   at System.Net.Security._SslStream.StartFrameHeader(Byte[] buffer, Int32 offset, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security._SslStream.StartReading(Byte[] buffer, Int32 offset, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security._SslStream.ProcessRead(Byte[] buffer, Int32 offset, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at AirService.Services.Notifications.ApnConnection.SendQueuedNotifications(Object state) in C:\Projects\Webling\AirService\AirService.Services\Notifications\ApnConnection.cs:line 237
+2012-01-01 01:20:02,109 [37] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Sending Notification to cde60c0e3ce6ad8cf2a16238167efeabd21723ef
+2012-01-01 01:20:02,109 [37] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - APN response code 0, 0

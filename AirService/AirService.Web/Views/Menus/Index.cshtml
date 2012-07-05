@@ -1,0 +1,166 @@
+@model IEnumerable<AirService.Web.ViewModels.MenuViewModel>
+@{
+    ViewBag.Title = "Manage Menus";
+}
+@section headerSection
+{
+    <style>
+        li.row { float: none !important; margin: 0 !important; height: 39px; display: block;}
+        li.row li { padding: 10px; border-right: 1px solid #E8EEF4; border-top: medium none; margin: 0; float: none !important;}
+        li.row ul.columns { margin: 0 !important; padding: 0 !important;}
+        li.row ul.columns li { float: left !important; }
+        table.table-header th.action-cell,
+        li.action-cell { width: 90px; text-align: center !important;}
+        li.row li.action-cell{ padding: 0px; padding-left: 10px; padding-right: 10px;}
+        table.table-header th.name,
+        li.name{ width: 184px;} 
+        table.table-header th.text,
+        li.text{ width: 182px;} 
+        table.table-header th.status,
+        li.status{ width: 40px;} 
+        table.table-header th.schedule,
+        li.schedule{ width: 80px;} 
+        div.ui-helper-clearfix{ border-bottom: 1px solid #CCCCCC;}
+    </style>
+    <script type="text/javascript" src="/Scripts/json2.js"></script>
+    <script type="text/javascript" src="/Scripts/knockout-2.0.0.js"></script>
+    <script type="text/javascript">
+        var viewModel = {
+            items: ko.observableArray(@Html.Raw(Json.Encode(this.Model))),
+            deleteItem: function(item) {
+                if(confirm('Are you sure you want to delete menu "' + item.Title + '"?')) {
+                    $.ajax({
+                            url: '@Url.Action("DeleteMenuWithCascade")/' + item.Id,
+                            type: 'post'
+                        }
+                    );
+                    
+                    viewModel.items.remove(item);
+                }
+            }
+        };
+          
+        function onMenuUpdated(menu) {
+            var current = null;
+            var currentIndex = -1;
+            
+            $.each(viewModel.items(), function(index, item) {
+                if(menu.Id == item.Id) {
+                    current = item;
+                    currentIndex = index;
+                    return false;
+                }
+
+                return true;
+            });
+
+            if(current != null) {
+                viewModel.items.remove(current);
+                viewModel.items.splice(currentIndex, 0, menu);
+                if(currentIndex % 2 == 1) {
+                    $($('li.row')[currentIndex]).addClass('even');
+                }
+            }
+
+            $('#popupDialog').dialog('close');
+        }
+        
+        function onMenuAdded(menu) {
+            viewModel.items.push(menu);
+            $('#popupDialog').dialog('close');
+        }
+
+        function onFailedUpdateMenu(xhr) {
+            dialogErrorMessage('#popupDialog', xhr);
+        }
+        
+        function applyAlternatingStyle() {
+            $("li.row").each(function(index, item) {
+                if(index % 2 == 1) {
+                    $(item).addClass('even');
+                }
+                else {
+                    $(item).removeClass('even');
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            ko.applyBindings(viewModel, $('#main-content')[0]);
+            applyAlternatingStyle();
+            $('#divMenus .table-body').sortable({
+                delay: 100,
+                opacity: 0.5,
+                stop: function(event, ui) {
+                    var menu = ko.dataFor(ui.item[0]);
+                    var elements = ui.item.parent().children();
+                    var oldPosition = ko.utils.arrayIndexOf(viewModel.items(), menu);
+                    var newPosition = ko.utils.arrayIndexOf(elements, ui.item[0]);
+                    if (oldPosition != newPosition) {
+                        viewModel.items.remove(menu);
+                        viewModel.items.splice(newPosition, 0, menu);
+                        ui.item.remove();
+                        applyAlternatingStyle();
+                        $.ajax({
+                            cache: false,
+                            url: '@Url.Action("UpdateMenuSortOrder")',
+                            data: { menuId: menu.Id, Index: newPosition },
+                            type: 'POST'
+                        });
+                    }
+                }
+            }).disableSelection();
+        });
+        
+    </script>
+}
+
+<section id="main">
+    <section id="main-content" class="clearfix">
+        <h2>
+            Manage Menus</h2>
+        <div id="help-video-container">
+            <a href="#" class="close">close</a>
+            <p>
+                This is the area where you create and edit your menus. We recommend you be creative, descriptive and always include a great photo.
+            </p>
+        </div>
+        <p>
+            @Html.ActionLink("Add Menu", "Create", null, new { @class = "openDialog add-menu", data_dialog_id = "popupDialog", data_dialog_title = "Add Menu" })
+        </p>
+        <div id="divMenus">
+            <table class="table-header">
+                <tr>
+                    <th class="name first">Menu </th>
+                    <th class="name">Display Title </th>
+                    <th class="text">Orders Sent To </th>
+                    <th class="status">Status </th>
+                    <th class="schedule">Scheduled </th>
+                    <th class="action-cell">Edit Menu </th>
+                    <th class="action-cell">Delete Menu </th>
+                </tr>
+            </table>
+            <ul class="table-body" data-bind="foreach:items">
+                <li class="row">
+                    <ul class="columns">
+                        <li class="first name"><a data-bind="text:Title,attr:{href:'@Url.Action("Index", "MenuCategories")?menuId=' + Id}">
+                                               </a></li>
+                        <li class="name" data-bind="text:DisplayTitle"></li>
+                        <li class="text">
+                            <span data-bind="text:OrderSentTo"></span>
+                        </li>
+                        <li class="status" data-bind="text:Status"></li>
+                        <li class="schedule" data-bind="text:Schedule"></li>
+                        <li class="action-cell"><a data-bind="attr:{href:'@Url.Action("Edit")/' + Id}"
+                                                   class="openDialog edit"
+                                                   data-dialog-id="popupDialog"
+                                                   data-dialog-title="Menu Settings"></a></li>
+                        <li class="action-cell">
+                            <a data-bind="click:$parent.deleteItem" class="ui-icon ui-icon-closethick delete"></a> 
+                        </li>
+                    </ul> 
+                </li>
+            </ul>
+        </div>
+    </section>
+</section>

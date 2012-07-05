@@ -1,0 +1,22 @@
+@model IEnumerable<AirService.Model.VenueArea>
+@{
+    ViewBag.Title = "Venue Areas";
+}
+<section id="main">
+    <section id="main-content" class="clearfix">
+        <h2>
+            Venue Layout</h2>
+        <div id="help-video-container">
+            <a href="#" class="close">close</a>
+            <p>
+                This is where you create areas within your venue so you can easily identify where
+                your customers are sitting.</p>
+        </div>
+        <p>
+            @Html.ActionLink("Add Venue Area", "Create", null, new { @class = "openDialog add-venue-area", data_dialog_id = "popupDialog", data_dialog_title = "Add Venue Area" })
+        </p>
+        <div id="divVenueAreas">
+            @Html.Partial("_VenueAreas")
+        </div>
+    </section>
+</section>

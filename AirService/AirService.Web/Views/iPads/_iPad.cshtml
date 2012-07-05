@@ -1,0 +1,40 @@
+﻿@model AirService.Web.ViewModels.IPadViewModel
+@using (Ajax.BeginForm(new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "diviPads",
+    OnSuccess = "CloseIt",
+    OnFailure = "OnFail"
+}))
+{
+        @Html.ValidationSummary(true)
+        <fieldset>
+            @Html.HiddenFor(model => model.iPad.Id)
+            @Html.HiddenFor(model => model.iPad.VenueId)
+            @Html.HiddenFor(model => model.iPad.Status)
+            @Html.HiddenFor(model => model.iPad.CreateDate)
+            @Html.HiddenFor(model => model.iPad.UpdateDate)
+            @Html.Partial("_CreateOrEdit", Model)
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+
+    <script type="text/javascript">
+        $("#popupDialog").ready(function () {
+            $.validator.unobtrusive.parse("#popupDialog > form");
+        });
+
+
+        function CloseIt() {
+            $("#popupDialog").dialog('close');
+            return true;
+        }
+
+        function OnFail(xhr) {
+            dialogErrorMessage('#popupDialog', xhr);
+        }
+
+    </script>
+}

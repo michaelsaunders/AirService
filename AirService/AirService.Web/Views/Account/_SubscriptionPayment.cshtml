@@ -1,0 +1,9 @@
+﻿@using AirService.Web.Infrastructure
+@using AirService.Web.ViewModels
+@model AccountModel
+<h5 class="subscription">
+    Subscription</h5>
+@Html.PartialPrefixed("_SubscriptionType", this.Model.VenueViewModel, "VenueViewModel")
+<h5 class="payments">
+    Payment</h5>
+@Html.PartialPrefixed("_CreditCardDetail", this.Model.CreditCard, "CreditCard")

@@ -1,0 +1,59 @@
+﻿@using AirService.Web.Infrastructure
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/themes/base/jquery-ui.css")"  />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Site.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/main.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/base.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/nav.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/jquery-ui-timepicker.css")" />
+    <link rel="shortcut icon" href="/Content/images/favicon.ico">
+    <meta name="viewport" content="width=1020, initial-scale=1.0" />
+    <!-- for ipad layout -->
+    <style>
+        .ui-progressbar { border-radius: 0 0 0 0 !important; }
+        .ui-progressbar-value { background-image: url(/Content/images/bg/pbar-ani.gif); }
+    </style>
+    <script src="@Url.Content("~/Scripts/jquery-1.6.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.14.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/superfish.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/modernizr-2.0.6-development-only.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("tr:nth-child(odd)").addClass("even"); 
+            $('nav a').addClass('tk-myriad-pro'); // for nav font style 
+        });
+
+        document.createElement("article");
+        document.createElement("footer");
+        document.createElement("header");
+        document.createElement("hgroup");
+        document.createElement("nav");
+        document.createElement("section");
+        document.createElement("aside");
+    </script>
+    @RenderSection("headerSection", false)
+    @*Important. Our common custom script should load after all framework scripts are loaded*@
+    <script src="@Url.Content("~/Scripts/AirService.js")" type="text/javascript"></script>
+    @*Finally load typekit thing*@
+    <script type="text/javascript" src="@(this.Request.IsSecureConnection ? "https" : "http")://use.typekit.com/tfk5fge.js"></script>
+    <script type="text/javascript"> try { Typekit.load(); } catch (e) { }</script>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <section id="header-content">
+                <h1 class="logo">
+                    <a href="/admin"></a>
+                </h1> 
+            </section>
+        </header>
+        @RenderBody() 
+    </div>
+</body>
+</html>

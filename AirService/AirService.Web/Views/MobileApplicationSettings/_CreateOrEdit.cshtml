@@ -1,0 +1,482 @@
+@model AirService.Web.ViewModels.MobileApplicationSettingsViewModel
+@* This partial view defines form fields that will appear when creating and editing entities *@
+@Html.ValidationMessageFor(model => model.MobileApplicationSettings.HeaderImage)
+@Html.ValidationMessageFor(model => model.MobileApplicationSettings.FrostingActive)
+@Html.ValidationMessageFor(model => model.MobileApplicationSettings.DarkTextColour)
+@Html.ValidationMessageFor(model => model.MobileApplicationSettings.DarkButtonColour)
+@Html.ValidationMessageFor(model => model.MobileApplicationSettings.Theme)
+@Html.ValidationMessageFor(model => model.MobileApplicationSettings.BackgroundImage)
+<div id="app-preview">
+    <div class="editorWrap first">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MobileApplicationSettings.HeaderImage) (This graphic
+            will also reflect on your Customer iPad App, coming 2012)
+        </div>
+        <p>
+            For optimal results use a JPG that is 604px by 156px.</p>
+        <div class="editor-field">
+            <img src= "@Model.MobileApplicationSettings.HeaderImage" alt="" width="302" height="78" id="imgHeader" />
+            @*<a href="#" class="ui-icon ui-icon-closethick delete" onclick="javascript:SetImageForHeader('')" ></a>*@
+            <div id="imageUploadHeader">
+            </div>
+        </div>
+    </div>
+    <div class="editorWrap">
+        <div class="col-a">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MobileApplicationSettings.DarkTextColour)
+            </div>
+            <div class="editor-field">
+                <p>
+                    Choose a colour that works best on your chosen background image.</p>
+                @Html.RadioButtonFor(model => model.MobileApplicationSettings.DarkTextColour, true)
+                Dark
+                @Html.RadioButtonFor(model => model.MobileApplicationSettings.DarkTextColour, false)
+                Light
+            </div>
+        </div>
+        <div class="col-b">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MobileApplicationSettings.DarkButtonColour)
+            </div>
+            <div class="editor-field">
+                <p>
+                    Choose a colour that works best on your chosen background image.</p>
+                @Html.RadioButtonFor(model => model.MobileApplicationSettings.DarkButtonColour, true)
+                Dark
+                @Html.RadioButtonFor(model => model.MobileApplicationSettings.DarkButtonColour, false)
+                Light
+            </div>
+        </div>
+    </div>
+    <div class="editorWrap">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MobileApplicationSettings.FrostingActive)
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonFor(model => model.MobileApplicationSettings.FrostingActive, true)
+            On
+            @Html.RadioButtonFor(model => model.MobileApplicationSettings.FrostingActive, false)
+            Off
+        </div>
+    </div>
+    <div class="editorWrap">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MobileApplicationSettings.Theme)
+        </div>
+        <div class="editor-field">
+            <p>
+                Choose from one of our pre-defined colours.</p>
+            <ul id="colourList" class="colourList">
+                <li data-colour="#000000" data-header-src="/Content/images/mobileTemplates/headers/header-black.png">
+                    <img src="/Content/images/mobileTemplates/colours/icon-colours-black.png" alt="Black"
+                        width="50" height="50" /><br />
+                    Black</li>
+                <li data-colour="#606060" data-header-src="/Content/images/mobileTemplates/headers/header-grey.png">
+                    <img src="/Content/images/mobileTemplates/colours/icon-colours-grey.png" alt="Grey"
+                        width="50" height="50" /><br />
+                    Grey</li>
+                <li data-colour="#990000" data-header-src="/Content/images/mobileTemplates/headers/header-strongred.png">
+                    <img src="/Content/images/mobileTemplates/colours/icon-colours-strong-red.png" alt="Strong Red"
+                        width="50" height="50" /><br />
+                    Strong Red</li>
+                <li data-colour="#ef5b03" data-header-src="/Content/images/mobileTemplates/headers/header-orange.png">
+                    <img src="/Content/images/mobileTemplates/colours/icon-colours-orange.png" alt="Orange"
+                        width="50" height="50" /><br />
+                    Orange</li>
+                <li data-colour="#67ac22" data-header-src="/Content/images/mobileTemplates/headers/header-brightGreen.png">
+                    <img src="/Content/images/mobileTemplates/colours/icon-colours-brightGreen.png" alt="Bright Green"
+                        width="50" height="50" /><br />
+                    Bright Green</li>
+                <li data-colour="#167107" data-header-src="/Content/images/mobileTemplates/headers/header-deepGreen.png">
+                    <img src="/Content/images/mobileTemplates/colours/icon-colours-deepGreen.png" alt="Deep Green"
+                        width="50" height="50" /><br />
+                    Deep Green</li>
+                <li data-colour="#075c71" data-header-src="/Content/images/mobileTemplates/headers/header-deepTeal.png">
+                    <img src="/Content/images/mobileTemplates/colours/icon-colours-deepTeal.png" alt="Deep Teal"
+                        width="50" height="50" /><br />
+                    Deep Teal</li>
+                <li data-colour="#072c6f" data-header-src="/Content/images/mobileTemplates/headers/header-royalblue.png">
+                    <img src="/Content/images/mobileTemplates/colours/icon-colours-royalBlue.png" alt="Royal Blue"
+                        width="50" height="50" /><br />
+                    Royal Blue</li>
+                <li data-colour="#23066d" data-header-src="/Content/images/mobileTemplates/headers/header-brightPurple.png">
+                    <img src="/Content/images/mobileTemplates/colours/icon-colours-brightPurple.png"
+                        alt="Bright Purple" width="50" height="50" /><br />
+                    Bright Purple</li>
+                <li data-colour="#3f0771" data-header-src="/Content/images/mobileTemplates/headers/header-purple.png">
+                    <img src="/Content/images/mobileTemplates/colours/icon-colours-purple.png" alt="Purple"
+                        width="50" height="50" /><br />
+                    Purple</li>
+                <li data-colour="#61066e" data-header-src="/Content/images/mobileTemplates/headers/header-lightPurple.png">
+                    <img src="/Content/images/mobileTemplates/colours/icon-colours-lightPurple.png" alt="Light Purple"
+                        width="50" height="50" /><br />
+                    Light Purple</li>
+                <li data-colour="#71075c" data-header-src="/Content/images/mobileTemplates/headers/header-magenta.png">
+                    <img src="/Content/images/mobileTemplates/colours/icon-colours-magenta.png" alt="Magenta"
+                        width="50" height="50" /><br />
+                    Magenta</li>
+                <li data-colour="#9b1257" data-header-src="/Content/images/mobileTemplates/headers/header-pink.png">
+                    <img src="/Content/images/mobileTemplates/colours/icon-colours-pink.png" alt="Pink"
+                        width="50" height="50" /><br />
+                    Pink</li>
+                <li data-colour="#710000" data-header-src="/Content/images/mobileTemplates/headers/header-maroon.png">
+                    <img src="/Content/images/mobileTemplates/colours/icon-colours-maroon.png" alt="Maroon"
+                        width="50" height="50" /><br />
+                    Maroon</li>
+                <li data-colour="#ef9326" data-header-src="/Content/images/mobileTemplates/headers/header-yellow.png">
+                    <img src="/Content/images/mobileTemplates/colours/icon-colours-yellow.png" alt="Yellow"
+                        width="50" height="50" /><br />
+                    Yellow</li>
+                <li data-colour="#220d0d" data-header-src="/Content/images/mobileTemplates/headers/header-brown.png">
+                    <img src="/Content/images/mobileTemplates/colours/icon-colours-brown.png" alt="Brown"
+                        width="50" height="50" /><br />
+                    Brown</li>
+            </ul>
+        </div>
+    </div>
+    <div class="editorWrap last">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MobileApplicationSettings.BackgroundImage)
+            <p>
+                This graphic needs to be 640px wide and 960px high. If you upload a larger image
+                it will crop down to fit. Smaller images will looks pixelated so try to avoid small
+                photos. Alternatively you can choose from one of our pre-made wallpapers.
+            </p>
+        </div>
+        <div class="editor-field">
+            <ul id="backgroundList" class="backgroundList">
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/beach.png" data-background-preview="/Content/images/mobileTemplates/previews/bg-beach.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-beach.png" alt="Beach" />
+                    <br />
+                    Beach </li>
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/black.png" data-background-preview="/Content/images/mobileTemplates/previews/bg-black.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-black.png" alt="Black" />
+                    <br />
+                    Black
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/black-wood.png"
+                    data-background-preview="/Content/images/mobileTemplates/previews/bg-black-wood.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-black-wood.png" alt="BlackWood" />
+                    <br />
+                    Black Wood
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/blueStripes.png"
+                    data-background-preview="/Content/images/mobileTemplates/previews/bg-blueStripes.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-blueStripes.png" alt="BlueStripes" />
+                    <br />
+                    Blue Stripes
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/brown.png" data-background-preview="/Content/images/mobileTemplates/previews/bg-brown.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-brown.png" alt="Brown" />
+                    <br />
+                    Brown
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/charcoal.png"
+                    data-background-preview="/Content/images/mobileTemplates/previews/bg-charcoal.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-charcoal.png" alt="Charcoal" />
+                    <br />
+                    Charcoal
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/cyan.png" data-background-preview="/Content/images/mobileTemplates/previews/bg-cyan.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-cyan.png" alt="Cyan" />
+                    <br />
+                    Cyan
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/grass.png" data-background-preview="/Content/images/mobileTemplates/previews/bg-grass.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-grass.png" alt="Grass" />
+                    <br />
+                    Grass
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/grass-blade.png"
+                    data-background-preview="/Content/images/mobileTemplates/previews/bg-grass-blade.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-grass-blade.png" alt="GrassBlade" />
+                    <br />
+                    Grass Blades
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/green.png" data-background-preview="/Content/images/mobileTemplates/previews/bg-green.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-green.png" alt="Green" />
+                    <br />
+                    Green
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/light-wood.png"
+                    data-background-preview="/Content/images/mobileTemplates/previews/bg-light-wood.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-light-wood.png" alt="LightWood" />
+                    <br />
+                    Light Wood
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/lime.png" data-background-preview="/Content/images/mobileTemplates/previews/bg-lime.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-lime.png" alt="Lime" />
+                    <br />
+                    Lime
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/maroon.png"
+                    data-background-preview="/Content/images/mobileTemplates/previews/bg-maroon.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-maroon.png" alt="Maroon" />
+                    <br />
+                    Maroon
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/orange.png"
+                    data-background-preview="/Content/images/mobileTemplates/previews/bg-orange.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-orange.png" alt="Orange" />
+                    <br />
+                    Orange
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/orange-2.png"
+                    data-background-preview="/Content/images/mobileTemplates/previews/bg-orange-2.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-orange-2.png" alt="Orange2" />
+                    <br />
+                    Orange II
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/palm-beach.png"
+                    data-background-preview="/Content/images/mobileTemplates/previews/bg-palm-beach.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-palm-beach.png" alt="PalmBeach" />
+                    <br />
+                    Palm Beach
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/papyrus.png"
+                    data-background-preview="/Content/images/mobileTemplates/previews/bg-papyrus.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-papyrus.png" alt="Papyrus" />
+                    <br />
+                    Papyrus
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/pink.png" data-background-preview="/Content/images/mobileTemplates/previews/bg-pink.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-pink.png" alt="Pink" />
+                    <br />
+                    Pink
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/pinkStripes.png"
+                    data-background-preview="/Content/images/mobileTemplates/previews/bg-pinkStripes.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-pinkStripes.png" alt="PinkStripes" />
+                    <br />
+                    Pink Stripes
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/purple.png"
+                    data-background-preview="/Content/images/mobileTemplates/previews/bg-purple.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-purple.png" alt="Purple" />
+                    <br />
+                    Purple
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/red.png" data-background-preview="/Content/images/mobileTemplates/previews/bg-red.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-red.png" alt="Red" />
+                    <br />
+                    Red
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/royal-blue.png"
+                    data-background-preview="/Content/images/mobileTemplates/previews/bg-royal-blue.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-royal-blue.png" alt="RoyalBlue" />
+                    <br />
+                    Royal Blue
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/sky.png" data-background-preview="/Content/images/mobileTemplates/previews/bg-sky.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-sky.png" alt="Sky" />
+                    <br />
+                    Sky
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/sunset.png"
+                    data-background-preview="/Content/images/mobileTemplates/previews/bg-sunset.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-sunset.png" alt="Sunset" />
+                    <br />
+                    Sunset
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/teal.png" data-background-preview="/Content/images/mobileTemplates/previews/bg-teal.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-teal.png" alt="Teal" />
+                    <br />
+                    Teal
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/texturedgrey.png"
+                    data-background-preview="/Content/images/mobileTemplates/previews/bg-texturedgrey.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-texturedgrey.png" alt="TexturedGrey" />
+                    <br />
+                    Textured Grey
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/violet.png"
+                    data-background-preview="/Content/images/mobileTemplates/previews/bg-violet.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-violet.png" alt="Violet" />
+                    <br />
+                    Violet
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/water.png" data-background-preview="/Content/images/mobileTemplates/previews/bg-water.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-water.png" alt="Water" />
+                    <br />
+                    Water
+                <li data-background-src="/Content/images/mobileTemplates/backgrounds/white.png" data-background-preview="/Content/images/mobileTemplates/previews/bg-white.png">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-white.png" alt="White" />
+                    <br />
+                    White
+                <li id="customBackground">
+                    <img src="/Content/images/mobileTemplates/thumbnails/icon-custom.png" alt="Custom" />
+                    <br />
+                    Custom
+            </ul>
+            <p class="custom-image">
+                ... or upload your own image now:</p>
+            @*<a href="#bar" class="ui-icon ui-icon-closethick" onclick='javascript:SetBackgroundImage("")' />*@
+            <div id="imageUploadBackground" class="big">
+            </div>
+            @*    <img src= "@Model.MobileApplicationSettings.BackgroundImage" width="64" alt="Background" height="96" /><br />*@
+        </div>
+    </div>
+</div>
+<div id="preview-container">
+    <div id="mobilePreview">
+        <div id="headerColourPreview">
+            <img src="/Content/images/mobileTemplates/headers/header-black.png" alt="header colour"
+                id="PreviewHeaderColour" width='254' height='34' />
+        </div>
+        <div id="headerPreview">
+            <img src="@Model.SelectedHeaderImage" alt="" id="PreviewHeaderImage" width='237' height='60' />
+        </div>
+        <div id="backgroundPreview">
+            <img src="@Model.SelectedBackgroundImage" alt="" id="PreviewBackgroundImage" width='254' height='293' />
+        </div>
+        <div id="contentPreview">
+            <div id="pairing">
+                <p class="greeting">
+                    Hello,</p>
+                <p>
+                    Successfully paired at 5.30pm on 11/12/2011</p>
+                <div id="buttons" style="padding-left: 5px">
+                    <img src="" alt="buttons" id="imgButtons" />
+                </div>
+                <img src="/Content/images/mobileTemplates/static-elements.png" alt="static elements"
+                    width="254" height="134" />
+            </div>
+        </div>
+    </div>
+</div>
+<link href="@Url.Content("~/Content/fileuploader.css")" rel="stylesheet" type="text/css" />
+<script src="/Scripts/fileuploader.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var dark = '#282828';
+    var light = '#FFFFFF';
+    var darkButtons = "/Content/images/mobileTemplates/buttons-dark.png";
+    var lightButtons = "/Content/images/mobileTemplates/buttons-light.png";
+
+    $(document).ready(function () {
+        SetTextFontColour();
+        SetButtonColour();
+        SetFrosting();
+        SetHeaderColour();
+        SetSelectedBackground();
+
+        /* set header img bg and border if an image exists - test inital value of src is null */
+        var headImg = $('#imgHeader');
+        if (headImg.src !== null) {
+            $('#imgHeader').addClass('hasImage');
+        };
+
+
+        function SetSelectedBackground() {
+            var selectedImage = $('#SelectedBackgroundImage').val();
+            var selectedItem = $("#backgroundList li[data-background-src='" + selectedImage + "']");
+            if (selectedItem.length == 0) {
+                $('#customBackground').addClass('selected');
+            }
+            else {
+                selectedItem.addClass('selected');
+            }
+        }
+
+        function SetHeaderColour() {
+            var colour = $('#SelectedThemeColour').val();
+            var selectedItem = $("#colourList li[data-colour='" + colour + "']");
+            selectedItem.addClass('selected');
+            var header = selectedItem.attr('data-header-src');
+            $('#PreviewHeaderColour').attr('src', header);
+        }
+
+        // header theme colour
+        $('#colourList li').click(function () {
+            // remove the previous colour
+            $('#colourList li.selected').removeClass('selected');
+            // set the selection
+            var colour = $(this).attr('data-colour');
+            $(this).addClass('selected');
+            var header = $(this).attr('data-header-src');
+            $('#PreviewHeaderColour').attr('src', header);
+            $('#SelectedThemeColour').val(colour);
+        });
+
+        // background image
+        $('#backgroundList li').click(function () {
+            // remove the previous colour
+            $('#backgroundList li.selected').removeClass('selected');
+            // set the selection
+            $(this).addClass('selected');
+
+            var background = $(this).attr('data-background-src');
+            $('#SelectedBackgroundImage').val(background);
+
+            var backgroundPreview = ($(this).attr('data-background-preview')) || ($('#customBackground img').attr('src'));
+            $('#PreviewBackgroundImage').attr('src', backgroundPreview);
+
+        });
+
+
+        // text colour
+        $('input[name="MobileApplicationSettings.DarkTextColour"]').click(function () {
+            SetTextFontColour();
+            $(this).blur();
+        });
+
+        // button colour
+        $('input[name="MobileApplicationSettings.DarkButtonColour"]').click(function () {
+            SetButtonColour();
+            $(this).blur();
+        });
+
+        // frosting
+        $('input[name="MobileApplicationSettings.FrostingActive"]').click(function () {
+            SetFrosting();
+            $(this).blur();
+        });
+
+        var headerUploader = new qq.FileUploader({
+            element: document.getElementById('imageUploadHeader'),
+            action: '/MobileApplicationSettings/UploadImageFile',
+            debug: true,
+            onComplete: function (id, fileName, responseJSON) {
+                SetImageForHeader(responseJSON.url);
+            },
+            multiple: false,
+            allowedExtensions: ["png", "jpg", "gif", "jpeg"]
+        });
+
+        var backgroundUploader = new qq.FileUploader({
+            element: document.getElementById('imageUploadBackground'),
+            action: '/MobileApplicationSettings/UploadImageFile',
+            debug: true,
+            onComplete: function (id, fileName, responseJSON) {
+                SetImageForBackground(responseJSON.url);
+            },
+            multiple: false,
+            allowedExtensions: ["png", "jpg", "gif", "jpeg"]
+        });
+
+    });
+
+    function SetTextFontColour() {
+        if ($("input[name='MobileApplicationSettings.DarkTextColour']:checked").val() == 'True') {
+            $('#pairing').css('color', dark);
+        }
+        else {
+            // light
+            $('#pairing').css('color', light);
+        }
+    }
+
+    function SetButtonColour() {
+        if ($("input[name='MobileApplicationSettings.DarkButtonColour']:checked").val() == 'True') {
+            $('#imgButtons').attr('src', darkButtons);
+        }
+        else {
+            // light
+            $('#imgButtons').attr('src', lightButtons);
+        }
+    }
+
+    function SetFrosting() {
+        if ($("input[name='MobileApplicationSettings.FrostingActive']:checked").val() == 'True') {
+            $("#backgroundPreview").css("opacity", "0.5");
+        }
+        else {
+            $("#backgroundPreview").css("opacity", "1");
+        }
+    }
+
+    function SetImageForHeader(url) {
+        //alert(url);
+        $('#imgHeader').attr('src', url);
+        $('#imgHeader').css({
+            'background': '#FFF',
+            'padding': '2px',
+            'border': 'solid 1px #CCC'
+        });
+        $('#PreviewHeaderImage').attr('src', url);
+        $("#SelectedHeaderImage").val(url);
+    }
+
+    function SetImageForBackground(url) {
+        $('#PreviewBackgroundImage').attr('src', url);
+        $("#SelectedBackgroundImage").val(url);
+        $('#backgroundList li.selected').removeClass('selected');
+        $('#customBackground').addClass('selected');
+        $('#customBackground img').attr('src', url);
+    }
+
+</script>

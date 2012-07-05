@@ -1,0 +1,46 @@
+﻿@model AirService.Model.Menu
+@using (Ajax.BeginForm(new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = @Model.Id == 0 ? "onMenuAdded" : "onMenuUpdated",
+    OnFailure = "onFailedUpdateMenu"
+}))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Status)
+        @Html.HiddenFor(model => model.VenueId)
+        @Html.HiddenFor(model => model.CreateDate)
+        @Html.HiddenFor(model => model.UpdateDate)
+        @Html.Partial("_CreateOrEdit", Model)
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+    
+    <script type="text/javascript">
+        $("#popupDialog").ready(function () {
+            function toggleTimeBoxVisibility() {
+                if ($(':radio[name="Is24Hour"]:checked').hasClass('allday')) {
+                    $('#ShowFrom').hide();
+                    $('span.time-seperator').hide();
+                    $('#ShowTo').hide();
+                }
+                else {
+                    $('#ShowFrom').show();
+                    $('span.time-seperator').show();
+                    $('#ShowTo').show();
+                }
+            }
+
+            $(':radio[name="Is24Hour"]').click(function () {
+                toggleTimeBoxVisibility();
+            });
+
+            toggleTimeBoxVisibility();
+
+        }); 
+    </script>
+}

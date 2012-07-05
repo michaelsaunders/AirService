@@ -1,0 +1,13 @@
+[ { "answer" : "Simply open the app and either check-in at the location where AirService has located you, or search tap \"Search Location\" to find the venue you're looking for.",
+    "question" : "How do I check-in at a venue?"
+  },
+  { "answer" : "Once you've checked-in at a venue you'll see up the top of the home screen a prompt to connect. Simply tap that and you're good to go!",
+    "question" : "How do I connect to a venue and start ordering?"
+  },
+  { "answer" : "Absolutely. Simply open the app and check-in at the venue. The menu will download to your phone and you'll be able to view it at your leisure. Once you're ready to order simply connect to the venue and you're ready to go! (see FAQ \"How do I start ordering?\")",
+    "question" : "Can I view the menu without connecting to the venue?"
+  },
+  { "answer" : "Simply open the app and either check-in at the location where AirService has located you, or search tap \"Search Location\" to find the venue you're looking for.",
+    "question" : "How do I check-in at a venue?"
+  }
+]

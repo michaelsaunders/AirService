@@ -1,0 +1,45 @@
+﻿@using AirService.Services.Security
+@using AirService.Web.Infrastructure
+@{
+    var identity = this.User.Identity as AirServiceIdentity; 
+}
+@if (identity != null && identity.VenueId > 0)
+{
+    <p class="logout">
+        Welcome, @identity.DisplayName
+        @Html.ActionLink("Logout", "LogOff", "Account")
+        @if (((AirServiceIdentity)this.User.Identity).AdminUserId.HasValue)
+        {
+            @Html.ActionLink("Back to admin site", "Admin", "Home", null, new { @class = "back-to-admin" })
+        }
+    </p>
+}
+else
+{
+    <a class="login-open" href="#" style="display: none;">Login</a>
+    <div class="login-panel-content">
+        <form action="@this.Url.Action("Logon", "Account", null, "https")" method="POST">
+            <label>
+                Venue Login</label>
+            <input type="text" name="email" placeholder="Email Address" />
+            <input type="password" name="password" placeholder="Password" />
+            <input class="login" type="submit" value="Log On" />                    
+        </form>
+
+        <a href="javascript:void(0)" class="close-btn"></a>
+        @Html.ActionLink("Forgot password", "ForgottenPassword", "Account", null, new { @class = "forgot-password" })
+        @Html.ActionLink("Signup now", "Register", "Account", null, new { @class = "signup-now" }, true) 
+    </div>
+   
+}
+<script>
+    $('.login-open').click(function () {
+        $('.login-panel-content').show();
+        $(this).hide();
+    });
+    $('#login-panel a.close-btn').click(function () {
+        $(".login-panel-content").hide();
+        $('.login-open').show();
+    });
+    
+</script>

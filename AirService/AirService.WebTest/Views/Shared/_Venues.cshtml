@@ -1,0 +1,28 @@
+﻿@model AirService.WebTest.ViewModels.DeviceTestViewModel
+<h3>
+    All Customers</h3>
+@using (this.Ajax.BeginForm("CreateNewVenue", new AjaxOptions
+{
+    UpdateTargetId = "venue_list",
+    LoadingElementId = "busy-wait" 
+}))
+{
+    <p>
+        Create a new test venue: 
+        @this.Html.TextBox("venueName", null, new { maxLength = "50" })
+        with VenueType 
+        <select name="accountType" id="accountType">
+            <option value="1">Full Subscription</option>
+            <option value="2">Partial Subscription</option>
+            <option value="3">Evaluation</option>
+        </select><br />
+        Lat: <input type="text" name="venueLatitude" />
+        Lng: <input type="text" name="venueLongitude" />
+        <button type="submit">Add</button>
+        <a href="http://www.mygeoposition.com/" target="_blank">Get Geo Code</a>
+    </p>
+    
+    <div id="venue_list">
+        @this.Html.Partial("_VenueList", this.Model.ServiceProviders)
+    </div>
+}

@@ -1,0 +1,37 @@
+﻿@model List<AirService.Model.Menu>
+@{
+    ViewBag.Title = "_Menus";
+}
+<ul>
+    @foreach (var menu in this.Model)
+    {
+        <li>@menu.Title <small>@menu.DisplayTitle</small>  (id: @menu.Id, isActive: @menu.MenuStatus)
+            <ul>
+                @foreach (var category in menu.MenuCategories)
+                {
+                    <li>@category.Title (id: @category.Id, isActive: @category.IsLive)
+                        <ul>
+                            @if (category.MenuItems != null)
+                            {
+                                foreach (var item in category.MenuItems)
+                                {
+                                    <li>@item.Title (@item.Price.ToString("C"), id: @item.Id, isActive: @item.MenuItemStatus)
+                                        @if (item.MenuItemOptions != null)
+                                        {
+                                            <ul>
+                                                @foreach (var option in item.MenuItemOptions)
+                                                {
+                                                    <li>@option.Title (@option.Price.ToString("C"))</li>
+                                                }
+                                            </ul>
+                                        }
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </li>
+    }
+</ul>

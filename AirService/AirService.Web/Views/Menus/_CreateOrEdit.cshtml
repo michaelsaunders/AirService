@@ -1,0 +1,59 @@
+@using AirService.Web.Infrastructure
+@model AirService.Model.Menu
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+@Html.ValidationMessageFor(model => model.Title)
+@Html.ValidationMessageFor(model => model.DisplayTitle)
+@Html.ValidationMessageFor(model => model.ShowFrom)
+@Html.ValidationMessageFor(model => model.ShowTo)
+@Html.ValidationMessageFor(model => model.Is24Hour)
+<div class="editor-label">
+    @Html.LabelFor(model => model.Title)
+    (for internal use only)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Title)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.DisplayTitle)
+    <strong>(Visible to your customers)</strong>
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.DisplayTitle)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.Description)
+    (for internal use only)
+</div>
+<div class="editor-field">
+    @Html.TextAreaFor(model => model.Description)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.MenuStatus)
+</div>
+<div class="editor-field">
+    @Html.RadioButtonFor(model => model.MenuStatus, true) Active
+    @Html.RadioButtonFor(model => model.MenuStatus, false) Hidden
+</div>
+<div class="editor-label">
+</div>
+<div class="editor-field">
+</div>
+<div class="editor-label">
+    Schedule
+</div>
+<div class="editor-field">
+    @Html.RadioButtonFor(model => model.Is24Hour, true, new { @class = "allday" }) @Html.LabelFor(model => model.Is24Hour)
+    @Html.RadioButtonFor(model => model.Is24Hour, false) @Html.LabelFor(model => model.ShowFrom)
+    @Html.TimeFor(model => model.ShowFrom, new { @class = "time" }) 
+    <span class="time-seperator">to</span>    
+    @Html.TimeFor(model => model.ShowTo, new { @class = "time" })
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.IsSpecialsMenu)
+</div>
+<div class="editor-field">
+    @Html.RadioButtonFor(model => model.IsSpecialsMenu, true) Yes
+    @Html.RadioButtonFor(model => model.IsSpecialsMenu, false) No
+</div>

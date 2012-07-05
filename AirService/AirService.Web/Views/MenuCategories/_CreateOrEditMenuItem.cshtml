@@ -1,0 +1,105 @@
+@model AirService.Web.ViewModels.MenuItemDetailViewModel
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+@Html.ValidationMessageFor(model => model.MenuItem.Title)
+@Html.ValidationMessageFor(model => model.MenuItem.Description)
+@Html.ValidationMessageFor(model => model.MenuItem.Image)
+@Html.ValidationMessageFor(model => model.MenuItem.Price)
+@Html.ValidationMessageFor(model => model.MenuItem.MenuItemStatus)
+<div class="editor-label">
+    @Html.LabelFor(model => model.MenuItem.Title)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.MenuItem.Title)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.MenuItem.Description)
+</div>
+<div class="editor-field">
+    @Html.TextAreaFor(model => model.MenuItem.Description)
+</div>
+<div class="editor-label" data-bind="visible:!options().length">
+    @Html.LabelFor(model => model.MenuItem.Price)
+</div>
+<div class="editor-field" data-bind="visible:!options().length">
+    @Html.EditorFor(model => model.MenuItem.Price)
+</div>
+<div class="editor-label" data-bind="visible:options().length">
+    <label>Price Range</label>
+</div>
+<div class="editor-field" data-bind="visible:options().length,text:priceRange"></div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.MenuItem.MenuItemStatus)
+</div>
+<div id="mini-grid" class="clearfix">
+    <label class="grid-1">@Html.RadioButtonFor(model => model.MenuItem.MenuItemStatus, true) Active</label>
+    <label class="grid-2">@Html.RadioButtonFor(model => model.MenuItem.MenuItemStatus, false) Hidden</label>
+
+    <label class="grid-1">@Html.RadioButtonFor(model => model.SelectedImageType, 1) Photo</label>
+    <label class="grid-1">@Html.RadioButtonFor(model => model.SelectedImageType, 2) Photo Gallery</label>
+    <label class="grid-1">@Html.RadioButtonFor(model => model.SelectedImageType, 0) No Image/Icon</label>
+</div>
+<!--
+<div class="editor-field status">
+    @Html.RadioButtonFor(model => model.MenuItem.MenuItemStatus, true) Active
+    @Html.RadioButtonFor(model => model.MenuItem.MenuItemStatus, false) Hidden
+</div>
+-->
+<div style="clear:both;"></div>
+
+<div id="customImageDisplay" class="clearfix">
+    <img id="imageDisplay" src="@(Model.SelectedCustomImage ?? "/Content/images/common/no-menu-item-image.gif")" style="float:left; margin:0 0 0 5px; width:197px; height:100px;" />
+    <div id="imageUpload" style="float:left; margin-left:5px"></div>
+    (5MB Limit)
+</div>
+
+<div id="stockImageList">
+    <ul style="position:static; top:auto; left:auto;">
+    @foreach (var item in Model.AvailableStockImages)
+    {
+        <li class='imageList'><img class="stock-image" src='@item' width="117" height="60" alt='@item' /></li>
+    }
+    </ul>
+</div>
+<script>
+    $(document).ready(function () {
+        var uploader = new qq.FileUploader({
+            element: document.getElementById('imageUpload'),
+            action: '/MenuItems/UploadImageFile',
+            debug: true,
+            onSubmit: function () {
+                $('ul.qq-upload-list').empty();
+                $('#SelectedImageType[value="1"]')[0].checked = true;
+            },
+            onComplete: function (id, fileName, responseJSON) {
+                $('#imageDisplay').attr('src', responseJSON.url);
+                $('#SelectedCustomImage').val(responseJSON.url);
+                $('ul.qq-upload-list').empty();
+                $('#SelectedImageType[value="1"]')[0].checked = true;
+            },
+            multiple: false,
+            allowedExtensions: ["png", "jpg", "gif", "jpeg"]
+        });
+
+        @if(!string.IsNullOrWhiteSpace(this.Model.SelectedStockImage))
+        {
+            <text>
+             $('#stockImageList img.stock-image').each(function (index, item) {
+                if($(item).attr('src').toLowerCase() == '@Model.SelectedStockImage.ToLower()'){   
+                    $(item).addClass('selected');
+                    return false;
+                }
+             });  
+            </text>
+        }
+         
+        $('#stockImageList img.stock-image').live('click', function () {
+            $('#stockImageList img.stock-image').removeClass('selected');
+            $(this).addClass('selected');
+            $("#SelectedStockImage").val($(this).attr('src'));
+            $(':radio[name="SelectedImageType"]')[1].checked = true;
+        });
+    });
+
+    
+</script>

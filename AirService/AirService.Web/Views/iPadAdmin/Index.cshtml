@@ -1,0 +1,85 @@
+﻿@model IEnumerable<AirService.Web.ViewModels.DeviceAdminViewModel>
+@{
+    ViewBag.Title = "Manage iPad Admins";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section headerSection
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#delete-button').live('click', function () {
+                var id = $(this).attr('data-id');
+                $.ajax({
+                    url: '/iPadAdmin/Delete',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        "id": id
+                    },
+                    success: function (data) {
+                        if (data.success) {
+                            var rowToRemove = null;
+                            $.each($('#diviPadAdmins tr'), function (index, item) {
+                                if ($(this).attr('data-id') == id) {
+                                    rowToRemove = this;
+                                    return false;
+                                }
+                            });
+
+                            if (rowToRemove != null) {
+                                $(rowToRemove).remove();
+                            }
+                        }
+                        else {
+                            alert('Failed to delete. Please refresh your browser and try again.');
+                        }
+
+                        CloseIt();
+                    },
+                    error: function () {
+                        alert('Failed to delete. Please refresh your browser and try again.');
+                    }
+                });
+            });
+
+            $('#password-generate-button').live('click', function () {
+                var password = 'xxxxxx'.replace(/[x]/g, function (c) {
+                    return (Math.random() * 16 | 0).toString(16);
+                });
+
+                $('#password-readonly-field').text(password);
+                $('#Password').val(password);
+            });
+        });
+        
+        function CloseIt() {
+            $('#popupDialog').dialog('close');
+        }
+        function onError(xhr) {
+            dialogErrorMessage('#popupDialog', xhr);
+        }
+    </script>
+}
+<section id="main">
+    <section id="main-content" class="clearfix">
+        <h2>
+            Manage Venue iPad Admins</h2>
+        <div id="help-video-container">
+            <a href="#" class="close">close</a>
+            <p>
+                This is the area where you can add or edit the administrators of your Venue iPads.
+                These administrators will have the power to turn AirService on or off, so assign
+                them carefully.</p>
+        </div>
+        <p>
+            @Html.ActionLink("iPads", "Index", "iPads", null, new { @class = "ipads-admin" })
+            @Html.ActionLink("iPad Admins", "Index", "iPadAdmin", null, new { @class = "ipad-admins" })
+        </p>
+        <p style="clear: both; padding-top: 20px">
+            @Html.ActionLink("Add iPad Admin", "Create", null, new { @class = "openDialog add-ipad-admin", data_dialog_id = "popupDialog", data_dialog_title = "Add iPad Admin" })
+        </p>
+        <div id="diviPadAdmins">
+            @Html.Partial("_iPadAdmins")
+        </div>
+    </section>
+</section>

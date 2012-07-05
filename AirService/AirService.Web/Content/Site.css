@@ -1,0 +1,793 @@
+﻿
+
+/*----------------------------------------------------------
+The base color for this template is #5c87b2. If you'd like
+to use a different color start by replacing all instances of
+#5c87b2 with your new color.
+----------------------------------------------------------*/
+body
+{
+    background-color: #5c87b2;
+    font-size: 75%;
+    font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #696969;
+    width: 100%
+}
+
+body, p {
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+
+a
+{    
+    text-decoration: underline;
+}
+
+a:hover
+{    
+    text-decoration: none;
+}
+
+
+p, ul
+{
+    margin-bottom: 20px;
+    line-height: 1.6em;
+}
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 1.5em;
+    color: #000;
+}
+
+h1
+{
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+h2
+{
+    padding: 0 0 10px 0;
+}
+h3
+{
+    font-size: 1.2em;
+}
+h4
+{
+    font-size: 1.1em;
+}
+h5, h6
+{
+    font-size: 1em;
+}
+
+/* this rule styles <h2> tags that are the 
+first child of the left and right table columns */
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+    margin-top: 0;
+}
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+/* you can specify a greater or lesser percentage for the 
+page width. Or, you can specify an exact pixel width. */
+.page
+{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header
+{
+    position: relative;
+    margin-bottom: 0px;
+    color: #000;
+    padding: 0;
+}
+
+#header h1
+{
+    font-weight: bold;
+    padding: 5px 0;
+    margin: 0;
+    color: #fff;
+    border: none;
+    line-height: 2em;
+    font-size: 32px !important;
+}
+
+#main
+{
+    width: auto;
+    padding: 30px 0 50px;
+    background: url("images/bg/content-bg.png") repeat 0 0 #fff ;
+    _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
+    }
+    
+
+
+#footer
+{
+    color: #999;
+    padding: 10px 0;
+    text-align: center;
+    line-height: normal;
+    margin: 0;
+    font-size: .9em;
+}
+
+/* TAB MENU   
+----------------------------------------------------------*/
+ul#menu
+{
+    border-bottom: 1px #5C87B2 solid;
+    padding: 0 0 2px;
+    position: relative;
+    margin: 0;
+    text-align: right;
+}
+
+ul#menu li
+{
+    display: inline;
+    list-style: none;
+}
+
+ul#menu li#greeting
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    color: #fff;
+}
+
+ul#menu li a
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #e8eef4;
+    color: #0072bc;
+}
+
+ul#menu li a:hover
+{
+    background-color: #fff;
+    text-decoration: none;
+}
+
+ul#menu li a:active
+{
+    background-color: #a6e2a6;
+    text-decoration: none;
+}
+
+ul#menu li.selected a
+{
+    background-color: #fff;
+    color: #000;
+}
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+body fieldset 
+{
+    margin: 0;
+    padding: 1px;  
+ }
+ 
+ 
+fieldset legend 
+{
+    font-size:1.1em;
+    margin: 0;
+    padding: 0;    
+    display: block;    
+}
+
+textarea 
+{
+    width: 400px;
+    min-height: 75px;
+    color: #0072bc;
+    padding: 5px;
+    resize: none;
+    overflow: hidden;
+    border-color:  #d2d0cd #eeece9 #eeece9 #d2d0cd;
+    border-width: 1px;
+    border-style: solid;
+    -moz-border-radius:4px;
+    -webkit-border-radius: 4px; 
+    border-radius: 4px;
+    background: #ffffff;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ffffff), to(#E0E0E0));
+    background: -webkit-linear-gradient(#ffffff, #E0E0E0);
+    background: -moz-linear-gradient(#ffffff, #E0E0E0);
+    background: -ms-linear-gradient(#ffffff, #E0E0E0);
+    background: -o-linear-gradient(#ffffff, #E0E0E0);
+    background: linear-gradient(#ffffff, #E0E0E0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#E0E0E0');
+    zoom:1;
+}
+
+div.checkbox-list { overflow: auto; }
+div.checkbox-list input {  margin: 4px 6px 4px 4px !important; padding: 0 !important; width: auto !important; height: 13px !important; }
+div.checkbox-list label {  margin: 0 5px 0 0 !important; }
+.checkbox-vertical-list input { clear: both; float: left; margin: 7px 4px 4px; }
+.checkbox-vertical-list label { float: left }
+
+input[type="text"], input[type="password"], select, div.checkbox-list
+{
+    width: 400px;
+    color: #0072bc;
+    padding: 5px;
+    border-color:  #d2d0cd #eeece9 #eeece9 #d2d0cd;
+    border-width: 1px;
+    border-style: solid;
+    -moz-border-radius:4px;
+    -webkit-border-radius: 4px; 
+    border-radius: 4px;  
+    background: #ffffff;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ffffff), to(#E0E0E0));
+    background: -webkit-linear-gradient(#ffffff, #E0E0E0);
+    background: -moz-linear-gradient(#ffffff, #E0E0E0);
+    background: -ms-linear-gradient(#ffffff, #E0E0E0);
+    background: -o-linear-gradient(#ffffff, #E0E0E0);
+    background: linear-gradient(#ffffff, #E0E0E0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#E0E0E0');
+    zoom:1;   
+ }
+ 
+
+input[type="submit"] 
+{
+    background: url("images/buttons/btn_save.png") no-repeat scroll 0 0 transparent;
+    width: 100px;
+    height: 40px;
+    margin-top: 10px;
+    border: none;
+    text-indent: -9999px;
+    cursor: pointer;
+    line-height: 0;
+    display: block;    
+}
+input[type="submit"].go {width:74px; background-image:url("images/buttons/header-go.png");}
+input[type="submit"].go:hover {background-position:0 -40px;}
+
+input[type="submit"].activate {width:340px; height:41px; background-image:url("images/buttons/activate-btn.png");}
+input[type="submit"].activate:hover {background-position:0 -40px;}
+    
+#popupDialog p {padding-bottom: 10px;}   /* fix for IE7 layout dialog box submit buttons */
+
+input[type="submit"].login 
+{
+    background: url("images/buttons/header-go.png") no-repeat scroll 0 0 transparent;
+    font-size: 0;
+    display: block;
+    line-height: 0;
+    height: 40px;
+}
+
+input[type="submit"].login:hover
+{
+    background-position: 0 -40px;
+}
+
+input[type="submit"].register 
+{
+    background: url("images/buttons/btn_register.png") no-repeat scroll 0 0 transparent;
+    width: 122px;
+}
+
+input[type="submit"].register:hover
+{
+    background-position: 0 -42px;
+}
+
+
+
+input[type="radio"] 
+{
+    margin: 0 3px 0 3px;
+}
+
+select 
+{
+    width: 414px;
+    height: 30px;
+    padding: 0;
+    vertical-align: middle;
+ } 
+ 
+ select#SelectedVenueTypes 
+ {
+     height: 190px;
+     display: block;
+     position: relative;
+     clear: both;
+ }
+ 
+  
+
+/* TABLE
+----------------------------------------------------------*/
+#divAdmin
+{
+    background: url("images/bg/table-bg.png") repeat 0 0 transparent;
+    padding: 10px 10px 8px 10px;
+    border-bottom:  solid 1px #eeece9;
+    min-height: 590px;
+}
+
+#divMenus, #divMenuCategories, #diviPads, #divVenueAreas, #diviPadAdmins, #reportTable
+{
+    background: url("images/bg/table-bg2.png") repeat 0 0 transparent;
+    padding: 45px 10px 8px 10px;
+    border-bottom:  solid 1px #eeece9;
+}
+
+form table, .reportData 
+{
+  border: solid 1px #e8eef4;
+  border-collapse: collapse;  
+  background: url("images/bg/content-bg.png") repeat scroll 0 0 #FFFFFF;
+}
+
+form #menuCategoryList 
+{
+    border: none;
+}
+
+table td 
+{
+  padding: 1px 10px;   
+  border: solid 1px #e8eef4;
+  vertical-align: middle;
+}
+
+table.adspace td 
+{
+    padding: 6px 10px;
+}
+
+
+table td.imageUpload img 
+{
+    vertical-align: middle;
+}
+
+tr.even, li.even
+{
+    background: url("images/bg/header-bg.png") repeat-x scroll 0 -20px transparent;
+}
+
+.admin-table
+{
+    background-image: none !important;
+    background-color: #D7D2CE;
+}
+
+table th, ul.table-header li
+{
+  padding: 10px;
+  text-align: left;
+  background: url("images/bg/header-bg.png") repeat-x scroll 0 -20px transparent; 
+  border: solid 1px #e8eef4;   
+  border-top-color: #d2d0cd;
+  color: #0072bc;
+}
+
+table th:first-child,
+table td:first-child, 
+ul.table-header .first 
+{
+    border-left-color: #d2d0cd;
+ }
+
+#diviPads table,
+#divVenueAreas table, 
+#diviPadAdmins table, 
+#reportTable table,
+ul.table-header, 
+ul.table-body
+{
+    border-top-color: #d2d0cd;
+    border-left-color: #d2d0cd;
+}
+
+ul.table-header li, 
+ul.table-body li { text-shadow: none; }
+ul.table-header li, ul.table-body li{ float: left;}
+ul.table-body { clear: both;}
+ul.table-body li.row{ clear: both;}
+ul.table-body li.row li.first{ border-left: solid 1px #d2d0cd;}
+table a:link, table a:visited, table a:hover, table a:active
+{
+    color: #0072bc;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+table a:hover 
+{
+    text-decoration: underline;
+}
+
+#divItemsList { border: medium none; display: block; height: 462px; overflow: auto; padding: 0; width: 100%; }
+#divItemsList table,
+#divItemsList table th,
+#divItemsList table td
+{
+    background: none repeat scroll 0 0 transparent;
+    border: 1px solid #D2D0CD;
+    min-width: 30px;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#divItemsList table td a 
+{
+   padding: 1px 20px;
+	height:32px;
+	background: transparent url("/content/images/buttons/btn_delete2.png") center 1px no-repeat;
+	color:#6F6E6F;
+	font-weight:bold;
+	font-size:10px;
+	display: block;
+	text-indent: -9000px;
+	width: auto;
+    cursor: pointer;
+}
+
+#divItemsList table td a:hover
+{
+    background-position: center -33px;
+}
+
+#divItemsList input.error { border-color: red; }    
+
+a.addItemOption 
+{
+    display: block;
+    margin-top: 8px;
+}
+ 
+/* MISC  
+----------------------------------------------------------*/
+.clear
+{
+    clear: both;
+}
+
+.error
+{
+    color:Red;
+}
+
+#menucontainer
+{
+    margin-top:40px;
+}
+
+div#title
+{
+    display:block;
+    float:left;
+    text-align:left;
+}
+
+#logindisplay
+{
+    font-size:1.1em;
+    display:block;
+    text-align:right;
+    margin:10px;
+    color:White;
+}
+
+#logindisplay a:link
+{
+    color: white;
+    text-decoration: underline;
+}
+
+#logindisplay a:visited
+{
+    color: white;
+    text-decoration: underline;
+}
+
+#logindisplay a:hover
+{
+    color: white;
+    text-decoration: none;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000 !important;
+    background-color: #ffeeee !important;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-errors li { text-shadow: none; }
+.validation-summary-valid
+{
+    display: none;
+}
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+.display-label,
+.editor-label
+{
+    margin: 1em 0 0 0;   
+    clear: left;   
+}
+
+.display-field,
+.editor-field
+{
+    margin:0.5em 0 0 0;      
+}
+
+.venueAddress 
+{
+    position: absolute;
+    top: 0;
+    right: 20px;
+}
+
+.text-box
+{
+    width: 30em;
+}
+
+.text-box.multi-line
+{
+    height: 6.5em;
+}
+
+.tri-state
+{
+    width: 6em;
+}
+
+#main a.edit {
+	padding: 1px 20px;
+	height:32px;
+	background: transparent url("/content/images/buttons/btn_edit.png") center 0 no-repeat;
+	color:#6F6E6F;
+	font-weight:bold;
+	font-size:10px;
+	display: block;
+	text-indent: -9000px;
+}
+
+table.adspace a.delete { padding: 1px 15px !important; }
+table.adspace a.delete,
+#main a.delete {
+	padding: 1px 20px;
+	height:32px;
+	background: transparent url("/content/images/buttons/btn_delete2.png") center 1px no-repeat;
+	color:#6F6E6F;
+	font-weight:bold;
+	font-size:10px;
+	display: block;
+	text-indent: -9000px;
+	width: auto;
+    cursor: pointer;
+}
+
+#main a.delete:hover 
+{
+    background-position: center -33px;
+}
+
+#main .edit:hover {
+	background: transparent url("/content/images/buttons/btn_edit.png") center -35px no-repeat;
+}
+
+#divMenuCategories a.edit {background: url("/content/images/buttons/btn-add-item.png") no-repeat scroll 0 -25px transparent;}
+#divMenuCategories a.edit:hover {background: url("/content/images/buttons/btn-add-item.png") no-repeat scroll 0 0 transparent;}
+#divMenuCategories #cudItems a.edit {background: url("/content/images/buttons/btn_edit.png") no-repeat scroll 0 0 transparent;}
+#divMenuCategories #cudItems a.edit:hover {background-position: 0 -35px;}
+
+#main a.add {
+	padding: 1px 20px;
+	height:32px;
+	background: transparent url("/content/images/buttons/btn-copy2.png") 0 0 no-repeat;
+	color:#6F6E6F;
+	font-weight:bold;
+	font-size:10px;
+	display: block;
+	text-indent: -9000px;
+    cursor: pointer;
+}
+
+#main .add:hover {
+	background: transparent url("/content/images/buttons/btn-copy2.png") 0px -32px no-repeat;
+}
+
+.field-validation-error
+{
+    display: block;
+}
+
+.imageList
+{
+    border: 1px solid black;
+    width: 90px;
+    height: 90px;
+}
+
+.imageList:hover
+{
+    border: 1px solid lightblue;
+}
+
+#stockImageList
+{
+    margin: 5px;
+}
+
+#stockImageList img 
+{
+    cursor: pointer;
+}
+
+#stockImageList img.selected 
+{ 
+    border-color:blue !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
+#stockImageList {
+    height: 140px;
+    margin-top: 10px;
+    overflow: auto;
+    background:#FFF;
+    background-image:linear-gradient(bottom, #E0E0E0 10%, #FFFFFF 30%);
+    background-image:-o-linear-gradient(bottom, #E0E0E0 10%, #FFFFFF 30%);
+    background-image:-moz-linear-gradient(bottom, #E0E0E0 10%, #FFFFFF 30%);
+    background-image:-webkit-linear-gradient(bottom, #E0E0E0 10%, #FFFFFF 30%);
+    background-image:-ms-linear-gradient(bottom, #E0E0E0 10%, #FFFFFF 30%);
+    background-image:-webkit-gradient(linear, left bottom, left top, color-stop(0.1, #E0E0E0), color-stop(0.30, #FFFFFF));
+	border-radius: 3px 3px 3px 3px;
+	border: 1px solid #EEECE9;
+	padding-bottom:10px;
+}
+
+#stockImageList ul {}
+
+#stockImageList li.imageList {
+    width: auto !important;
+    height: 60px;
+    margin: 10px 0 0 10px;
+	padding:0;
+}
+
+
+#stockImageList img 
+{
+   -webkit-box-shadow: 2px 2px 5px 1px ;
+    -moz-box-shadow: 2px 2px 5px 1px ;
+    box-shadow: 2px 2px 5px 1px ;  
+    border-color: transparent;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/* Added a mini-grid for radio buttons */
+#mini-grid {width:451px;}
+#mini-grid label.grid-1, #mini-grid label.grid-2, #mini-grid label.grid-3 {float:left; width:123px; padding:5px; cursor:pointer;}
+#mini-grid label.grid-2 {width:230px;}
+#mini-grid label.grid-3 {width:345px;}
+
+#customImageDisplay {margin: 10px 5px 5px 0;}
+
+.status {margin-bottom: 6px;}
+.status input:last-child {margin-left: 43px;}
+
+#popupDialog fieldset { padding-left: 22px;}
+#popupDialog input[type="text"], 
+#popupDialog input[type="password"], 
+#popupDialog div.checkbox-list,
+#popupDialog textarea {width: 420px;}
+
+#popupDialog select {width: 434px;}
+
+#popupDialog .qq-upload-list {width:140px !important; position:static !important; top:auto !important; left:auto !important; list-style-type:none;  margin: 0 0 0 10px; padding:0;}
+#popupDialog .qq-upload-list li {float:left; width:140px !important; padding:0; margin:5px 0 0 -20px; text-align:center;}
+#popupDialog .qq-upload-list li span.qq-upload-file {display:none;}
+/*
+#popupDialog .qq-upload-list li span.qq-upload-failed-text {display:inline;}
+#customImageDisplay {float:left; width:120px; margin:10px 5px 5px 0;}
+#popupDialog .qq-upload-list {float:none; display:inline; list-style-type:none; margin:0; padding:0;}
+#popupDialog .qq-upload-list li {float:none; display:block; width:140px !important; padding:0; margin:5px 0 0 -20px; text-align:center;}
+#popupDialog .qq-upload-list li span.qq-upload-file {display:none;}
+#popupDialog .qq-upload-list li span.qq-upload-failed-text {display:inline;}
+*/
+
+select.time {
+    width: auto !important;
+}
+
+#menu-item-option-tab .input { float: left; margin-bottom: 10px; margin-right: 10px; }
+#menu-item-option-tab .input label { display: block; width: 100px; }
+#menu-item-option-tab input.option-title { width: 260px; }
+#menu-item-option-tab input.option-price { margin-left: 5px; margin-right: 5px; width: 80px; }
+#menu-item-option-tab .add-option-button { background-position: 0px 0px; display: block; height: 34px; text-indent: -9999px; width: 34px; background-image: url(/Content/images/buttons/btn_add.png); background-repeat: no-repeat; background-color: transparent; cursor: pointer; margin-left: auto; margin-right: auto;}
+#menu-item-option-tab .add-option-button:hover{ background-position: 0 -34px;}
+
+#divMenuCategories table th { border-bottom: 1px solid #D2D0CD; border-right: none; border-left: none; /* safari */ }
+#divMenuCategories table { border-left: 1px solid #D2D0CD; }
+#divMenuCategories { float: left; width: 999px; }
+
+#categories { border-left: solid 1px #D2D0CD; float: left; }
+#categories li { background: url("../content/images/bg/header-bg.png") repeat-x scroll 0 -10px transparent; border-bottom: 1px solid #CCCCCC; float: left; overflow: hidden; width: 999px; }
+#categories li div.handle { height: 80px;}
+#categories li li { background: url("../content/images/bg/content-bg.png") repeat-x scroll 0 0 transparent; border-bottom: 1px solid #E8EEF4; }
+#categories li span.desc { width: 300px; /* min-height: 38px; */word-wrap: break-word; }
+#categories li li:last-child { border-bottom: none; }
+#categories span, .menuitems span { border-right: 1px solid #E8EEF4; float: left; margin: 0; min-height: 34px; padding: 3px 10px; width: auto; }
+#categories span.ui-icon { min-height: 0 !important; padding: 0 10px; }
+#categories span.category { width: 250px; }
+#categories span.status { margin-left: 614px; width: 50px; }
+
+span#cudItems { border-right: none; padding: 0; }
+span#cudItems span { padding: 3px 10px; }
+
+#categories span.delete { border-right: none; float: right; width: 42px; }
+#categories a.openDialog { color: #0072bc; }
+
+#divMenuCategories .add-cat { border-right: none; clear: both; margin: 0 15px; width: 80px; }
+#divMenuCategories .add-cat a { height: 20px; }
+
+.ui-state-highlight { background-color: Yellow; height: 10.5em; line-height: 10.2em; }
+.toggle-button { cursor: pointer; }
+#toggle-all { cursor: pointer; float: left; left: 100px; position: relative; }
+.ui-tabs-panel { min-height: 590px !important; }
+#menu-item-option-tab.ui-tabs-panel { width: 430px; }
+
+/* Misc */
+#divItemsList {height:auto;}
+
+.terms .promotion-code{ width: 100px;}
+
+fieldset.admin { background-color: #EDEBE9; padding: 20px; }
+fieldset.admin .display-label{ float: left; width: 200px; margin: 5px;}
+fieldset.admin .display-field{ float: left; width: 700px; margin: 5px; font-weight: bold;}

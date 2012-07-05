@@ -1,0 +1,29 @@
+2012-01-04 03:11:31,776 [1] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-01-04 03:12:30,821 [11] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Sending Notification to abf284b44dd3a99e56365e0bc1cd5ad2f911d486
+2012-01-04 03:12:31,846 [11] ERROR AirService.WebServices.AirServiceWebServiceApplication [(null)] - No Panic. Exception expected due to APN design..
+System.IO.IOException: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. ---> System.Net.Sockets.SocketException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at System.Net.FixedSizeReader.ReadPacket(Byte[] buffer, Int32 offset, Int32 count)
+   at System.Net.Security._SslStream.StartFrameHeader(Byte[] buffer, Int32 offset, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security._SslStream.StartReading(Byte[] buffer, Int32 offset, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security._SslStream.ProcessRead(Byte[] buffer, Int32 offset, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at AirService.Services.Notifications.ApnConnection.SendQueuedNotifications(Object state) in C:\Projects\Webling\AirService\AirService.Services\Notifications\ApnConnection.cs:line 237
+2012-01-04 03:12:52,977 [18] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Sending Notification to 391662dda96768962c83fc5b9312fa32f5b1a0f8
+2012-01-04 03:12:53,230 [18] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - APN response code 8, 8
+2012-01-04 03:13:28,607 [22] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Sending Notification to abf284b44dd3a99e56365e0bc1cd5ad2f911d486
+2012-01-04 03:13:28,607 [22] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - APN response code 0, 0
+2012-01-04 03:13:54,019 [12] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Sending Notification to abf284b44dd3a99e56365e0bc1cd5ad2f911d486
+2012-01-04 03:13:55,019 [12] ERROR AirService.WebServices.AirServiceWebServiceApplication [(null)] - No Panic. Exception expected due to APN design..
+System.IO.IOException: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. ---> System.Net.Sockets.SocketException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 size)
+   at System.Net.FixedSizeReader.ReadPacket(Byte[] buffer, Int32 offset, Int32 count)
+   at System.Net.Security._SslStream.StartFrameHeader(Byte[] buffer, Int32 offset, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security._SslStream.StartReading(Byte[] buffer, Int32 offset, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security._SslStream.ProcessRead(Byte[] buffer, Int32 offset, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at AirService.Services.Notifications.ApnConnection.SendQueuedNotifications(Object state) in C:\Projects\Webling\AirService\AirService.Services\Notifications\ApnConnection.cs:line 237

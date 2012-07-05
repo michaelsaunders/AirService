@@ -1,0 +1,80 @@
+@using AirService.Web.ViewModels
+@model VenueViewModel
+@{
+    this.ViewBag.Title = "Edit";
+    this.ViewBag.ShowChangePasswordLink = true;
+}
+<section id="main">
+    <section id="main-content" class="clearfix">
+        <h2>
+            Update Your Account Details</h2>
+        <div id="help-video-container">
+            <a href="#" class="close">close</a>
+            <p>
+                Want to change any of your account details? Update them
+                @if (Model.Venue.IsPaidAccount)
+                {
+                    <text>
+                        here or click @this.Html.ActionLink("here", "UpdatePaymentDetail", "Account") 
+                        to update your credit card detail.
+                    </text>
+                }
+                else
+                {
+                    <text>
+                    here. To activate your account click @Html.ActionLink("here", "Activate").
+                    </text> 
+                }
+            </p>
+        </div>
+        @using (this.Html.BeginForm("Edit", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="detail-form detail-form-wide">
+                @this.Html.ValidationSummary(true)
+                <div class="clearfix">
+                    <h4 style="float:left; margin:0;">Enter your details below:</h4>
+                    <div class="edit-details" style="float:right;">
+                        @this.Html.ActionLink("Change your password", "ChangePassword", "Account", new { @class = "ico pass" }) 
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        @if (this.Model.Venue.IsPaidAccount)
+                        {
+                            @this.Html.ActionLink("Update Credit Card Detail", "UpdatePaymentDetail", "Account",new { @class = "ico details" })
+                        }
+                        else
+                        {   
+                            @this.Html.ActionLink("Activate your account", "Activate", "Account", new { @class = "ico details" })
+                        }
+                    </div>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    @Html.ValidationMessageFor(m => m.Venue.ContactFirstName)
+                    @Html.ValidationMessageFor(m => m.Venue.ContactLastName)
+                </div>
+                <ul class="detail-form-section">
+                    <li class="leftCol">
+                        <label>Contact First Name</label>
+                        @Html.TextBoxFor(m => m.Venue.ContactFirstName)
+                    </li>
+                    <li class="rightCol">
+                        <label>Contact Last Name</label>
+                        @Html.TextBoxFor(m => m.Venue.ContactLastName)
+                    </li>
+                </ul>
+                <div class="clearfix" style="margin-bottom: 40px;">
+                </div>
+                <h5 class="venue">
+                    About your venue</h5>
+                @this.Html.Partial("_VenueCreateOrEdit")
+                <div class="clearfix">
+                </div>
+                <p>
+                    <input type="submit" value="Save" />
+                </p>
+                
+                <div class="edit-details">
+                    <a href="@Url.Action("CancelSubscription", "Account")" class="ico cancel">Cancel Subscription to AirService</a>
+                </div>
+            </div>
+        }
+    </section>
+</section>

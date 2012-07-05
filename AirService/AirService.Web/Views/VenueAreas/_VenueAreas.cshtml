@@ -1,0 +1,38 @@
+﻿@model IEnumerable<AirService.Model.VenueArea>
+           
+<table style="width:100%">
+<thead>
+    <tr>
+        <th>
+            Area Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th style="width:40px;">
+            Edit
+        </th>
+        <th style="width:36px;">
+            Delete
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Title
+            </td>
+            <td>
+                @item.Description
+            </td>            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "openDialog edit", data_dialog_id = "popupDialog", data_dialog_title = "Edit Venue Area" })
+            </td>
+            <td>
+                @Ajax.ActionLink("Delete", "Delete", new { id = item.Id }, new AjaxOptions { Confirm = "Delete?", HttpMethod = "Post", UpdateTargetId = "divVenueAreas" }, new { @class = "ui-icon ui-icon-closethick delete" })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D6F48327-06BA-4BB3-8020-4B484FE93503}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AirService.Tests</RootNamespace>
+    <AssemblyName>AirService.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CassiniDev4-lib">
+      <HintPath>WebServices\Cassini\CassiniDev4-lib.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.4.2.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL" />
+    <Reference Include="Ninject.Extensions.Wcf">
+      <HintPath>..\AirService.WebServices\bin\Ninject.Extensions.Wcf.dll</HintPath>
+    </Reference>
+    <Reference Include="Should.Fluent">
+      <HintPath>..\packages\ShouldFluent.1.1.12.0\lib\Should.Fluent.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\VendorControllerTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\AccountControllerTest.cs" />
+    <Compile Include="Repositories\VendorRepositoryTest.cs" />
+    <Compile Include="Services\EwayTests.cs" />
+    <Compile Include="Utilities\GeneralUtilities.cs" />
+    <Compile Include="WebServices\CustomerWebServiceTest.cs" />
+    <Compile Include="Services\VendorServiceTest.cs" />
+    <Compile Include="WebServices\HttpTestResponseHelper.cs" />
+    <Compile Include="WebServices\PushNotificationTest.cs" />
+    <Compile Include="WebServices\VenueWebServiceTest.cs" />
+    <Compile Include="WebServices\WcfWebServiceTestBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <EmbeddedResource Include="WebServices\SamplePhoto.jpg" />
+    <Content Include="WebServices\TestApp\Global.asax" />
+    <Content Include="WebServices\TestApp\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Shadow Include="Test References\AirService.WebServices.accessor" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AirService.Data.Contracts\AirService.Data.Contracts.csproj">
+      <Project>{F999EC6A-15CE-4397-95DE-3A42A7A46DF2}</Project>
+      <Name>AirService.Data.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AirService.Data\AirService.Data.csproj">
+      <Project>{8AB9FF14-7842-49E9-970E-E5E158B1EE5B}</Project>
+      <Name>AirService.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AirService.Model\AirService.Model.csproj">
+      <Project>{A14AF600-51F0-4A9B-A7E1-9EA9888BBB6B}</Project>
+      <Name>AirService.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AirService.Services.Contracts\AirService.Services.Contracts.csproj">
+      <Project>{55A58B2F-7C71-414A-A573-8607CD946E5F}</Project>
+      <Name>AirService.Services.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AirService.Services\AirService.Services.csproj">
+      <Project>{6A35A25C-D68D-4A23-ACA0-07CC917F127F}</Project>
+      <Name>AirService.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AirService.WebServices\AirService.WebServices.csproj">
+      <Project>{20BCDAEE-6CB7-4427-89E0-E8BB2AF51980}</Project>
+      <Name>AirService.WebServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AirService.Web\AirService.Web.csproj">
+      <Project>{1608309F-90C9-4007-BC70-2E83A336A4A9}</Project>
+      <Name>AirService.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config.template">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <Shadow Include="Test References\AirService.Data.accessor">
+      <SubType>Designer</SubType>
+    </Shadow>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="WebServices\TestApp\Log\" />
+    <Folder Include="WebServices\TestApp\ProfileImages\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

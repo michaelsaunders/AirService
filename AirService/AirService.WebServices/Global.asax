@@ -1,0 +1,1 @@
+<%@ Application Codebehind="Global.asax.cs" Inherits="AirService.WebServices.AirServiceWebServiceApplication" Language="C#" %>

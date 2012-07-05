@@ -1,0 +1,19 @@
+﻿<section id="main">
+    <section id="main-content" class="clearfix">
+        <h2>@ViewBag.MessageTitle</h2>
+        <div class="simple-form simple-form-wide" style="min-height: 300px;">
+            @if (ViewBag.MessageSubTitle != null)
+            {
+                <h4>
+                    @ViewBag.MessageSubTitle
+                </h4>
+            }
+            @if (ViewBag.Message != null)
+            {
+                <p>
+                    @ViewBag.Message
+                </p>
+            }
+        </div>
+    </section>
+</section>

@@ -1,0 +1,53 @@
+﻿@using AirService.Model
+@using AirService.Services.Eway
+@using AirService.Services.Security
+@{
+    ViewBag.Title = "Venue Management";
+}
+<section id="main">
+    <section id="main-content" class="clearfix">
+        <div id="admin-tools"> 
+            <div id="help-video-container">
+                <a href="#" class="close">close</a>
+                <h3>Hey! I'm a helpful yellow rectangle...</h3>
+                <p>Using AirService is simple, set up your venue by adding a menu or two, then add one or more iPads to receive orders, and finally choose how your app will look to your customers. It really is that quick and easy. If at any point you get stuck, you can always check our <a href="http://www.airservicehq.com/faq-venues.htm">FAQ's</a> for further assistance or contact <a href="http://www.airservicehq.com/support.htm">support</a>.</p>
+            </div>
+
+            <div id="admin-toolbox">
+                <p>Use the control panel below to manage AirService in your venue.</p>
+                <ul>
+                    <li class="mng-menu">
+                        @Html.ActionLink("Manage Menus", "Index", "Menus")
+                    </li>
+                    <li class="mng-layout">
+                        @Html.ActionLink("Manage Venue Areas", "Index", "VenueAreas")
+                    </li>
+                    <li class="mng-ipad">
+                        @Html.ActionLink("Manage iPads", "Index", "iPads")
+                    </li>
+                    <li class="mng-mob">
+                        @Html.ActionLink("Manage Mobile App", "Edit", "MobileApplicationSettings")
+                    </li>
+                    <li class="mng-report">
+                        @Html.ActionLink("View Reports", "Index", "VenueReports")
+                    </li>
+                    <li class="mng-settings">
+                        @Html.ActionLink("Account Settings", "Edit", "Account")
+                    </li>
+                </ul>
+                @*<!-- this is placeholder content only - replace -->
+                @if (((AirServiceIdentity)this.User.Identity).AccountType == VenueAccountTypes.AccountTypeEvaluation)
+                {
+                    <p class="activate">Finished your setup? Time to activate AirService!!</p>
+                    using (Html.BeginForm("Activate", "Account", FormMethod.Get))
+                    {
+                        <div id="activate-option">
+                            <input type="submit" class="activate" name="placeholder" id="gotoPayment" value="Activate AirService for your venue" />
+                        </div>
+                    }
+                }
+                <!-- end placeholder -->*@
+            </div>
+        </div>
+    </section>
+</section>

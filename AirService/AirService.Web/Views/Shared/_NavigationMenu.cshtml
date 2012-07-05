@@ -1,0 +1,102 @@
+﻿@using AirService.Model
+@using AirService.Services.Security
+@using AirService.Web.Infrastructure
+@{
+    var identity = this.User.Identity as AirServiceIdentity;
+    var isVenueUser = identity != null && identity.VenueId > 0;
+}
+<ul>
+    @if (isVenueUser)
+    {
+        <li class="pn-1">
+            @Html.ActionLink("Home", "Index", "Home", false) 
+        </li>
+    }
+    <li class="pn-2">
+        @this.Html.ActionLink("About AirService", "Page", "Home", new { id = "About-Us" }, null, false)
+        <ul class="clearfix">
+            <li class="first">
+                @this.Html.ActionLink("How it Works", "Page", "Home", new { id = "How-Does-It-Work" }, null, false)
+            </li>
+            <li>
+                @this.Html.ActionLink("Features for Venues", "Page", "Home", new { id = "Features-Venues" }, null, false)
+            </li>
+            <li>
+                @this.Html.ActionLink("Features for Customers", "Page", "Home", new { id = "Features-Customers" }, null, false)
+            </li>
+            <li class="last">
+                @this.Html.ActionLink("Recommended Products", "Page", "Home", new { id = "Recommended-Products" }, null, false)
+            </li>
+        </ul>
+    </li>
+    <!--  temporarily removed 
+        <li class="pn-3">
+            <a href="pricing.htm">Pricing</a>
+            <ul class="clearfix">
+                <li><a href="pricing-premium.htm">AirService Premium</a></li>
+                <li class="last"><a href="pricing-lite.htm">AirService Lite</a></li>
+            </ul>
+        </li>  -->
+    <li class="pn-4">
+        @this.Html.ActionLink("Support", "Page", "Home", new { id = "Support" }, null, false)
+        <ul class="clearfix">
+            <li class="first">
+                @this.Html.ActionLink("FAQ's for Venues", "Page", "Home", new { id = "Faq-Venues" }, null, false)
+            </li>
+            <li class="last">
+                @this.Html.ActionLink("FAQ's for Customers", "Page", "Home", new { id = "Faq-Customers" }, null, false)
+            </li>
+            <!--  temporarily removed
+                <li><a href="accessories.htm">Accessories</a></li>
+                <li class="last"><a href="#">Promotional Material</a></li>
+                -->
+        </ul>
+    </li>
+    <li class="pn-5">
+        @this.Html.ActionLink("Contact", "Page", "Home", new { id = "Contact" }, null, false)
+        <ul class="clearfix">
+            <!--  temporarily removed
+                <li class="first"><a href="#">Newsletter</a></li>
+                -->
+            <!-- Temporarily Removed <li class="first"><a href="about-luxe.htm">About Luxe Digital</a></li>-->
+            <!--  temporarily removed
+                <li><a href="press.htm">Press/Media</a></li>
+                -->
+            <li class="first last"><a href="http://airservice.tumblr.com" target="_blank">Our Blog</a>
+            </li>
+        </ul>
+    </li>
+    @if (isVenueUser)
+    {
+        <li class="pn-6">@this.Html.ActionLink("Administrator tools", "Index", "Home", false)
+            <ul class="clearfix" style="display: none;">
+                <li class="first">
+                    @this.Html.ActionLink("Manage Menus", "Index", "Menus", false)
+                </li>
+                <li>
+                    @this.Html.ActionLink("Manage Venue Areas", "Index", "VenueAreas", false)
+                </li>
+                <li>
+                    @this.Html.ActionLink("Manage iPads", "Index", "iPads", false, false)
+                </li>
+                <li>
+                    @this.Html.ActionLink("Manage Mobile App", "Edit", "MobileApplicationSettings", false)
+                </li>
+                <li>
+                    @this.Html.ActionLink("View Reports", "Index", "VenueReports", false)
+                </li>
+                <li>
+                    @this.Html.ActionLink("Account Settings", "Edit", "Account", false)
+                </li>
+                <li class="last">
+                    <a href="http://www.onlineproof.com.au/airservice">Promotional Material</a>
+                </li>
+            </ul>
+        </li>
+    }
+
+    else
+    {
+        <li class="pn-6 signup">@this.Html.ActionLink("Signup", "Register", "Account", true)</li>
+    }
+</ul>

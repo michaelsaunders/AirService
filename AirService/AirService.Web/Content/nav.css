@@ -1,0 +1,132 @@
+﻿header nav
+{
+	position: absolute;
+	bottom: 0;
+	right: 35px;
+}
+
+header nav ul
+{
+	/*background:url("../images/bg/primary-nav.png");*/
+	margin:0;
+	width: auto;
+	height:40px;
+	z-index:900
+}
+
+header nav ul li
+{
+	background:none;
+	display:block;
+	float:left;
+	height:40px;
+	margin:0;
+	overflow:visible;
+	padding:0;
+	position:relative;
+	font-size:10pt;
+}
+
+header nav ul li.pn-1 { width:60px }
+header nav ul li.pn-2 { width:130px }
+header nav ul li.pn-3 { width:80px }
+header nav ul li.pn-4 { width:93px }
+header nav ul li.pn-5 { width:81px }
+header nav ul li.pn-6 { width:auto } /* text changes when logged in/out */
+
+header nav ul li a
+{
+	/*background:url("../images/bg/primary-nav.png");*/
+	display:block;
+	height:23px;
+	overflow:hidden;
+	color: #424345;
+	text-decoration: none;
+	padding: 8px 12px;
+	font-weight: bold;
+}
+
+
+header nav ul li a:hover,
+header nav ul li.sfHover > a
+{
+	background: #eec334;
+	border: solid 1px #f6dd35;
+	border-bottom: none;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	padding: 7px 11px;
+	height: 25px;
+}
+
+header nav ul li.pn-1 a:hover,
+header nav ul li.signup a:hover { 
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.sf-sub-indicator
+{
+	display: none;
+}
+
+/* dropdowns level 1*/
+header nav ul li ul
+{	
+	background:#edc234;
+    background-image: -webkit-gradient(
+   	             	   linear,
+				 	   left bottom,
+					   left top,
+					   color-stop(0.24, rgb(224,144,39)),
+					   color-stop(0.73, rgb(238,195,52)));
+	background-image: -moz-linear-gradient(
+                      center bottom,
+                      rgb(224,144,39) 24%,
+                      rgb(238,195,52) 73%);
+    background: linear-gradient(#edc234, #e09127);
+	-pie-background: linear-gradient(#edc234, #e09127);
+	margin:0;
+	position:absolute;
+	/*top:-999em;left:-1px;*/
+	width:168px;
+	border: solid 1px #f4da33;
+	border-top: none;
+	height: auto;
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-radius: 0 0 10px 10px;
+	behavior: url(includes/PIE.htc);
+}
+header nav ul li ul li{font-size:1em;/*10px*/ height:44px;width:146px;position:relative; margin:0 11px;border-bottom: dashed 1px #414244;border-top: dashed 1px #fff;z-index: 9998;}
+header nav ul li ul li.first {border-top:none;}
+header nav ul li ul li.last{border-bottom:none;}
+header nav ul li ul li a{background:none;color:#414244;display:block;font-weight:400;padding:12px 0;width:148px;text-indent:0;font-family: "Myriad Pro","myriad-pro-2";text-decoration:none;z-index: 9999;}
+header nav ul li ul li a:hover,header nav ul li ul li.sfHover a,header nav ul li ul li:hover a{background-position: 0 0 !important;text-decoration:underline;background:none;border:none;padding:12px 0;}
+
+
+/* dropdowns level 2*/
+header nav ul li ul li ul{left:178px}
+header nav ul li ul li.first ul{margin-top:2px}
+header nav ul li ul li ul li{font-size:1em}
+header nav ul li ul li ul li.first{border-top:1px solid #d5d5d6}
+header nav ul li ul li.first ul li.first{border-top:none}
+
+/*re-style links that inherited from their parent*/
+header nav ul li ul li ul li a,header nav ul li ul li:hover ul li a,header nav ul li ul li.sfHover ul li a{background:#ffffff;border-right:1px solid #eaeaeb;border-bottom:1px solid #e2e2e2;border-left:1px solid #eaeaeb;color:#525252}
+header nav ul li ul li ul li a:hover,header nav ul li ul li ul li:hover a,header nav ul li ul li ul li.sfHover a{background:#f96611;border-right:1px solid #f96611;border-bottom:1px solid #f96611;border-left:1px solid #f96611;color:#fff}
+
+/* make it all work nicely */
+header nav ul li:hover ul,header nav ul li.sfHover ul{top:40px}
+header nav ul li:hover li ul,header nav ul li.sfHover li ul{top:-999em}
+header nav ul li li:hover ul,header nav ul li li.sfHover ul{top:-2px}

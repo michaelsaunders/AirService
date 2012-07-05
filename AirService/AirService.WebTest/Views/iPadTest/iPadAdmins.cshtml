@@ -1,0 +1,31 @@
+﻿@using System.Text
+@model AirService.WebTest.ViewModels.DeviceTestViewModel
+<table>
+    <tr>
+        <th>
+            Venue
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Password
+        </th>
+        <th>
+            Associated iPads
+        </th>
+        <th>
+            Authorization Header
+        </th>
+    </tr>
+    @foreach (var deviceAdmin in this.Model.DeviceAdmins)
+    {
+        <tr>
+            <td>@deviceAdmin.Venue.Title</td>
+            <td>@deviceAdmin.Email</td>
+            <td>@deviceAdmin.Password</td>
+            <td>@Html.Raw(string.Join("<br/>", deviceAdmin.iPads.Select(ipad => Html.Encode(string.Format("{0}:{1}:{2}", ipad.Name, ipad.Pin, ipad.Udid)))))</td>
+            <td>@Convert.ToBase64String(Encoding.UTF8.GetBytes(deviceAdmin.Email + ":" + deviceAdmin.Password))</td> 
+        </tr>    
+    }
+</table>

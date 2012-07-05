@@ -1,0 +1,61 @@
+@model AirService.Web.ViewModels.MobileApplicationSettingsViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+@section headerSection
+{
+    <style>
+        #popupDialog { height: auto; margin-left: 6px; margin-top: 5px !important; min-height: 55px; padding: 0; width: auto; }
+        input[type="submit"]{margin-bottom: 7px; margin-top: 5px;}
+    </style>
+}
+<section id="main">
+    <section id="main-content" class="clearfix">
+        <h2>
+            Manage Mobile App</h2>
+        <div id="help-video-container" class="small-box">
+            <a href="#" class="close">close</a>
+            <p>
+                This is where you style the app that your customers see. Upload your company logo
+                to get started.</p>
+        </div>
+        @using (Html.BeginForm("Edit", "MobileApplicationSettings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(model => model.SelectedHeaderImage)
+            @Html.HiddenFor(model => model.SelectedBackgroundImage)
+            @Html.HiddenFor(model => model.SelectedThemeColour)
+            @Html.HiddenFor(model => model.MobileApplicationSettings.Id)
+            @Html.HiddenFor(model => model.MobileApplicationSettings.UpdateDate)
+            @Html.HiddenFor(model => model.MobileApplicationSettings.CreateDate)
+            @Html.HiddenFor(model => model.MobileApplicationSettings.Status)
+            @Html.HiddenFor(model => model.MobileApplicationSettings.BackgroundImage)
+            @Html.HiddenFor(model => model.MobileApplicationSettings.HeaderImage)
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <legend></legend>
+                @Html.Partial("_CreateOrEdit", Model)
+                <div id="saveTheme-container">
+                    <div id="saveTheme">
+                        <h4>
+                            All done...?</h4>
+                        <p>
+                            Once you’re happy with your theme, hit the green button. Please note: this will
+                            go live immediately to all active customers, so be sure you’re happy with everything
+                            first...</p>
+                        <input type="submit" value="Save" />
+                        @if (!string.IsNullOrEmpty(TempData["tempMessage"] as string))
+                        {
+                            <p>
+                                <b class="error">@TempData["tempMessage"].ToString()</b>
+                            </p>
+                        }
+                    </div>
+                </div>
+                
+            </fieldset>
+            
+            @Html.ActionLink("Manage Venue Ad Space", "Edit", "VenueAdvertisements", null, new { @class = "openDialog adSpace", data_dialog_id = "popupDialog", data_dialog_title = "Manage Venue Ad Space" })
+            <input class="save-settings" type="submit" value="Save" />
+        } 
+    </section>
+</section>

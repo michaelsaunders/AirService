@@ -1,0 +1,156 @@
+﻿@using AirService.Model
+@using AirService.Services
+@using AirService.Web.Helpers
+@model AirService.Web.Areas.Admin.Models.VenueDetailViewModel
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#suspend').click(function () {
+            if (confirm('Are you sure you want to suspend @((!Model.Venue.IsPaidAccount) ? "this subscription?" : "subscription?\\n\\nThis will also cancel all scheduled transactions.")')) {
+                ko.utils.postJson('@this.Url.Action("SuspendSubscription", new { id = this.Model.Venue.Id })');
+            }
+        });
+
+        $('#reactivate').click(function () {
+            if (confirm('Are you sure you want to @(Model.Venue.IsActive ? "extend this subscription?" : "re-enable subscription?\\n\\nCustomers will require to make payment again before the venue is available to the venue and customers devices")')) {
+                ko.utils.postJson('@this.Url.Action("EnableSubscription", new { id = this.Model.Venue.Id })');
+            }
+        });
+
+        $('#unlock-users').click(function () {
+            ko.utils.postJson('@this.Url.Action("UnlockUsers", new { id = this.Model.Venue.Id })');
+        });
+
+        $('#login-as-venue-admin').click(function() {
+            ko.utils.postJson('@this.Url.Action("LoginAsVenueAdmin", new { id = this.Model.Venue.Id })');
+        });
+
+        $('#reset-connections').click(function () {
+            if(confirm('Are you sure you want to disconnect all customers and cancel orders that are not processed?')) {
+                ko.utils.postJson('@this.Url.Action("ResetConnections", new { id = this.Model.Venue.Id })');
+            }
+        });
+    });
+</script>
+<fieldset class="admin">
+    <div>
+        
+        @if (Model.Venue.Status == SimpleModel.StatusActive)
+        {
+            <button id="login-as-venue-admin">Login As Venue Admin</button>
+            <button id="suspend">Suspend Subscription</button>
+            <button id="reset-connections">Reset (@Model.ConnectedCustomers Connected)</button>
+            if (Model.HasLockedUsers)
+            {
+            <button id="unlock-users">
+                Unlock All Users</button>
+            }
+        }
+        else
+        {
+            <button id="reactivate">Enable Subscription</button>
+        }
+    </div>
+    <div class="display-label">
+        Title:</div>
+    <div class="display-field">
+        @Model.Venue.Title
+    </div>
+    <div class="display-label">
+        Description:</div>
+    <div class="display-field">
+        @Model.Venue.Description
+    </div>
+    <div class="display-label">
+        Contact:</div>
+    <div class="display-field">
+        @Model.Venue.ContactFirstName @Model.Venue.ContactLastName
+    </div>
+    <div class="display-label">
+        Email:</div>
+    <div class="display-field">
+        @this.Model.VenueAdmins.Select(u => u.Email).ToConcatenatedString()
+    </div>
+    @*<div class="display-label">
+        Account Type:</div>
+    <div class="display-field">@(((VenueAccountTypes)Model.Venue.VenueAccountType).GetOneDescription())</div>*@
+    <div class="display-label">
+        Subscription Status:
+    </div>
+    <div class="display-field">
+        @if (Model.Venue.Status == SimpleModel.StatusActive)
+        {
+            if (Model.Venue.IsPaidAccount)
+            {
+                <span>Active</span>
+            }
+            else
+            {
+                <span>Active (Unpaid)</span>
+            }
+        }
+        else if (!Model.Venue.IsPaidAccount)
+        {
+            <span>Suspended (Never paid)</span>
+        }
+        else
+        {
+            <span>Suspended</span>
+        }
+    </div>
+    <div class="display-label">
+        EWay Customer ID:</div>
+    <div class="display-field">
+        @(Model.Venue.EwayCustomerId ?? "N/A")
+    </div>
+    <div class="display-label">
+        EWay Billing ID (Rebill ID):</div>
+    <div class="display-field">
+        @(Model.Venue.EwayRebillId ?? "N/A")
+    </div>
+    <div class="display-label">
+        Create Date:</div>
+    <div class="display-field">@String.Format("{0:g}", Model.Venue.CreateDate)</div>
+    <div class="display-label">
+        Update Date:</div>
+    <div class="display-field">@String.Format("{0:g}", Model.Venue.UpdateDate)</div>
+    <div class="display-label">
+        Telephone:</div>
+    <div class="display-field">@Model.Venue.Telephone</div>
+    <div class="display-label">
+        Address 1:</div>
+    <div class="display-field">@Model.Venue.Address1</div>
+    <div class="display-label">
+        Address 2:</div>
+    <div class="display-field">@Model.Venue.Address2</div>
+    <div class="display-label">
+        State:</div>
+    <div class="display-field">@(Model.Venue.State == null ? "None" : Model.Venue.State.Title)</div>
+    <div class="display-label">
+        Postcode:</div>
+    <div class="display-field">@Model.Venue.Postcode</div>
+    <div class="display-label">
+        Country:</div>
+    <div class="display-field">@(Model.Venue.Country == null ? "None" : Model.Venue.Country.Title)</div>
+    <div class="display-label">
+        Location:</div>
+    <div class="display-field">
+        <div class="map-holder">
+            <span><a target="_blank" href="http://maps.google.com.au/maps?q=@Model.Venue.LatitudePosition,@Model.Venue.LongitudePosition">
+                <img src="http://maps.google.com/maps/api/staticmap?center=@Model.Venue.LatitudePosition,@Model.Venue.LongitudePosition&amp;zoom=15&amp;size=258x188&amp;markers=color:red%7C(@Model.Venue.LatitudePosition),(@Model.Venue.LongitudePosition)&amp;sensor=true"></a></span></div>
+    </div>
+    <div class="display-label">
+        Types:</div>
+    <div class="display-field">@(Model.Venue.VenueTypes.EmptyIfNull().Select(v => v.Title).ToConcatenatedString())</div>
+    <div class="display-label">
+        Areas:</div>
+    <div class="display-field">@(Model.Venue.VenueAreas.EmptyIfNull().Select(v => v.Title).ToConcatenatedString())</div>
+    <div class="display-label">
+        iPads:</div>
+    <div class="display-field">@(Model.Venue.iPads.EmptyIfNull().Select(v => v.Name).ToConcatenatedString())</div>
+    <div class="display-label">
+        Menus:</div>
+    <div class="display-field">@(Model.Venue.Menus.EmptyIfNull().Select(v => v.DisplayTitle).ToConcatenatedString())</div>
+    <div class="display-label">
+        Referral Code:</div>
+    <div class="display-field">@(Model.Venue.PromoCode??"N/A")</div>
+</fieldset>

@@ -1,0 +1,38 @@
+2012-04-26 12:08:39,258 [1] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-04-26 13:00:32,149 [1] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-04-26 13:20:29,483 [25] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-04-26 13:22:31,029 [21] ERROR AirService.WebServices.AirServiceWebServiceApplication [(null)] - Unexpected Error
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AirService.Services.Templates.Receipt.Initialize(AirServiceIdentity identity, VenueConnection connection) in c:\Projects\Webling\AirService\AirService.Services\Templates\Receipt.tt:line 86
+   at AirService.WebServices.VenueWebService.<>c__DisplayClass79.<GetReceipt>b__78() in C:\Projects\Webling\AirService\AirService.WebServices\VenueWebService.cs:line 789
+   at AirService.WebServices.WebServiceBase.Response[T](Func`1 function, Boolean use200ForServiceFault) in C:\Projects\Webling\AirService\AirService.WebServices\WebServiceBase.cs:line 42
+2012-04-26 13:23:12,956 [9] ERROR AirService.WebServices.AirServiceWebServiceApplication [(null)] - Unexpected Error
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AirService.Services.Templates.Receipt.Initialize(AirServiceIdentity identity, VenueConnection connection) in c:\Projects\Webling\AirService\AirService.Services\Templates\Receipt.tt:line 86
+   at AirService.WebServices.VenueWebService.<>c__DisplayClass79.<GetReceipt>b__78() in C:\Projects\Webling\AirService\AirService.WebServices\VenueWebService.cs:line 789
+   at AirService.WebServices.WebServiceBase.Response[T](Func`1 function, Boolean use200ForServiceFault) in C:\Projects\Webling\AirService\AirService.WebServices\WebServiceBase.cs:line 42
+2012-04-26 13:28:28,588 [21] ERROR AirService.WebServices.AirServiceWebServiceApplication [(null)] - Unexpected Error
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AirService.Services.Templates.Receipt.Initialize(AirServiceIdentity identity, VenueConnection connection) in c:\Projects\Webling\AirService\AirService.Services\Templates\Receipt.tt:line 86
+   at AirService.WebServices.VenueWebService.<>c__DisplayClass79.<GetReceipt>b__78() in C:\Projects\Webling\AirService\AirService.WebServices\VenueWebService.cs:line 789
+   at AirService.WebServices.WebServiceBase.Response[T](Func`1 function, Boolean use200ForServiceFault) in C:\Projects\Webling\AirService\AirService.WebServices\WebServiceBase.cs:line 42
+2012-04-26 13:29:59,549 [21] ERROR AirService.WebServices.AirServiceWebServiceApplication [(null)] - Unexpected Error
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at AirService.Services.Templates.Receipt.get_OrderItems() in c:\Projects\Webling\AirService\AirService.Services\Templates\Receipt.tt:line 96
+   at AirService.Services.Templates.Receipt.ListOrderItems() in c:\Projects\Webling\AirService\AirService.Services\Templates\Receipt.tt:line 107
+   at AirService.Services.Templates.Receipt.TransformText() in c:\Projects\Webling\AirService\AirService.Services\Templates\Receipt.tt:line 50
+   at AirService.WebServices.VenueWebService.<>c__DisplayClass79.<GetReceipt>b__78() in C:\Projects\Webling\AirService\AirService.WebServices\VenueWebService.cs:line 790
+   at AirService.WebServices.WebServiceBase.Response[T](Func`1 function, Boolean use200ForServiceFault) in C:\Projects\Webling\AirService\AirService.WebServices\WebServiceBase.cs:line 42
+2012-04-26 13:30:28,115 [21] ERROR AirService.WebServices.AirServiceWebServiceApplication [(null)] - Unexpected Error
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at AirService.Services.Templates.Receipt.get_OrderItems() in c:\Projects\Webling\AirService\AirService.Services\Templates\Receipt.tt:line 96
+   at AirService.Services.Templates.Receipt.ListOrderItems() in c:\Projects\Webling\AirService\AirService.Services\Templates\Receipt.tt:line 107
+   at AirService.Services.Templates.Receipt.TransformText() in c:\Projects\Webling\AirService\AirService.Services\Templates\Receipt.tt:line 50
+   at AirService.WebServices.VenueWebService.<>c__DisplayClass79.<GetReceipt>b__78() in C:\Projects\Webling\AirService\AirService.WebServices\VenueWebService.cs:line 790
+   at AirService.WebServices.WebServiceBase.Response[T](Func`1 function, Boolean use200ForServiceFault) in C:\Projects\Webling\AirService\AirService.WebServices\WebServiceBase.cs:line 42
+2012-04-26 13:39:36,851 [29] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.
+2012-04-26 13:44:44,420 [25] INFO  AirService.WebServices.AirServiceWebServiceApplication [(null)] - Application started.

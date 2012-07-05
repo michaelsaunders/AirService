@@ -1,0 +1,17 @@
+﻿@using AirService.Web.Infrastructure
+@model AirService.Web.ViewModels.PaymentDetailViewModel
+<section id="main">
+    <section id="main-content" class="clearfix">
+        <h2>Update Credit Card Detail</h2>
+        <div class="detail-form-wide detail-form">
+            <div class="clearfix" style="width:621px; margin:0 auto;">
+            @using (this.Html.BeginForm("UpdatePaymentDetail", "Account"))
+            {
+                @this.Html.ValidationSummary(false)
+                @this.Html.PartialPrefixed("_CreditCardDetail", this.Model.CreditCard, "CreditCard")
+                <input type="submit" style="float:left; margin:10px 0 0 145px;" />
+            }
+            </div>
+        </div>
+    </section>
+</section>

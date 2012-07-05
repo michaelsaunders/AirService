@@ -1,0 +1,141 @@
+﻿@using AirService.Web.Infrastructure
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/themes/base/jquery-ui.css")"  />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Site.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/main.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/base.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/nav.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/jquery-ui-timepicker.css")" />
+    <link rel="shortcut icon" href="/Content/images/favicon.ico">
+    <meta name="viewport" content="width=1020, initial-scale=1.0" />
+    <!-- for ipad layout -->
+    <style>
+        .ui-progressbar { border-radius: 0 0 0 0 !important; }
+        .ui-progressbar-value { background-image: url(/Content/images/bg/pbar-ani.gif); }
+    </style>
+    <script src="@Url.Content("~/Scripts/jquery-1.6.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.14.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/superfish.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/modernizr-2.0.6-development-only.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("tr:nth-child(even)").addClass("even");
+
+            $("#help-video-container .close").click(function () {
+                $("#help-video-container").slideUp(300);
+            });
+
+            $('nav a').addClass('tk-myriad-pro'); // for nav font style
+
+            $("header nav ul").superfish();
+        });
+
+        document.createElement("article");
+        document.createElement("footer");
+        document.createElement("header");
+        document.createElement("hgroup");
+        document.createElement("nav");
+        document.createElement("section");
+        document.createElement("aside");
+    </script>
+    @RenderSection("headerSection", false)
+    @*Important. Our common custom script should load after all framework scripts are loaded*@
+    <script src="@Url.Content("~/Scripts/AirService.js")" type="text/javascript"></script>
+    @*Finally load typekit thing*@
+    <script type="text/javascript" src="@(this.Request.IsSecureConnection ? "https" : "http")://use.typekit.com/tfk5fge.js"></script>
+    <script type="text/javascript">    try { Typekit.load(); } catch (e) { }</script>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <section id="header-content">
+                <h1 class="logo">
+                    <a href="/"></a>
+                </h1>
+                <div id="login-panel">
+                    @Html.Partial("_LogOnPartial")</div>
+                <nav>
+                    @Html.Partial("_NavigationMenu")
+                </nav>
+            </section>
+        </header>
+        @RenderBody()
+        <footer>
+            <section id="footer-content">
+                <ul class="footer-nav clearfix">
+                    <li class="first">
+                        @Html.ActionLink("Home", "Index", "Home", false)
+                    </li>
+                    <li>
+                        @Html.ActionLink("About AirService", "Page", "Home", new { id = "About-Us" }, null, false)
+                    </li>
+                    <!-- temporarily removed <li><a href="pricing.htm">Pricing</a></li> -->
+                    <li>
+                        @Html.ActionLink("Support", "Page", "Home", new { id = "Support" }, null, false)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Contact", "Page", "Home", new { id = "Contact" }, null, false)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Singup", "Register", "Account", true)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Terms & Conditions", "Page", "Home", new { id = "Terms-Conditions" }, null, false)
+                    </li>
+                    <li>
+                        @Html.ActionLink("Privacy", "Page", "Home", new { id = "Privacy" }, null, false)
+                    </li>
+                </ul>
+                <p>
+                    Apple & "iPhone" are registered trademarks of Apple | Patent Pending</p>
+                <p>
+                    AirService and the AirService logo are registered trademarks of Luxe Digital Pty
+                    Ltd</p>
+                <p>
+                    Copyright © 2011 Luxe Digital Pty Ltd | <a href="http://www.luxedigital.net/" target="_blank">
+                        Luxe Digital</a></p>
+                <h2>
+                    <span class="semibold">Share</span> Air<span class="regular">Service</span> <span class="semibold">with your friends</span></h2>
+                <ul class="share-list clearfix">
+                    <!--<li><a href="#" class="mail"></a></li>-->
+                    <li><a href="http://www.facebook.com/getairservice" target="_blank" class="facebook"></a></li>
+                    <!--<li><a href="#" class="rss"></a></li>-->
+                    <li><a href="http://www.twitter.com/getairservice" target="_blank" class="twitter"></a></li>
+                    <li><a href="https://plus.google.com/u/0/b/113525304077285659907/" class="google"></a></li>
+                </ul>
+                <img class="footer-logo" alt="" src="/Content/images/common/footer-logo.png" />
+                <form action="http://luxedigital.us2.list-manage1.com/subscribe/post" method="post"
+                class="footer-login">
+                <input type="hidden" name="u" value="9215227b23e76a8f954447f14">
+                <input type="hidden" name="id" value="790b44ee87">
+                <h2>
+                    <span class="semibold">Join the</span> Air<span class="regular">Service</span> <span
+                        class="semibold">newsletter</span></h2>
+                <input type="text" class="footer-input" name="MERGE0" id="MERGE0" size="25" placeholder="your.name@yourdomain.com" data-val-required="Email is required."/>
+                <input type="submit" value="Subscribe" class="footer-go">
+                </form>
+            </section>
+        </footer>
+    </div>
+    @RenderSection("footerSection", false)
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-24157367-5']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+ 
+    </script>
+</body>
+</html>

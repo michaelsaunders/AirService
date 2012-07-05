@@ -1,0 +1,165 @@
+﻿@using System.Globalization
+@model AirService.Web.ViewModels.VenueReportViewModel
+@{
+    ViewBag.Title = "Reports";
+}
+@section headerSection
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('a.submit-link').click(function () {
+                $(this).closest('form')[0].submit();
+            });
+
+            $(".reportData th:nth-child(5), .reportData th:nth-child(6), .reportData td:nth-child(5)").css("text-align", "right");
+        });
+    </script>
+}
+<section id="main">
+    <section id="main-content" class="clearfix">
+        <div class="report-nav-menu">
+            @using (this.Html.BeginForm("Index", "VenueReports"))
+            {
+                @Html.ListBoxFor(model => model.SelectediPadIds, new MultiSelectList(this.Model.SelectediPadIds ?? Enumerable.Empty<int>(), this.Model.SelectediPadIds ?? Enumerable.Empty<int>()), new { style = "display:none;visibility:hidden;" })
+                @Html.ListBoxFor(model => model.SelectedMenuIds, new MultiSelectList(this.Model.SelectedMenuIds ?? Enumerable.Empty<int>(), this.Model.SelectedMenuIds ?? Enumerable.Empty<int>()), new { style = "display:none;visibility:hidden;" })
+                @Html.HiddenFor(m => m.DateFrom)
+                @Html.HiddenFor(m => m.DateTo)
+                @Html.HiddenFor(m => m.TimeFrom)
+                @Html.HiddenFor(m => m.TimeTo)
+                <a id="back-link" class="submit-link" href="#">Back</a>
+            }
+            <div class="report-date">
+                @this.Model.GetReportHeader()
+            </div>
+        </div>
+        @{
+            string lastiPad = null;
+            string lastMenu = null;
+            string lastCategory = null;
+            decimal menuTotalPerDevice = 0;
+            decimal deviceTotal = 0;
+            decimal grandTotal = 0;
+        }
+        <div id="reportTable">
+            <table width="100%" class="reportData">
+                <thead>
+                    <tr>
+                        <th>
+                            iPad
+                        </th>
+                        <th>
+                            Menu
+                        </th>
+                        <th>
+                            Category
+                        </th>
+                        <th>
+                            Item
+                        </th>
+                        <th>
+                            Times Ordered
+                        </th>
+                        <th>
+                            $
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in this.Model.DeviceReportData)
+                    {
+                        bool deviceChanged = item.DeviceName != lastiPad;
+                        bool menuChanged = deviceChanged || item.Menu != lastMenu;
+
+                        if (menuChanged && lastMenu != null)
+                        {
+                        <tr>
+                            <td colspan="4">
+                            </td>
+                            <td class="ipad-menu-total-label">
+                                SUB-TOTAL:
+                            </td>
+                            <td class="ipad-menu-total">@menuTotalPerDevice.ToString("C")
+                            </td>
+                        </tr>
+                            menuTotalPerDevice = 0;
+                        }
+
+                        menuTotalPerDevice += item.Total;
+
+                        if (deviceChanged && lastiPad != null)
+                        {
+                        <tr>
+                            <td colspan="4">
+                            </td>
+                            <td class="ipad-total-label">
+                                TOTAL:
+                            </td>
+                            <td class="ipad-total">@deviceTotal.ToString("C")
+                            </td>
+                        </tr>
+                            deviceTotal = 0;
+                        }
+
+                        deviceTotal += item.Total;
+                        grandTotal += item.Total;
+                        <tr>
+                            <td>@(deviceChanged ? item.DeviceName : "")
+                            </td>
+                            <td>@(menuChanged ? item.Menu : "")
+                            </td>
+                            <td>@(item.Category == lastCategory ? "" : item.Category)
+                            </td>
+                            <td>@item.Item
+                            </td>
+                            <td>@item.NumOrders
+                            </td>
+                            <td class="ipad-menu-item-total">@item.Total.ToString("C")
+                            </td>
+                        </tr>  
+        
+                        lastiPad = item.DeviceName;
+                        lastMenu = item.Menu;
+                        lastCategory = item.Category;
+                    }
+                    <tr>
+                        <td colspan="4">
+                        </td>
+                        <td class="ipad-menu-total-label">
+                            SUB-TOTAL:
+                        </td>
+                        <td class="ipad-menu-total">@menuTotalPerDevice.ToString("C")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                        </td>
+                        <td class="ipad-total-label">
+                            TOTAL:
+                        </td>
+                        <td class="ipad-total">@deviceTotal.ToString("C")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                        </td>
+                        <td class="grand-total-label">
+                            GRAND TOTAL:
+                        </td>
+                        <td class="grand-total">@grandTotal.ToString("C")
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        @using (this.Html.BeginForm("ExportToCsv", "VenueReports"))
+        {
+            @Html.ListBoxFor(model => model.SelectediPadIds, new MultiSelectList(this.Model.SelectediPadIds ?? Enumerable.Empty<int>(), this.Model.SelectediPadIds ?? Enumerable.Empty<int>()), new { style = "display:none;visibility:hidden;" })
+            @Html.ListBoxFor(model => model.SelectedMenuIds, new MultiSelectList(this.Model.SelectedMenuIds ?? Enumerable.Empty<int>(), this.Model.SelectedMenuIds ?? Enumerable.Empty<int>()), new { style = "display:none;visibility:hidden;" })
+            @Html.HiddenFor(m => m.DateFrom)
+            @Html.HiddenFor(m => m.DateTo)
+            @Html.HiddenFor(m => m.TimeFrom)
+            @Html.HiddenFor(m => m.TimeTo)
+            <a id="export-link" class="submit-link" href="#">Export Data</a>
+        }
+    </section>
+</section>

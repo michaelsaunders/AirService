@@ -1,0 +1,217 @@
+﻿@using AirService.Web.Infrastructure
+@model AirService.Web.ViewModels.VenueReportViewModel
+@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section headerSection
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#date-from-calendar').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                onSelect: function () {
+                    $('#DateFrom').val($.datepicker.formatDate('yy/mm/dd', $(this).datepicker('getDate')));
+                }
+            });
+
+            @if (this.Model.DateFrom.HasValue)
+            {   
+                <text>
+                    $('#date-from-calendar').datepicker('setDate', @Html.ScriptDateTime(this.Model.DateFrom.Value));
+                </text>
+            }
+            
+            $('#date-to-calendar').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                onSelect: function () {
+                    $('#DateTo').val($.datepicker.formatDate('yy/mm/dd', $(this).datepicker('getDate')));
+                }
+            });
+            
+            @if (this.Model.DateTo.HasValue)
+            {
+                <text>
+                    $('#date-to-calendar').datepicker('setDate', @Html.ScriptDateTime(this.Model.DateTo.Value));
+                </text>
+            } 
+              
+
+            function clearListBox(listBoxId) {
+                $.each($('#' + listBoxId + ' option:checked'), function (index, option) {
+                    option.selected = false;
+                });
+            }
+
+            function oniPadOptionChanged(radio) {
+                if (radio[0].checked && radio.val() == '1') {
+                    $('#SelectediPadIds').hide();
+                    clearListBox('SelectediPadIds');
+                }
+                else {
+                    $('#SelectediPadIds').show();
+                }
+            }
+
+            $('input:radio[name="iPadSelectOption"]').change(function () {
+                oniPadOptionChanged($(this));
+            });
+
+            function onMenuOptionChanged(radio) {
+                if (radio[0].checked && radio.val() == '1') {
+                    $('#SelectedMenuIds').hide();
+                    clearListBox('SelectedMenuIds');
+                }
+                else {
+                    $('#SelectedMenuIds').show();
+                }
+            }
+            $('input:radio[name="menuSelectOption"]').change(function () {
+                onMenuOptionChanged($(this));
+            });
+
+            function onDateFromOptionChanged(radio) {
+                if (radio[0].checked && radio.val() == '1') {
+                    $('#date-from-calendar').hide();
+                    $('#DateFrom').val('');
+                }
+                else {
+                    $('#date-from-calendar').show();
+                }
+            }
+
+            $('input:radio[name="dateFromOption"]').change(function () {
+                onDateFromOptionChanged($(this));
+            });
+
+            function onDateToOptionChanged(radio) {
+                if (radio[0].checked && radio.val() == '1') {
+                    $('#date-to-calendar').hide();
+                    $('#DateTo').val('');
+                }
+                else {
+                    $('#date-to-calendar').show();
+                }
+            }
+            
+            $('input:radio[name="dateToOption"]').change(function () {
+                onDateToOptionChanged($(this));
+            });
+
+            // this is to support FF caching input value.
+            onDateFromOptionChanged($('#dateFromOptionAny'));
+            onDateToOptionChanged($('#dateToOptionAny'));
+            oniPadOptionChanged($('#alliPads'));
+            onMenuOptionChanged($('#allMenus'));
+        });
+    </script>
+}
+<section id="main">
+    <section id="main-content" class="clearfix">
+        @using (this.Html.BeginForm("iPadOrderReport", "VenueReports"))
+        { 
+    
+            <h2>
+                View Reports</h2>
+            <div id="help-video-container">
+                <a href="#" class="close">close</a>
+                <p>
+                    This is where you can generate, view and export reports about the ordering habits
+                    of your customers using AirService.</p>
+            </div>
+            <p style="margin-left: 10px">
+                Use the form below to view reports</p>
+            <div id="report">
+                <div class="report-criteria-group">
+                    <div class="report-criteria report-criteria-top first">
+                        <h2 class="report-criteria-name">
+                            iPad</h2>
+                        <div class="radio-group">
+                            @Html.RadioButton("iPadSelectOption", 1, this.Model.SelectediPadIds.Length == 0, new { id = "alliPads" })
+                            All iPads
+                            @Html.RadioButton("iPadSelectOption", 2, this.Model.SelectediPadIds.Length > 0, new { id = "selectediPads" })
+                            Select iPads
+                        </div>
+                        <div style="height: 75px" class="checkbox-list">
+                            @foreach (var list in new MultiSelectList(Model.iPads.OrderBy(m => m.Name), "Id", "Name", @Model.SelectediPadIds ?? Enumerable.Empty<int>()))
+                            {
+                                <div>
+                                    <input type="checkbox" id="menu@(list.Value)" name="SelectediPadIds" @(list.Selected ? "checked=\"checked\"" : "") value="@list.Value"/>
+                                    <label for="menu@(list.Value)">@list.Text</label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="report-criteria report-criteria-top">
+                        <h2 class="report-criteria-name">
+                            Menu</h2>
+                        <div class="radio-group">
+                            @Html.RadioButton("menuSelectOption", 1, this.Model.SelectedMenuIds.Length == 0, new { id = "allMenus" })
+                            All Menus
+                            @Html.RadioButton("menuSelectOption", 2, this.Model.SelectedMenuIds.Length > 0, new { id = "selecteMenus" })
+                            Select Menus
+                        </div>
+                        <div style="height: 75px" class="checkbox-list">
+                            @foreach (var list in new MultiSelectList(Model.Menus.OrderBy(m => m.SortOrder), "Id", "DisplayTitle", @Model.SelectedMenuIds ?? Enumerable.Empty<int>()))
+                            {
+                                <div>
+                                    <input type="checkbox" id="menu@(list.Value)" name="SelectSelectedMenuIdsediPadIds" @(list.Selected ? "checked=\"checked\"" : "") value="@list.Value"/>
+                                    <label for="menu@(list.Value)">@list.Text</label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-helper-clearfix">
+                </div>
+                <div class="report-criteria-group">
+                    <div class="report-criteria-calendar">
+                        <h2 class="report-criteria-name">
+                            Date (From/To)</h2>
+                        @Html.HiddenFor(m => m.DateFrom)
+                        @Html.HiddenFor(m => m.DateTo)
+                        <div class="sub-group">
+                            <div class="radio-group">
+                                @Html.RadioButton("dateFromOption", 1, !this.Model.DateFrom.HasValue, new { id = "dateFromOptionAny" })
+                                From any date
+                                @Html.RadioButton("dateFromOption", 2, this.Model.DateFrom.HasValue, new { id = "dateFromOptionSelect" })
+                                Select date
+                            </div>
+                            <div id="date-from-calendar">
+                            </div>
+                        </div>
+                        <div class="sub-group">
+                            <div class="radio-group">
+                                @Html.RadioButton("dateToOption", 1, !this.Model.DateTo.HasValue, new { id = "dateToOptionAny" })
+                                To any date
+                                @Html.RadioButton("dateToOption", 2, this.Model.DateTo.HasValue, new { id = "dateToOptionSelect" })
+                                Select date
+                            </div>
+                            <div id="date-to-calendar">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-criteria-time">
+                        <h2 class="report-criteria-name">
+                            Time Range</h2>
+                        <div class="time">
+                            From: @Html.TimeFor(m => m.TimeFrom)
+                            To: @Html.TimeFor(m => m.TimeTo)
+                            @Html.ValidationMessageFor(model => model.TimeFrom)
+                            @Html.ValidationMessageFor(model => model.TimeTo)
+                        </div>
+                    </div>
+                </div>
+                <div class="report-criteria-group">
+                    
+                </div>
+                <button type="submit" class="runReport">
+                    Run Report</button>
+                <div class="ui-helper-clearfix">
+                </div>
+            </div>
+        }
+    </section>
+</section>

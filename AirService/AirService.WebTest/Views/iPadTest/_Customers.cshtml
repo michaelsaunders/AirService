@@ -1,0 +1,21 @@
+﻿@model AirService.WebTest.ViewModels.DeviceTestViewModel
+<h3>
+    All Customers</h3>
+@using (this.Ajax.BeginForm("CreateNewCustomer", new AjaxOptions
+{
+    UpdateTargetId = "customer_list",
+    LoadingElementId = "busy-wait" 
+}))
+{
+    <p>
+        Create a new test customer First Name:
+        @this.Html.TextBox("firstName", null, new {maxLength = "20"})
+        Last Name:
+        @this.Html.TextBox("lastName", null, new { maxLength = "20" }) 
+        <button type="submit">Add</button>
+    </p>
+    
+    <div id="customer_list">
+        @this.Html.Partial("_CustomerList", this.Model.Customers)
+    </div>
+}

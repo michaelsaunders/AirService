@@ -1,0 +1,84 @@
+﻿@model System.Collections.Generic.List<AirService.WebTest.ViewModels.VenueConnectionViewModel>
+@using AirService.Model;
+
+<table>
+    <tr>
+        <th>
+        </th>
+        
+        <th>Venue</th>
+        <th>
+            Customer
+        </th>
+        <th>
+            Customer Device UDID
+        </th>
+        <th>
+            Created
+        </th>
+        <th>
+            Modified
+        </th>
+        <th>
+            Connected Since
+        </th>
+        <th>Orders</th>
+        <th>
+            Status
+        </th>
+    </tr>
+    @foreach (var item in this.Model)
+    {
+        <tr>
+            <td style="white-space:nowrap;">
+                <button type="button" data-venue-id="@item.Connection.VenueId" data-customer-id="@item.Connection.CustomerId" class="place-order-button">Place Order</button>
+                <button type="button" data-venue-id="@item.Connection.VenueId" data-customer-id="@item.Connection.CustomerId" data-controller="iPadTest" class="view-order-button">View Order</button>
+                <button type="button" data-venue-id="@item.Connection.VenueId" data-customer-id="@item.Connection.CustomerId" data-controller="iPadTest" class="message-to-customer-button">Send Message</button>
+            </td>
+            <td>
+                @item.Connection.Venue.Title
+            </td>
+            <td>
+                @item.Connection.Customer.FirstName @item.Connection.Customer.LastName
+            </td>
+            <td>
+                @item.Connection.Customer.Udid
+            </td>
+            <td>
+                @item.Connection.CreateDate
+            </td>
+            <td>
+                @item.Connection.UpdateDate
+            </td>
+            <td>
+                @item.Connection.ConnectedSince
+            </td>
+            <td>
+                @item.TotalOrders
+            </td>
+            <td>
+                @if (item.Connection.FreezeUtil.HasValue)
+                {
+                    @:(Freeze Util @item.Connection.FreezeUtil)   
+                }
+                
+                @if (item.Connection.ConnectionStatus == VenueConnection.StatusWaiting)
+                {
+                    @:Waiting
+                }
+                else if (item.Connection.ConnectionStatus == VenueConnection.StatusActive)
+                {
+                    @:Active
+                }
+                else if (item.Connection.ConnectionStatus == VenueConnection.StatusClosing)
+                {
+                    @:Closing
+                }
+                else
+                {
+                    @:Closed(Finalized)
+                }
+            </td>
+        </tr>   
+    }
+</table>

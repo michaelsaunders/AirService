@@ -1,0 +1,45 @@
+﻿@model IEnumerable<AirService.Web.ViewModels.DeviceAdminViewModel>
+<table style="width: 100%">
+<thead>
+    <tr>
+        <th>
+            Admin Name
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            iPads
+        </th>
+        <th style="width: 36px;text-align: center">
+            Edit
+        </th>
+          <th style="width: 36px;">
+            Delete
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr data-id="@item.Id">
+            <td>
+                @item.UserName
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @(item.SelectedDeviceNames == null || item.SelectedDeviceNames.Length == 0?  "None": string.Join("; ", item.SelectedDeviceNames))
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "iPadAdmin", new { id = item.Id }, new { @class = "edit openDialog", data_dialog_id = "popupDialog", data_dialog_title = "Edit iPad Admin details" })
+            </td>
+            <td>
+                @Ajax.ActionLink("Delete", "Delete", "IPadAdmin", new { id = item.Id }, new AjaxOptions { Confirm = "Delete?", HttpMethod = "Post", UpdateTargetId = "diviPadAdmins" }, new { @class = "ui-icon ui-icon-closethick delete" })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+

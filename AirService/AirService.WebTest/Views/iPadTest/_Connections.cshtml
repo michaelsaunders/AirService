@@ -1,0 +1,14 @@
+﻿@model AirService.WebTest.ViewModels.DeviceTestViewModel
+<h3>
+    Venue Connections</h3>
+@using (this.Ajax.BeginForm("Connections", null, new AjaxOptions { UpdateTargetId = "connection_list", LoadingElementId = "busy-wait" }, new { id = "connectionRefreshForm" }))
+{
+    <input type="hidden" name="venueId" id="venueId" />
+    <input type="hidden" name="customerId" id="customerId" />
+    <input id="connect-button" type="submit" value="submit" style="display: none;" />
+    <button id="connection-refresh-button" type="button">Refresh</button> 
+}
+
+<div id="connection_list">
+    @this.Html.Partial("_ConnectionList", Model.Connections)
+</div>

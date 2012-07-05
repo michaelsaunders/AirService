@@ -1,0 +1,27 @@
+@model AirService.Model.VenueArea
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Add Venue Area</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Add a title to help you identify your customers location. Eg. Front Bar, Room 45, or Table 8.</legend>
+
+        @Html.HiddenFor(model => model.VenueId)
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

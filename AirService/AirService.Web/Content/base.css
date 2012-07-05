@@ -1,0 +1,188 @@
+﻿/* CSS RESET for HTML5 
+--------------------------------------------------------------------- */
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+body {
+    line-height:1;
+}
+
+article
+{
+	padding: 0 0 0 35px;
+	width: 671px;
+	float: left;
+}
+
+article p {
+	
+	font-size: 1.25em;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+    font-weight: bold;
+	color: #666666;
+	text-shadow: none;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000; 
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;   
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+/*     causing layout issues for IE7 - test inputs
+input, select {
+    vertical-align:inherit;
+ }   
+*/
+
+/* CSS RESET ENDS HERE */
+
+body
+{
+	/*background: url("images/bg/body.png") center 0 repeat-x;*/
+	text-align: left;
+}
+
+body {color:#333333;background-color:#0084C2;
+	font: normal 75%/1.6em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+} 
+
+p
+{
+	font-size: 1.05em;
+	margin-bottom: 15px;
+	text-shadow:0 1px #fff;
+}
+
+
+h1
+{
+	font-size: 2.9em;
+	color: #fff;
+	font-weight: 700;
+}
+
+h2, h3
+{
+	font-size: 2.4em;
+	color: #00aeff;
+	font-weight: 600;
+	margin-bottom: 20px;
+	text-shadow:0 1px #fff;
+	font-family: "Myriad Pro";
+}
+
+h4
+{
+	font-size: 1.5em;
+	font-weight: 600;
+	color: #0072bc;
+	margin-bottom: 26px;
+	text-shadow:0 1px #fff;
+	margin-top: 18px;
+}
+
+.regular {font-weight: 400;}
+.semibold {font-weight: 500;}
+
+ul
+{
+	list-style: none;
+}
+
+ul li, ol li
+{
+	text-shadow:0 1px #fff;
+}
+
+aside
+{
+	padding: 0 35px 0 0;
+	width: 230px;
+	float: right;
+}
+
+/* --------------------------------------------------------------------------------------
+   =clearfix
+   -------------------------------------------------------------------------------------- */
+/* Clearfix hack */
+.clearfix:after {content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix {display:block}
+* html .clearfix {height:1px}

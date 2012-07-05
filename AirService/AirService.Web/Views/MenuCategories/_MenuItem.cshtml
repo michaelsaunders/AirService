@@ -1,0 +1,197 @@
+﻿@using AirService.Web.ViewModels
+@model MenuItemDetailViewModel
+@using (Ajax.BeginForm(new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = Model.MenuItem.Id == 0 ? "onMenuItemAdded" : "onMenuItemUpdated",
+    OnFailure = "onError"
+}))
+{
+    @Html.ValidationSummary(true)
+    <fieldset id="menu-item-detail">
+        <!-- <legend></legend>  -- causing layout errors in IE -->
+        <div id="tabs">
+            <ul>
+                <li><a href="#menu-item-detail-tab">Menu Item</a></li>
+                <li><a href="#menu-item-option-tab">Options</a></li>
+            </ul>
+            <div id="menu-item-detail-tab">
+                @Html.HiddenFor(model => model.MenuItem.Id)
+                @Html.HiddenFor(model => model.MenuItem.Status)
+                @Html.HiddenFor(model => model.MenuItem.CreateDate)
+                @Html.HiddenFor(model => model.MenuItem.UpdateDate)
+                @Html.HiddenFor(model => model.MenuItem.MenuCategoryId)
+                @Html.HiddenFor(model => model.MenuItem.Image)
+                @Html.HiddenFor(model => model.MenuItem.SortOrder)
+                @Html.HiddenFor(model => model.SelectedCustomImage)
+                @Html.HiddenFor(model => model.SelectedStockImage)
+                @Html.HiddenFor(model => model.MenuItemOptions)
+                @Html.Partial("_CreateOrEditMenuItem", Model)
+            </div>
+            <div id="menu-item-option-tab">
+                <p>
+                    This is where you can add options for this particular item on the menu. Eg. Small,
+                    Medium or Large.</p>
+                <div class="clearfix">
+                </div>
+                <div id="divItemsList">
+                    <table style="width: 100%">
+                        <tr>
+                            <th style="width: 75%">
+                                Title
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                            <th>
+                                <a class="add-option-button" data-bind="click:addOption">Add</a>
+                            </th>
+                        </tr>
+                        <tbody data-bind="foreach:options">
+                            <tr>
+                                <td>
+                                    <input class="option-title" type="text" data-bind="value:Title"/>
+                                </td>
+                                <td>
+                                    <input class="option-price" type="text" data-bind="value:formattedPrice"/>
+                                </td>
+                                <td>
+                                    <a data-bind="click:$parent.deleteOption"></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+    
+    <script type="text/javascript">
+        function MenuItemOptionViewModel(){}
+        MenuItemOptionViewModel.prototype = @Html.Raw(Json.Encode(new MenuItemOptionViewModel()));
+        
+        function calculateMinMaxPrices() {
+            var min = Number.MAX_VALUE;
+            var max = Number.MIN_VALUE;
+            $.each(optionsViewModel.options(), function(index, item) {
+                var price = item.Price(); 
+                if (price < min) {
+                    min = price;
+                }
+
+                if (price > max) {
+                    max = price;
+                }
+            });
+
+            optionsViewModel.minPrice(min * 1);
+            optionsViewModel.maxPrice(max * 1);
+        }
+
+        function monitorOptionPrice(option) {
+            if(typeof (option.Price ) == 'function') {
+                return;
+            }
+
+            option.Price = ko.observable(option.Price).extend({ number: { } });
+            option.Price.subscribe(function() {
+                calculateMinMaxPrices();
+            });
+            
+            option.formattedPrice = ko.computed({
+                read: function() {
+                    return this.Price().formatMoney();
+                },
+                write: function(value) {
+                    // Strip out unwanted characters, parse as float, then write the raw data back to the underlying "price" observable
+                    value = parseFloat(value.replace( /[^\.\d]/g , ""));
+                    this.Price(isNaN(value) ? 0 : value); // Write to underlying storage
+                },
+                owner: option
+            });
+        }
+
+        var optionsViewModel = {
+            options: ko.observableArray((@Html.Raw(this.Model.MenuItem.Id > 0
+                    ? Json.Encode(MenuItemOptionViewModel.Wrap(this.Model.MenuItem.MenuItemOptions))
+                    : "[]"))),
+            addOption: function() {
+                var newOption = new MenuItemOptionViewModel();
+                newOption.Id = 0;
+                newOption.Title = 'New Option';
+                newOption.Price = 0;
+                monitorOptionPrice(newOption);
+                optionsViewModel.options.push(newOption);
+                calculateMinMaxPrices();
+            },
+            deleteOption: function(option) {
+                if (option.Id != 0 && !confirm('Are you sure you want to remove option "' + option.Title + '"?')) {
+                    return;
+                }
+
+                optionsViewModel.options.remove(option);
+                calculateMinMaxPrices();
+            },
+            minPrice: ko.observable(Number.MAX_VALUE),
+            maxPrice: ko.observable(Number.MIN_VALUE)
+        };
+
+        $.each(optionsViewModel.options(), function(index, item) {
+            monitorOptionPrice(item);
+        });
+        
+        calculateMinMaxPrices();
+        optionsViewModel.priceRange = ko.computed(function() {
+            if (optionsViewModel.options().length == 0) {
+                return 0;
+            }
+
+            if (optionsViewModel.options().length == 1) {
+                return '$' + optionsViewModel.options()[0].formattedPrice();
+            }
+
+            if(Math.abs(optionsViewModel.minPrice() - optionsViewModel.maxPrice()) < 0.000001) {
+                return '$' + optionsViewModel.minPrice().formatMoney();
+            }
+
+            return '$' + optionsViewModel.minPrice().formatMoney() + ' ~ $' + optionsViewModel.maxPrice().formatMoney();
+        }, optionsViewModel);
+        
+
+        $("#popupDialog").ready(function () {
+            $.validator.unobtrusive.parse("#popupDialog > form #tabs-1");
+            ko.applyBindings(optionsViewModel, $('#menu-item-detail-tab')[0]);
+            ko.applyBindings(optionsViewModel, $('#menu-item-option-tab')[0]);
+            $('#tabs').tabs({
+                selected:0
+            });
+             
+            $('#menu-item-detail').closest('form').submit(function() {
+                var options = ko.toJS(optionsViewModel.options);
+                $('#MenuItemOptions').val(JSON.stringify(options)); 
+                var isValid = true; 
+                $('input.option-title').each(function() {
+                    if ($.trim($(this).val()) == '') {
+                        isValid = false;
+                        $(this).addClass('error');
+                    } else {
+                        $(this).removeClass('error');
+                    }
+                });
+
+                if(!isValid) {
+                    $('#tabs').tabs('select', 1);
+                    return false;
+                }
+                
+                $('#tabs').tabs('select', 0);
+            });
+
+            $('input.option-price').textInput('float');
+        });
+
+    </script>
+}
